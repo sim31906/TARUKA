@@ -162,18 +162,25 @@
     .invest-other{max-width:660px;margin:14px auto 0;padding-left:22px;color:var(--brown-soft);font-size:15px}
     .invest-other li{margin-bottom:5px}
 
-    /* roi */
-    .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius);box-shadow:var(--shadow);border:2px solid var(--beige)}
-    table.roi{width:100%;border-collapse:collapse;background:#fff;min-width:680px}
-    table.roi th,table.roi td{padding:14px 16px;text-align:center;border-bottom:1px solid var(--beige-soft);white-space:nowrap}
-    table.roi thead th{background:var(--espresso);color:#fff;font-family:'Mitr';font-weight:500}
-    table.roi tbody td:first-child,table.roi thead th:first-child{text-align:left;color:var(--brown-soft);position:sticky;left:0;background:#fff;white-space:normal;min-width:148px;box-shadow:6px 0 8px -6px rgba(42,27,18,.18)}
-    table.roi thead th:first-child{background:var(--espresso);color:#fff}
-    table.roi tbody tr:nth-child(even){background:rgba(232,201,160,.16)}
-    table.roi tbody tr:nth-child(even) td:first-child{background:#F8EDDB}
-    table.roi tbody tr:last-child td{font-family:'Mitr';font-weight:600;color:var(--espresso);background:rgba(242,145,61,.2)}
-    table.roi tbody tr:last-child td:first-child{background:#FCE7D4}
-    .roi-notes{margin:18px auto 0;max-width:700px;padding-left:22px;color:var(--brown-soft);font-size:14px}
+    /* roi — เลือกจำนวนขาย/วัน แล้วแสดงตัวเลขของ scenario นั้น */
+    .roi-picker{max-width:560px;margin:0 auto}
+    .roi-picker-label{text-align:center;font-family:'Mitr';font-weight:500;color:var(--brown-soft);font-size:15px;margin-bottom:14px}
+    .roi-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:22px}
+    .roi-tab{font-family:'Mitr';font-weight:500;font-size:15px;line-height:1;min-height:40px;padding:0 18px;
+      border:2px solid var(--beige);background:#fff;color:var(--brown-soft);border-radius:999px;cursor:pointer;
+      transition:transform .12s,background .2s,border-color .2s,color .2s,box-shadow .2s}
+    .roi-tab:hover{border-color:var(--orange);transform:translateY(-1px)}
+    .roi-tab.active{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 8px 18px rgba(242,145,61,.38)}
+    .roi-tab:focus-visible{outline:3px solid rgba(242,145,61,.45);outline-offset:2px}
+    .roi-detail{background:#fff;border:2px solid var(--beige);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .roi-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 22px;border-bottom:1px solid var(--beige-soft)}
+    .roi-row:last-child{border-bottom:none}
+    .roi-row .roi-k{color:var(--brown-soft);font-size:15px}
+    .roi-row .roi-v{font-family:'Mitr';font-weight:500;color:var(--espresso);font-size:16px;white-space:nowrap}
+    .roi-row.is-total{background:var(--espresso);padding-top:16px;padding-bottom:16px}
+    .roi-row.is-total .roi-k{color:#fff;font-family:'Mitr';font-weight:500}
+    .roi-row.is-total .roi-v{color:var(--orange);font-size:clamp(20px,5vw,24px);font-weight:600}
+    .roi-notes{margin:18px auto 0;max-width:560px;padding-left:22px;color:var(--brown-soft);font-size:14px}
     .roi-notes li{margin-bottom:5px}
 
     /* support */
@@ -250,6 +257,11 @@
       .invest-total{flex-direction:column;align-items:flex-start;gap:6px}
       .invest-total .lbl{white-space:nowrap}
       .invest-total .val{text-align:left}
+    }
+    @media(max-width:400px){
+      /* จอแคบมาก: ย่อรูป/blob ของ hero ไม่ให้ล้นจอตอน blob หมุน (morph) */
+      .hero-vis #heroImg{width:250px;height:250px}
+      .blob{width:286px;height:286px}
     }
   </style>
 </head>
@@ -353,7 +365,11 @@
     <section class="hidden" id="roiSection">
       <div class="wrap">
         <h2 class="section-heading" id="roiHeading"></h2>
-        <div class="table-scroll"><table class="roi" id="roiTable"></table></div>
+        <div class="roi-picker">
+          <div class="roi-picker-label">เลือกจำนวนขายต่อวัน (แก้ว)</div>
+          <div class="roi-tabs" id="roiTabs" role="tablist" aria-label="จำนวนขายต่อวัน"></div>
+          <div class="roi-detail" id="roiDetail"></div>
+        </div>
         <ul class="roi-notes" id="roiNotes"></ul>
       </div>
     </section>
@@ -559,13 +575,43 @@
       }
       if (c.roi) {
         setText("roiHeading", c.roi.heading);
-        var tbl = document.getElementById("roiTable");
-        var head = "<thead><tr><th>รายการ</th>" + (c.roi.columns || []).map(function (col) { return "<th>" + esc(col) + "</th>"; }).join("") + "</tr></thead>";
-        var bodyRows = (c.roi.rows || []).map(function (r) {
-          var cells = (r.values || []).map(function (v) { return "<td>" + esc(v) + "</td>"; }).join("");
-          return "<tr><td>" + esc(r.label) + "</td>" + cells + "</tr>";
-        }).join("");
-        tbl.innerHTML = head + "<tbody>" + bodyRows + "</tbody>";
+        var roiCols = c.roi.columns || [];
+        var roiRows = c.roi.rows || [];
+        var roiTabs = document.getElementById("roiTabs");
+        var roiDetail = document.getElementById("roiDetail");
+        roiTabs.innerHTML = "";
+
+        function renderRoiDetail(idx) {
+          roiDetail.innerHTML = roiRows.map(function (r, i) {
+            var isTotal = (i === roiRows.length - 1);
+            var v = (r.values || [])[idx];
+            return '<div class="roi-row' + (isTotal ? ' is-total' : '') + '">' +
+                     '<span class="roi-k">' + esc(r.label) + '</span>' +
+                     '<span class="roi-v">' + esc(v || "—") + '</span>' +
+                   '</div>';
+          }).join("");
+        }
+        function selectRoi(idx) {
+          Array.prototype.forEach.call(roiTabs.children, function (b, i) {
+            var on = (i === idx);
+            b.classList.toggle("active", on);
+            b.setAttribute("aria-selected", on ? "true" : "false");
+            b.tabIndex = on ? 0 : -1;
+          });
+          renderRoiDetail(idx);
+        }
+        roiCols.forEach(function (col, i) {
+          var b = document.createElement("button");
+          b.type = "button"; b.className = "roi-tab"; b.setAttribute("role", "tab");
+          b.textContent = col;
+          b.addEventListener("click", function () { selectRoi(i); });
+          roiTabs.appendChild(b);
+        });
+        if (roiCols.length) {
+          var def = roiCols.indexOf("200");
+          selectRoi(def >= 0 ? def : 0);
+        }
+
         var rn = document.getElementById("roiNotes"); rn.innerHTML = "";
         (c.roi.notes || []).forEach(function (n) { var li = document.createElement("li"); li.textContent = n; rn.appendChild(li); });
         show("roiSection");
