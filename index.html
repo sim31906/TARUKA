@@ -181,6 +181,27 @@
 
     .loading-note{text-align:center;padding:80px 20px;color:var(--brown-soft)}
 
+    /* ---- ลูกเล่น: scroll-reveal · ไข่มุกลอย · เงา header · ปุ่มวิ้ง ---- */
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+    .reveal.in{opacity:1;transform:none}
+    header{transition:box-shadow .25s ease,background .25s ease}
+    header.scrolled{box-shadow:0 6px 22px rgba(42,27,18,.10)}
+    .pearl{will-change:transform}
+    .p1{animation:floaty 5.5s ease-in-out infinite} .p2{animation:floaty 6.5s ease-in-out infinite .4s}
+    .p3{animation:floaty 7s ease-in-out infinite .2s} .p4{animation:floaty 5s ease-in-out infinite .6s}
+    .p5{animation:floaty 6s ease-in-out infinite .3s}
+    @keyframes floaty{50%{transform:translateY(-14px)}}
+    /* แสงวิ้งบนปุ่มตอน hover */
+    .pill{position:relative;overflow:hidden}
+    .pill::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;
+      background:linear-gradient(120deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);transition:left .6s ease}
+    .pill:hover::after{left:150%}
+    @media(prefers-reduced-motion:reduce){
+      .reveal{opacity:1;transform:none;transition:none}
+      .p1,.p2,.p3,.p4,.p5,.blob{animation:none}
+      .pill::after{display:none}
+    }
+
     @media(max-width:860px){
       .hero-grid{grid-template-columns:1fr;text-align:center}
       .eyebrow,.cta-row,.price-flag{justify-content:center}
@@ -215,7 +236,6 @@
     <section class="hero hidden" id="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow"><span class="dot"></span> ชานมไข่มุก · กว่า 50 สาขาทั่วไทย</span>
           <h1 id="heroTitle"></h1>
           <p id="heroSubtitle"></p>
           <div class="cta-row">
@@ -532,6 +552,57 @@
     }
 
     render(window.DEFAULT_CONTENT || {});
+
+    // ---- ลูกเล่น: scroll-reveal + นับเลขสถิติ + เงา header ----
+    // นับเลขจาก 0 ถึงค่าจริง โดยคงตัวอักษรนำหน้า/ตามหลังไว้ (เช่น 19฿, 50+)
+    function animateCount(el){
+      var raw=el.textContent.trim();
+      var m=raw.match(/^(\D*)(\d[\d,]*)(.*)$/);
+      if(!m){return}
+      var prefix=m[1], suffix=m[3], target=parseInt(m[2].replace(/,/g,""),10);
+      if(!isFinite(target)){return}
+      var dur=1100, start=null;
+      function tick(ts){
+        if(!start)start=ts;
+        var p=Math.min(1,(ts-start)/dur), eased=1-Math.pow(1-p,3);
+        el.textContent=prefix+Math.round(target*eased).toLocaleString("en-US")+suffix;
+        if(p<1){requestAnimationFrame(tick)}else{el.textContent=raw}
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function setupFx(){
+      var hdr=document.querySelector("header");
+      function onScroll(){if(hdr)hdr.classList.toggle("scrolled",window.scrollY>10)}
+      window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
+
+      var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if(reduce||!("IntersectionObserver" in window))return; // ถ้าปิดอนิเมชัน/ไม่รองรับ → คงเนื้อหาให้เห็นปกติ
+
+      // ทยอยโผล่ทีละชิ้นตอนเลื่อนถึง
+      var sel=[".section-heading",".section-sub",".about-body",".hero-copy>*",
+               ".mcat-card",".stat-card",".format-card",".support-card",
+               ".invest-card",".invest-notes",".table-scroll",".contact-btns"];
+      var els=[];
+      sel.forEach(function(s){Array.prototype.forEach.call(document.querySelectorAll(s),function(e){if(els.indexOf(e)<0)els.push(e)})});
+      // หน่วงเวลาเหลื่อมในแต่ละกริด ให้ไหลเป็นจังหวะ
+      ["#menuGrid","#statsGrid","#formatsGrid","#supportGrid"].forEach(function(gs){
+        var g=document.querySelector(gs); if(!g)return;
+        Array.prototype.forEach.call(g.children,function(ch,i){ch.style.transitionDelay=(i*70)+"ms"});
+      });
+      els.forEach(function(e){e.classList.add("reveal")});
+      var io=new IntersectionObserver(function(ents){
+        ents.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}});
+      },{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+      els.forEach(function(e){io.observe(e)});
+
+      // นับเลขสถิติเมื่อเลื่อนถึง
+      var cio=new IntersectionObserver(function(ents){
+        ents.forEach(function(en){if(en.isIntersecting){animateCount(en.target);cio.unobserve(en.target)}});
+      },{threshold:.5});
+      Array.prototype.forEach.call(document.querySelectorAll(".stat-value"),function(s){cio.observe(s)});
+    }
+    setupFx();
   </script>
 </body>
 </html>
