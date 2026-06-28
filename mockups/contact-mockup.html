@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TARUKA — Contact buttons mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF7EC; --espresso:#2A1B12; --boba:#1c140d; --orange:#F2913D; --orange-dk:#DD7420;
+    --beige:#E8C9A0; --beige-soft:#F4E3C8; --matcha:#8FB43A; --line:#06C755; --fb:#1877F2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Noto Sans Thai',sans-serif;background:#0e0905;color:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .page{max-width:1080px;margin:0 auto;padding:36px 18px 80px}
+  .page>h1{font-family:'Mitr';font-weight:700;font-size:23px;text-align:center;margin-bottom:6px}
+  .page>.sub{text-align:center;color:#b9a892;margin-bottom:36px;font-size:14px}
+
+  .variant{background:var(--espresso);border-radius:26px;padding:54px 26px 46px;margin-bottom:26px;position:relative}
+  .variant .tag{position:absolute;top:16px;left:16px;font-family:'Mitr';font-weight:700;font-size:13px;color:var(--espresso);
+    background:var(--orange);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .variant .vname{position:absolute;top:18px;left:56px;color:#caa48a;font-size:12.5px}
+  .c-head{font-family:'Mitr';font-weight:700;font-size:clamp(26px,4vw,36px);text-align:center;line-height:1.15}
+  .c-head::after{content:"";display:block;width:52px;height:6px;border-radius:6px;background:var(--orange);margin:16px auto 12px}
+  .c-sub{text-align:center;color:var(--beige);margin-bottom:30px;font-size:15px}
+  svg{display:block}
+
+  /* ===== A — การ์ดช่องทาง (ปุ่มสีแบรนด์ 2×2 + ชื่อ + ค่า) ===== */
+  .va-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:680px;margin:0 auto}
+  .va-card{display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:18px;text-decoration:none;color:#fff;
+    box-shadow:0 10px 24px rgba(0,0,0,.28);transition:transform .15s}
+  .va-card:hover{transform:translateY(-3px)}
+  .va-ic{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .va-txt{display:flex;flex-direction:column;line-height:1.25}
+  .va-txt b{font-family:'Mitr';font-weight:600;font-size:16px}
+  .va-txt i{font-style:normal;font-size:13px;opacity:.92}
+  .bg-line{background:var(--line)} .bg-fb{background:var(--fb)} .bg-tel{background:var(--orange)}
+
+  /* ===== B — การ์ดกระจกบนพื้นเข้ม + แถบสีช่องทาง ===== */
+  .vb-list{display:flex;flex-direction:column;gap:12px;max-width:440px;margin:0 auto}
+  .vb-card{display:flex;align-items:center;gap:14px;padding:13px 16px 13px 20px;border-radius:15px;text-decoration:none;color:#fff;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);position:relative;overflow:hidden;transition:background .2s,transform .15s}
+  .vb-card:hover{background:rgba(255,255,255,.1);transform:translateX(3px)}
+  .vb-bar{position:absolute;left:0;top:0;bottom:0;width:4px}
+  .vb-ic{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .vb-txt{display:flex;flex-direction:column;flex:1;line-height:1.25}
+  .vb-txt b{font-family:'Mitr';font-weight:500;font-size:15px}
+  .vb-txt i{font-style:normal;font-size:13px;color:#b9a892}
+  .vb-go{color:#b9a892;font-size:18px}
+  .cl-line{color:var(--line)} .cl-fb{color:#4d9bff} .cl-tel{color:var(--orange)}
+
+  /* ===== C — ปุ่มกลมไอคอน + ป้ายใต้ปุ่ม (แถวเดียว) ===== */
+  .vc-row{display:flex;justify-content:center;flex-wrap:wrap;gap:24px}
+  .vc-item{display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;color:#fff;width:96px;text-align:center}
+  .vc-btn{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 10px 22px rgba(0,0,0,.35);transition:transform .15s}
+  .vc-item:hover .vc-btn{transform:translateY(-4px) scale(1.05)}
+  .vc-cap{font-family:'Mitr';font-weight:500;font-size:13.5px;line-height:1.2}
+
+  /* ===== D — การ์ดรวมช่องทาง (ลิสต์ครีมใบเดียว) ===== */
+  .vd-card{max-width:420px;margin:0 auto;background:var(--cream);border-radius:22px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.4)}
+  .vd-row{display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:var(--espresso);border-bottom:1px solid rgba(42,27,18,.08);transition:background .15s}
+  .vd-row:last-child{border-bottom:none}
+  .vd-row:hover{background:var(--beige-soft)}
+  .vd-ic{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;flex:0 0 auto}
+  .vd-info{display:flex;flex-direction:column;flex:1;line-height:1.25}
+  .vd-info b{font-family:'Mitr';font-weight:600;font-size:15px}
+  .vd-info i{font-style:normal;font-size:13px;color:#6b5443}
+  .vd-arrow{color:var(--orange-dk);font-size:22px;font-weight:700}
+
+  @media(max-width:560px){
+    .va-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>TARUKA — ปุ่มติดต่อ 4 แบบให้เลือก</h1>
+  <div class="sub">ดูแล้วบอกตัวอักษร (A / B / C / D) ที่ชอบ เดี๋ยวนำไปใช้จริงในเว็บ</div>
+
+  <!-- A -->
+  <section class="variant">
+    <span class="tag">A</span><span class="vname">การ์ดช่องทาง — ปุ่มสีแบรนด์ 2×2 + ชื่อ + ค่า</span>
+    <h2 class="c-head">สนใจเปิดร้าน TARUKA?</h2>
+    <p class="c-sub">ทักหาเราได้เลย ทีมงานพร้อมให้คำปรึกษาฟรี</p>
+    <div class="va-grid">
+      <a class="va-card bg-line" href="#"><span class="va-ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 5.69 2 10.23c0 4.07 3.56 7.48 8.37 8.12.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.26-.2 1.02.9.56s5.92-3.49 8.08-5.97C21.4 13.66 22 12 22 10.23 22 5.69 17.52 2 12 2zM7.6 12.9H5.55c-.3 0-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54s.54.24.54.54v3.55h1.5c.3 0 .54.24.54.54s-.24.54-.53.54zm2.13-.54c0 .3-.24.54-.54.54s-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54s.54.24.54.54v4.09zm4.94 0c0 .23-.15.44-.37.51a.6.6 0 0 1-.17.03c-.17 0-.33-.08-.43-.22l-2.1-2.85v2.53c0 .3-.24.54-.54.54s-.54-.24-.54-.54V8.27c0-.23.15-.44.37-.51.06-.02.11-.03.17-.03.17 0 .33.08.43.22l2.1 2.85V8.27c0-.3.24-.54.54-.54s.54.24.54.54v4.09zm3.42-2.59c.3 0 .54.24.54.54s-.24.54-.54.54h-1.5v.97h1.5c.3 0 .54.24.54.54s-.24.54-.54.54h-2.05c-.3 0-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54h2.05c.3 0 .54.24.54.54s-.24.54-.54.54h-1.5v.97h1.5z"/></svg></span><span class="va-txt"><b>LINE Official</b><i>@taruka</i></span></a>
+      <a class="va-card bg-fb" href="#"><span class="va-ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 16.99 22 12z"/></svg></span><span class="va-txt"><b>Facebook</b><i>Taruka Thailand</i></span></a>
+      <a class="va-card bg-tel" href="#"><span class="va-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span><span class="va-txt"><b>โทรเลย</b><i>095-447-4888</i></span></a>
+      <a class="va-card bg-tel" href="#"><span class="va-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span><span class="va-txt"><b>โทรเลย</b><i>088-252-4381</i></span></a>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="variant">
+    <span class="tag">B</span><span class="vname">การ์ดกระจกบนพื้นเข้ม — มินิมอล มีแถบสีช่องทาง</span>
+    <h2 class="c-head">สนใจเปิดร้าน TARUKA?</h2>
+    <p class="c-sub">ทักหาเราได้เลย ทีมงานพร้อมให้คำปรึกษาฟรี</p>
+    <div class="vb-list">
+      <a class="vb-card" href="#"><span class="vb-bar bg-line"></span><span class="vb-ic cl-line"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2C6.48 2 2 5.69 2 10.23c0 4.07 3.56 7.48 8.37 8.12.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.26-.2 1.02.9.56s5.92-3.49 8.08-5.97C21.4 13.66 22 12 22 10.23 22 5.69 17.52 2 12 2zM7.6 12.9H5.55c-.3 0-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54s.54.24.54.54v3.55h1.5c.3 0 .54.24.54.54s-.24.54-.53.54zm2.13-.54c0 .3-.24.54-.54.54s-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54s.54.24.54.54v4.09zm4.94 0c0 .23-.15.44-.37.51a.6.6 0 0 1-.17.03c-.17 0-.33-.08-.43-.22l-2.1-2.85v2.53c0 .3-.24.54-.54.54s-.54-.24-.54-.54V8.27c0-.23.15-.44.37-.51.06-.02.11-.03.17-.03.17 0 .33.08.43.22l2.1 2.85V8.27c0-.3.24-.54.54-.54s.54.24.54.54v4.09zm3.42-2.59c.3 0 .54.24.54.54s-.24.54-.54.54h-1.5v.97h1.5c.3 0 .54.24.54.54s-.24.54-.54.54h-2.05c-.3 0-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54h2.05c.3 0 .54.24.54.54s-.24.54-.54.54h-1.5v.97h1.5z"/></svg></span><span class="vb-txt"><b>LINE</b><i>@taruka</i></span><span class="vb-go">&rsaquo;</span></a>
+      <a class="vb-card" href="#"><span class="vb-bar bg-fb"></span><span class="vb-ic cl-fb"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 16.99 22 12z"/></svg></span><span class="vb-txt"><b>Facebook</b><i>Taruka Thailand</i></span><span class="vb-go">&rsaquo;</span></a>
+      <a class="vb-card" href="#"><span class="vb-bar bg-tel"></span><span class="vb-ic cl-tel"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span><span class="vb-txt"><b>โทร</b><i>095-447-4888</i></span><span class="vb-go">&rsaquo;</span></a>
+      <a class="vb-card" href="#"><span class="vb-bar bg-tel"></span><span class="vb-ic cl-tel"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span><span class="vb-txt"><b>โทร</b><i>088-252-4381</i></span><span class="vb-go">&rsaquo;</span></a>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="variant">
+    <span class="tag">C</span><span class="vname">ปุ่มกลมไอคอน + ป้ายใต้ปุ่ม (แถวเดียว กระชับ)</span>
+    <h2 class="c-head">สนใจเปิดร้าน TARUKA?</h2>
+    <p class="c-sub">ทักหาเราได้เลย ทีมงานพร้อมให้คำปรึกษาฟรี</p>
+    <div class="vc-row">
+      <a class="vc-item" href="#"><span class="vc-btn bg-line"><svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M12 2C6.48 2 2 5.69 2 10.23c0 4.07 3.56 7.48 8.37 8.12.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.26-.2 1.02.9.56s5.92-3.49 8.08-5.97C21.4 13.66 22 12 22 10.23 22 5.69 17.52 2 12 2zM7.6 12.9H5.55c-.3 0-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54s.54.24.54.54v3.55h1.5c.3 0 .54.24.54.54s-.24.54-.53.54zm2.13-.54c0 .3-.24.54-.54.54s-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54s.54.24.54.54v4.09zm4.94 0c0 .23-.15.44-.37.51a.6.6 0 0 1-.17.03c-.17 0-.33-.08-.43-.22l-2.1-2.85v2.53c0 .3-.24.54-.54.54s-.54-.24-.54-.54V8.27c0-.23.15-.44.37-.51.06-.02.11-.03.17-.03.17 0 .33.08.43.22l2.1 2.85V8.27c0-.3.24-.54.54-.54s.54.24.54.54v4.09zm3.42-2.59c.3 0 .54.24.54.54s-.24.54-.54.54h-1.5v.97h1.5c.3 0 .54.24.54.54s-.24.54-.54.54h-2.05c-.3 0-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54h2.05c.3 0 .54.24.54.54s-.24.54-.54.54h-1.5v.97h1.5z"/></svg></span><span class="vc-cap">LINE<br>@taruka</span></a>
+      <a class="vc-item" href="#"><span class="vc-btn bg-fb"><svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 16.99 22 12z"/></svg></span><span class="vc-cap">Facebook</span></a>
+      <a class="vc-item" href="#"><span class="vc-btn bg-tel"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span><span class="vc-cap">095-447-4888</span></a>
+      <a class="vc-item" href="#"><span class="vc-btn bg-tel"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span><span class="vc-cap">088-252-4381</span></a>
+    </div>
+  </section>
+
+  <!-- D -->
+  <section class="variant">
+    <span class="tag">D</span><span class="vname">การ์ดรวมช่องทาง — ลิสต์ครีมใบเดียว เป็นระเบียบ</span>
+    <h2 class="c-head">สนใจเปิดร้าน TARUKA?</h2>
+    <p class="c-sub">ทักหาเราได้เลย ทีมงานพร้อมให้คำปรึกษาฟรี</p>
+    <div class="vd-card">
+      <a class="vd-row" href="#"><span class="vd-ic bg-line"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2C6.48 2 2 5.69 2 10.23c0 4.07 3.56 7.48 8.37 8.12.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.26-.2 1.02.9.56s5.92-3.49 8.08-5.97C21.4 13.66 22 12 22 10.23 22 5.69 17.52 2 12 2zM7.6 12.9H5.55c-.3 0-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54s.54.24.54.54v3.55h1.5c.3 0 .54.24.54.54s-.24.54-.53.54zm2.13-.54c0 .3-.24.54-.54.54s-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54s.54.24.54.54v4.09zm4.94 0c0 .23-.15.44-.37.51a.6.6 0 0 1-.17.03c-.17 0-.33-.08-.43-.22l-2.1-2.85v2.53c0 .3-.24.54-.54.54s-.54-.24-.54-.54V8.27c0-.23.15-.44.37-.51.06-.02.11-.03.17-.03.17 0 .33.08.43.22l2.1 2.85V8.27c0-.3.24-.54.54-.54s.54.24.54.54v4.09zm3.42-2.59c.3 0 .54.24.54.54s-.24.54-.54.54h-1.5v.97h1.5c.3 0 .54.24.54.54s-.24.54-.54.54h-2.05c-.3 0-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54h2.05c.3 0 .54.24.54.54s-.24.54-.54.54h-1.5v.97h1.5z"/></svg></span><span class="vd-info"><b>LINE</b><i>@taruka</i></span><span class="vd-arrow">&rsaquo;</span></a>
+      <a class="vd-row" href="#"><span class="vd-ic bg-fb"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 16.99 22 12z"/></svg></span><span class="vd-info"><b>Facebook</b><i>Taruka Thailand</i></span><span class="vd-arrow">&rsaquo;</span></a>
+      <a class="vd-row" href="#"><span class="vd-ic bg-tel"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span><span class="vd-info"><b>โทร</b><i>095-447-4888</i></span><span class="vd-arrow">&rsaquo;</span></a>
+      <a class="vd-row" href="#"><span class="vd-ic bg-tel"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span><span class="vd-info"><b>โทร</b><i>088-252-4381</i></span><span class="vd-arrow">&rsaquo;</span></a>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
