@@ -8,6 +8,9 @@ firebase-debug.log
 *serviceAccount*.json
 *.key.json
 
+# สร้างโดย CI ตอน deploy (stamp commit SHA)
+version.txt
+
 # OS / editor
 .DS_Store
 Thumbs.db
