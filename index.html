@@ -158,7 +158,7 @@
     .invest-total{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px;background:var(--espresso);color:#fff}
     .invest-total .lbl{font-family:'Mitr';font-size:16px}
     .invest-total .val{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-weight:600;font-size:clamp(20px,4.6vw,26px);color:var(--orange);text-align:right;white-space:nowrap}
-    .invest-notes{max-width:660px;margin:18px auto 0;color:var(--brown-soft);font-size:15px;text-align:center}
+    .invest-notes{max-width:660px;margin:18px auto 0;color:var(--brown-soft);font-size:15px;text-align:center;text-wrap:pretty}
     .invest-other{max-width:660px;margin:14px auto 0;padding-left:22px;color:var(--brown-soft);font-size:15px}
     .invest-other li{margin-bottom:5px}
 
@@ -244,8 +244,11 @@
       .cta-row .pill{width:100%;justify-content:center}
       .contact-btns{flex-direction:column;align-items:stretch}
       .btn-line,.btn-fb{justify-content:center}
-      /* งบลงทุนรวม: วางป้ายบน-ตัวเลขล่าง เต็มกว้าง ไม่อึดอัด */
+      /* งบลงทุน: วางป้ายบน-ตัวเลขล่าง เต็มกว้าง ไม่ตัดคำกลางบรรทัด */
+      .invest-row{flex-direction:column;align-items:flex-start;gap:2px}
+      .invest-row span:last-child{font-size:17px}
       .invest-total{flex-direction:column;align-items:flex-start;gap:6px}
+      .invest-total .lbl{white-space:nowrap}
       .invest-total .val{text-align:left}
     }
   </style>
