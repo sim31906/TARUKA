@@ -236,6 +236,14 @@
       .header-cta{display:none}
       .carousel-arrow{display:none}
       section{padding:46px 0}
+      .stats-grid{grid-template-columns:1fr 1fr}   /* การ์ดสถิติ 2×2 บนมือถือ ไม่เรียงยาว 1 คอลัมน์ */
+    }
+    @media(max-width:520px){
+      /* ปุ่มเต็มความกว้าง แตะง่ายบนจอแคบ */
+      .cta-row{flex-direction:column;align-items:stretch}
+      .cta-row .pill{width:100%;justify-content:center}
+      .contact-btns{flex-direction:column;align-items:stretch}
+      .btn-line,.btn-fb{justify-content:center}
     }
   </style>
 </head>
