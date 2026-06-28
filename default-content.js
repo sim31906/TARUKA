@@ -203,7 +203,7 @@ window.DEFAULT_CONTENT = {
   contact: {
     lineUrl: "https://line.me/R/ti/p/@taruka",
     lineLabel: "@taruka",
-    facebookUrl: "https://www.facebook.com/TarukaThailand",
+    facebookUrl: "https://www.facebook.com/p/Taruka-Thailand-%E3%82%BF%E3%83%AB%E3%82%AB-100091922111471/",
     facebookLabel: "Taruka Thailand",
   },
 };
