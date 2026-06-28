@@ -271,6 +271,8 @@
       .stats-grid{grid-template-columns:1fr 1fr}   /* การ์ดสถิติ 2×2 บนมือถือ ไม่เรียงยาว 1 คอลัมน์ */
     }
     @media(max-width:520px){
+      /* มือถือ: ไม่บังคับ line break (กันคำโดดเช่น "19฿"/"ไว") ปล่อยไหล+สมดุล */
+      .hero #heroSubtitle{white-space:normal;text-wrap:balance}
       /* ปุ่มเต็มความกว้าง แตะง่ายบนจอแคบ */
       .cta-row{flex-direction:column;align-items:stretch}
       .cta-row .pill{width:100%;justify-content:center}
