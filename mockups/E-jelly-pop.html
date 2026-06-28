@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TARUKA — Mockup E · Jelly Pop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Charmonman:wght@400;700&family=Chakra+Petch:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* TARUKA brand palette (จาก Canva): cream · espresso · caramel · tan · coffee */
+    --bg:#F7F1E5; --bg2:#F1E6D2; --ink:#2A1C10; --ink-soft:#7a6244;
+    --pink:#C89B62; --grape:#A8794A; --mint:#D9BF93; --lemon:#E8CF9E; --white:#fff;
+    --glass:rgba(255,250,240,.55); --glass-line:rgba(255,255,255,.85);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'IBM Plex Sans Thai',sans-serif;color:var(--ink);line-height:1.75;font-weight:300;overflow-x:hidden;
+    background:
+      radial-gradient(640px 520px at 84% -6%,rgba(168,121,74,.32),transparent 62%),
+      radial-gradient(560px 520px at -6% 16%,rgba(200,155,98,.34),transparent 60%),
+      radial-gradient(620px 600px at 50% 116%,rgba(217,191,147,.4),transparent 60%),
+      var(--bg)}
+  h1,h2,h3{font-family:'Chakra Petch',sans-serif;font-weight:600;line-height:1.05;letter-spacing:.005em}
+  .script{font-family:'Charmonman',cursive;font-weight:700}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  a{color:inherit}
+
+  /* signature: glossy jelly — translucent fills, top highlight bar, soft inner glow,
+     buttons that depress + wobble like a gummy */
+  .jelly{position:relative;background:var(--glass);border:1.5px solid var(--glass-line);
+    box-shadow:0 18px 40px rgba(42,28,16,.18),inset 0 2px 0 rgba(255,255,255,.9),inset 0 -10px 24px rgba(168,121,74,.12);
+    backdrop-filter:blur(10px);overflow:hidden}
+  .jelly::before{content:"";position:absolute;top:6px;left:8%;right:8%;height:34%;border-radius:999px;
+    background:linear-gradient(180deg,rgba(255,255,255,.7),transparent);pointer-events:none}
+
+  .gummy{display:inline-flex;align-items:center;gap:9px;cursor:pointer;text-decoration:none;border:none;
+    font-family:'Chakra Petch';font-weight:600;font-size:15.5px;padding:13px 26px;border-radius:999px;color:#fff;
+    background:linear-gradient(180deg,#D9B47E,var(--pink));
+    box-shadow:0 10px 0 #A8794A,0 16px 26px rgba(200,155,98,.5),inset 0 2px 0 rgba(255,255,255,.55);
+    transition:transform .12s,box-shadow .12s}
+  .gummy:hover{transform:translateY(-2px)}
+  .gummy:active{transform:translateY(8px);box-shadow:0 2px 0 #A8794A,0 6px 12px rgba(200,155,98,.45),inset 0 2px 0 rgba(255,255,255,.55)}
+  .gummy.grape{background:linear-gradient(180deg,#B5895A,var(--grape));box-shadow:0 10px 0 #6F4E2E,0 16px 26px rgba(168,121,74,.5),inset 0 2px 0 rgba(255,255,255,.45)}
+  .gummy.grape:active{box-shadow:0 2px 0 #6F4E2E,0 6px 12px rgba(168,121,74,.45),inset 0 2px 0 rgba(255,255,255,.45)}
+  .gummy.ghost{background:var(--glass);color:var(--ink);box-shadow:0 8px 0 rgba(168,121,74,.3),inset 0 2px 0 rgba(255,255,255,.8)}
+  .gummy.ghost:active{box-shadow:0 2px 0 rgba(168,121,74,.3),inset 0 2px 0 rgba(255,255,255,.8)}
+
+  .bubble{display:inline-flex;align-items:center;gap:8px;font-family:'Chakra Petch';font-weight:500;font-size:13.5px;
+    padding:7px 16px;border-radius:999px;background:var(--glass);border:1.5px solid var(--glass-line);
+    box-shadow:inset 0 2px 0 rgba(255,255,255,.85),0 6px 16px rgba(42,28,16,.1)}
+  .bubble .dot{width:9px;height:9px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 3px rgba(217,191,147,.45)}
+
+  header{position:sticky;top:0;z-index:40;backdrop-filter:blur(12px);background:rgba(247,241,229,.65);border-bottom:1px solid rgba(255,255,255,.6)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand img{height:42px;filter:drop-shadow(0 4px 8px rgba(168,121,74,.4))}
+  .brand b{font-family:'Chakra Petch';font-weight:600;font-size:24px;letter-spacing:.05em}
+
+  /* hero */
+  .hero{padding:52px 0 26px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}
+  .hero h1{font-size:clamp(44px,7vw,84px)}
+  .hero h1 .grad{background:linear-gradient(120deg,var(--pink),var(--grape) 55%,var(--mint));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero .wob{display:inline-block;animation:wob 3.2s ease-in-out infinite;transform-origin:bottom center}
+  @keyframes wob{0%,100%{transform:rotate(-2deg) scale(1)}50%{transform:rotate(2deg) scale(1.03)}}
+  .hero .lede{font-size:18.5px;color:var(--ink-soft);max-width:450px;margin:22px 0 30px;font-weight:400}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .price-jelly{margin-top:30px;display:inline-flex;align-items:baseline;gap:10px;padding:12px 22px;border-radius:20px}
+  .price-jelly b{font-family:'Chakra Petch';font-weight:600;font-size:38px;
+    background:linear-gradient(120deg,var(--pink),var(--grape));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+  .price-jelly span{color:var(--ink-soft);font-size:14.5px}
+
+  .hero-vis{position:relative;display:flex;justify-content:center;align-items:center;min-height:420px}
+  /* the drink sits inside a wobbling jelly capsule */
+  .capsule{width:360px;height:360px;border-radius:48% 52% 50% 50%/52% 48% 52% 48%;padding:16px;
+    animation:float 6s ease-in-out infinite}
+  @keyframes float{50%{transform:translateY(-14px)}}
+  .capsule img{width:100%;height:100%;object-fit:cover;border-radius:46% 54% 50% 50%/52% 48% 52% 48%;
+    box-shadow:0 20px 40px rgba(42,28,16,.22)}
+  /* glossy tapioca pearls in brand tones */
+  .pearl{position:absolute;border-radius:50%;
+    background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.85),rgba(122,86,56,.5) 40%,#1C140E);
+    box-shadow:0 8px 16px rgba(28,20,14,.35)}
+  .pl1{width:54px;height:54px;top:6%;left:8%;animation:float 5s ease-in-out infinite}
+  .pl2{width:30px;height:30px;top:22%;right:6%;background:radial-gradient(circle at 32% 28%,#fff,var(--pink) 52%,#9A6F3C)}
+  .pl3{width:42px;height:42px;bottom:8%;right:14%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.85),rgba(122,86,56,.5) 40%,#1C140E);animation:float 7s ease-in-out infinite}
+  .pl4{width:24px;height:24px;bottom:22%;left:4%;background:radial-gradient(circle at 32% 28%,#fff,var(--tan,#DCBE92) 52%,#B89760)}
+
+  /* stats as jelly capsules */
+  .stats{padding:30px 0 8px}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .stat{border-radius:26px;padding:26px 18px;text-align:center}
+  .stat .v{font-family:'Chakra Petch';font-weight:600;font-size:44px;line-height:1}
+  .stat:nth-child(1) .v{color:var(--pink)} .stat:nth-child(2) .v{color:var(--grape)} .stat:nth-child(3) .v{color:var(--grape)}
+  .stat .l{font-size:15px;color:var(--ink-soft);margin-top:4px}
+
+  /* menu */
+  .menu{padding:54px 0 70px}
+  .sec-head{text-align:center;margin-bottom:30px}
+  .sec-head .script{display:block;font-size:clamp(28px,4vw,40px);color:var(--grape);margin-bottom:-6px;transform:rotate(-2deg)}
+  .sec-head h2{font-size:clamp(30px,5vw,46px)}
+  .sec-head p{color:var(--ink-soft);margin-top:8px}
+  .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .mcard{border-radius:28px;transition:transform .16s,box-shadow .16s}
+  .mcard:hover{transform:translateY(-7px)}
+  .mcard .imgwrap{position:relative;margin:14px 14px 0;border-radius:20px;overflow:hidden}
+  .mcard img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+  .mcard .price{position:absolute;top:12px;right:12px;font-family:'Chakra Petch';font-weight:600;font-size:14px;color:#fff;
+    padding:5px 13px;border-radius:999px;background:linear-gradient(180deg,#D9B47E,var(--pink));
+    box-shadow:0 6px 14px rgba(200,155,98,.5),inset 0 1px 0 rgba(255,255,255,.55)}
+  .mcard .b{padding:14px 20px 20px}
+  .mcard .cat{font-family:'Chakra Petch';font-weight:600;font-size:18px}
+  .mcard .it{font-size:14px;color:var(--ink-soft);margin-top:4px}
+
+  footer{text-align:center;padding:30px 0 40px;color:var(--ink-soft);font-size:14.5px}
+  footer .script{display:block;font-size:30px;color:var(--grape)}
+
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;text-align:center}
+    .cta-row,.price-jelly{justify-content:center}.hero .lede{margin-inline:auto}
+    .stat-row,.mgrid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:520px){.stat-row,.mgrid{grid-template-columns:1fr}.capsule{width:280px;height:280px}}
+  @media(prefers-reduced-motion:reduce){.hero .wob,.capsule,.pearl{animation:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <div class="brand"><img src="../assets/logo.png" alt="TARUKA"><b>TARUKA</b></div>
+  <a class="gummy grape" href="#">สนใจแฟรนไชส์ 🧋</a>
+</div></header>
+
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="bubble"><span class="dot"></span> ชานมไข่มุก · หนึบเด้งเหมือนเยลลี่</span>
+    <h1 style="margin-top:18px">หนึบ <span class="wob grad">เด้ง</span><br><span class="grad">ทุกแก้ว</span> 🦌</h1>
+    <p class="lede">TARUKA ทารุกะ — ไข่มุกหนึบเด้งเหมือนกัมมี่ ชานมนุ่มละมุน สดชื่นทุกอึก เปิดร้านง่าย คืนทุนไว</p>
+    <div class="cta-row">
+      <a class="gummy" href="#">เริ่มเปิดร้าน</a>
+      <a class="gummy ghost" href="#">ดูเมนูทั้งหมด</a>
+    </div>
+    <div class="price-jelly jelly"><b>19฿</b><span>เริ่มต้น / แก้ว</span></div>
+  </div>
+  <div class="hero-vis">
+    <span class="pearl pl1"></span><span class="pearl pl2"></span>
+    <span class="pearl pl3"></span><span class="pearl pl4"></span>
+    <div class="capsule jelly"><img src="../assets/menu/boba-mood.jpg" alt="ชานมไข่มุก TARUKA"></div>
+  </div>
+</div></section>
+
+<section class="stats"><div class="wrap stat-row">
+  <div class="stat jelly"><div class="v">19฿</div><div class="l">เริ่มต้นต่อแก้ว</div></div>
+  <div class="stat jelly"><div class="v">50+</div><div class="l">เมนูเครื่องดื่ม</div></div>
+  <div class="stat jelly"><div class="v">50+</div><div class="l">สาขาทั่วประเทศ</div></div>
+</div></section>
+
+<section class="menu"><div class="wrap">
+  <div class="sec-head">
+    <span class="script">our menu</span>
+    <h2>เมนูของเรา</h2>
+    <p>คัดเมนูเด่นแบ่งเป็นคอลเลกชัน เลือกได้ตามมู้ด</p>
+  </div>
+  <div class="mgrid">
+    <div class="mcard jelly"><div class="imgwrap"><img src="../assets/menu/boba-mood.jpg" alt=""><span class="price">เริ่ม 24฿</span></div>
+      <div class="b"><div class="cat">ชานม & ไข่มุก</div><div class="it">นมสดบราวน์ชูการ์ไข่มุก · ชานมไต้หวันไข่มุก</div></div></div>
+    <div class="mcard jelly"><div class="imgwrap"><img src="../assets/menu/aiyu-jelly.jpg" alt=""><span class="price">34฿</span></div>
+      <div class="b"><div class="cat">เยลลี่อัญชัน</div><div class="it">เยลลี่ไอยุหนึบเด้ง · โซดาเลมอนสดชื่น</div></div></div>
+    <div class="mcard jelly"><div class="imgwrap"><img src="../assets/menu/matcha.jpg" alt=""><span class="price">แนะนำ</span></div>
+      <div class="b"><div class="cat">มัทฉะ</div><div class="it">ชาเขียวมัทฉะนมสด · มัทฉะเลมอนโซดา</div></div></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span class="script">taruka</span>ทารุกะ · ชานมไข่มุกหนึบเด้งทุกแก้ว · เริ่มเปิดร้านกับเราวันนี้ 🧋</div></footer>
+</body>
+</html>

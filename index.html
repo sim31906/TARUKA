@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TARUKA ทารุกะ — แฟรนไชส์ชานมไข่มุก</title>
+  <meta name="description" content="TARUKA แฟรนไชส์ชานมไข่มุก เริ่มต้นแก้วละ 19฿ คืนทุนไว มีทีมดูแลครบวงจร" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --cream:#FFF7EC; --espresso:#2A1B12; --brown-soft:#6b5443;
+      --orange:#F2913D; --orange-dk:#DD7420; --beige:#E8C9A0; --beige-soft:#F4E3C8;
+      --matcha:#8FB43A; --boba:#1c140d; --white:#fff;
+      --radius:26px; --radius-sm:18px; --shadow:0 18px 44px rgba(42,27,18,.12);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Prompt',sans-serif;background:var(--cream);color:var(--espresso);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    h1,h2,h3,.disp{font-family:'Mitr',sans-serif;font-weight:600;letter-spacing:-.01em}
+    .wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 22px}
+    section{padding:60px 0;position:relative}
+    .hidden{display:none !important}
+
+    /* shared heading */
+    .section-heading{font-family:'Mitr';font-weight:700;font-size:clamp(30px,5vw,46px);text-align:center;color:var(--espresso);line-height:1.15}
+    .section-heading::after{content:"";display:block;width:58px;height:6px;border-radius:6px;background:var(--orange);margin:16px auto 0}
+    .section-sub{text-align:center;color:var(--brown-soft);max-width:640px;margin:10px auto 34px;font-size:17px}
+
+    /* buttons */
+    .pill{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;text-decoration:none;
+      background:var(--orange);color:#fff;font-family:'Mitr';font-weight:500;font-size:15px;
+      padding:12px 24px;border-radius:999px;box-shadow:0 8px 20px rgba(242,145,61,.38);transition:transform .15s,background .2s}
+    .pill:hover{transform:translateY(-2px) scale(1.02);background:var(--orange-dk)}
+    .pill.ghost{background:#fff;color:var(--espresso);border:2px solid var(--espresso);box-shadow:none}
+    .pill.ghost:hover{background:var(--espresso);color:#fff}
+
+    /* header */
+    header{position:sticky;top:0;z-index:50;background:rgba(255,247,236,.85);backdrop-filter:blur(10px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+    .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+    .brand img{height:42px;width:auto}
+    .brand .bn{font-family:'Mitr';font-size:23px;font-weight:700;letter-spacing:.04em;color:var(--espresso);line-height:1}
+    .brand .bt{display:block;font-size:11px;color:var(--brown-soft);line-height:1.1}
+    .header-cta{font-size:14px;padding:10px 20px}
+
+    /* hero */
+    .hero{padding:48px 0 70px}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--beige);
+      color:var(--orange-dk);font-family:'Mitr';font-weight:500;font-size:14px;padding:7px 16px;border-radius:999px;margin-bottom:22px}
+    .eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--matcha)}
+    .hero h1{font-size:clamp(42px,7vw,78px);font-weight:700;line-height:1.0;color:var(--espresso)}
+    .hero #heroSubtitle{font-size:19px;color:var(--brown-soft);max-width:480px;margin:22px 0 30px}
+    .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+    .price-flag{display:flex;align-items:center;gap:10px;margin-top:28px;font-family:'Mitr';color:var(--brown-soft);font-size:15px}
+    .price-flag b{font-family:'Prompt',sans-serif;font-size:34px;color:var(--espresso);font-weight:600}
+    .hero-vis{position:relative;display:flex;justify-content:center;align-items:center;min-height:430px}
+    .blob{position:absolute;width:440px;height:440px;border-radius:46% 54% 52% 48%/52% 46% 54% 48%;
+      background:radial-gradient(circle at 35% 30%,var(--beige),var(--orange));filter:blur(2px);animation:morph 9s ease-in-out infinite}
+    @keyframes morph{50%{border-radius:54% 46% 48% 52%/46% 54% 48% 52%;transform:rotate(8deg)}}
+    .hero-vis #heroImg{position:relative;width:370px;height:370px;object-fit:cover;border-radius:50%;
+      border:10px solid #fff;box-shadow:var(--shadow);z-index:2}
+    .pearl{position:absolute;border-radius:50%;background:var(--boba);box-shadow:inset -4px -4px 8px rgba(255,255,255,.15);z-index:3}
+    .p1{width:46px;height:46px;top:6%;left:12%} .p2{width:28px;height:28px;top:22%;right:8%}
+    .p3{width:60px;height:60px;bottom:5%;right:16%;background:var(--orange)} .p4{width:22px;height:22px;bottom:20%;left:6%;background:var(--matcha)}
+    .p5{width:34px;height:34px;top:52%;left:-2%}
+
+    /* about */
+    .about-body{max-width:760px;margin:0 auto;text-align:center;font-size:18px;color:var(--brown-soft)}
+    .about-images{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:32px}
+    .about-images img{width:210px;height:210px;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow);border:4px solid #fff}
+
+    /* menu collections */
+    .menu-section{background:linear-gradient(180deg,var(--cream),#fff)}
+    .menu-grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+    .mcat-card{display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);overflow:hidden;
+      box-shadow:var(--shadow);border:2px solid var(--beige);transition:transform .18s ease}
+    .mcat-card:hover{transform:translateY(-6px) rotate(-1deg)}
+    .mcat-img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--beige-soft)}
+    .mcat-body{padding:16px 20px 20px}
+    .mcat-eyebrow{display:inline-block;font-family:'Mitr';font-size:12px;font-weight:500;letter-spacing:.3px;
+      color:#fff;background:var(--matcha);padding:4px 14px;border-radius:999px;margin-bottom:13px}
+    .mcat-items{list-style:none}
+    .mcat-item{display:flex;align-items:baseline;gap:6px;padding:6px 0}
+    .mcat-item+.mcat-item{border-top:1px solid rgba(201,165,124,.2)}
+    .mcat-item .nm{color:var(--brown-soft);font-size:14.5px}
+    .mcat-item .lead{flex:1 1 auto;min-width:12px;border-bottom:2px dotted var(--beige);transform:translateY(-4px)}
+    .mcat-item .pr{font-family:'Prompt',sans-serif;font-weight:600;color:var(--orange-dk);font-size:15px;white-space:nowrap}
+
+    /* stats / highlights */
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;margin-top:6px}
+    .stat-card{background:#fff;border-radius:var(--radius);padding:30px 18px;text-align:center;border:2px solid var(--beige);
+      position:relative;overflow:hidden}
+    .stat-card::before{content:"";position:absolute;top:-22px;right:-22px;width:72px;height:72px;border-radius:50%;background:var(--cream)}
+    .stat-value{font-family:'Prompt',sans-serif;font-weight:600;font-size:46px;color:var(--orange);position:relative;line-height:1}
+    .stat-label{font-size:15px;color:var(--brown-soft);position:relative;margin-top:6px}
+
+    /* store formats */
+    .formats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px}
+    .format-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;border:2px solid var(--beige)}
+    .format-card .img-box{height:210px;background:var(--beige-soft);background-size:cover;background-position:center}
+    .format-card .body{padding:22px 24px}
+    .format-card h3{font-size:23px;color:var(--espresso);margin-bottom:12px}
+    .format-card ul{list-style:none}
+    .format-card li{padding-left:28px;position:relative;margin-bottom:9px;color:var(--brown-soft)}
+    .format-card li::before{content:"✓";position:absolute;left:0;top:-1px;width:20px;height:20px;border-radius:50%;
+      background:var(--matcha);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700}
+
+    /* carousel (branches) */
+    .menu-carousel{position:relative}
+    .menu-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;scroll-behavior:smooth;padding:8px 2px 18px;scrollbar-width:thin}
+    .menu-track::-webkit-scrollbar{height:8px}
+    .menu-track::-webkit-scrollbar-thumb{background:var(--beige);border-radius:8px}
+    .menu-card{flex:0 0 auto;width:230px;scroll-snap-align:start;border-radius:var(--radius);overflow:hidden;
+      box-shadow:var(--shadow);border:2px solid var(--beige);background:#fff}
+    .menu-img{display:block;width:100%;height:280px;object-fit:cover;background:var(--beige-soft)}
+    .carousel-arrow{position:absolute;top:42%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
+      background:var(--orange);color:#fff;font-size:26px;line-height:1;box-shadow:0 8px 20px rgba(242,145,61,.4);z-index:5;
+      display:flex;align-items:center;justify-content:center;padding:0;transition:transform .15s,background .2s}
+    .carousel-arrow.prev{left:-8px} .carousel-arrow.next{right:-8px}
+    .carousel-arrow:hover{background:var(--orange-dk);transform:translateY(-50%) scale(1.08)}
+    .carousel-dots{display:flex;gap:8px;justify-content:center;margin-top:10px}
+    .carousel-dots .dot{width:9px;height:9px;border-radius:50%;border:none;padding:0;background:var(--beige);opacity:.7;cursor:pointer;transition:all .2s}
+    .carousel-dots .dot.active{background:var(--orange);opacity:1;transform:scale(1.3)}
+
+    /* investment */
+    .investment{background:linear-gradient(180deg,var(--cream),var(--beige-soft))}
+    .invest-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);max-width:660px;margin:0 auto;overflow:hidden;border:2px solid var(--beige)}
+    .invest-row{display:flex;justify-content:space-between;gap:16px;padding:16px 26px;border-bottom:1px solid var(--beige-soft)}
+    .invest-row span:first-child{color:var(--brown-soft)}
+    .invest-row span:last-child{font-family:'Prompt',sans-serif;font-weight:600;color:var(--espresso);white-space:nowrap}
+    .invest-total{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px;background:var(--espresso);color:#fff}
+    .invest-total .lbl{font-family:'Mitr';font-size:16px}
+    .invest-total .val{font-family:'Prompt',sans-serif;font-weight:600;font-size:26px;color:var(--orange)}
+    .invest-notes{max-width:660px;margin:18px auto 0;color:var(--brown-soft);font-size:15px;text-align:center}
+    .invest-other{max-width:660px;margin:14px auto 0;padding-left:22px;color:var(--brown-soft);font-size:15px}
+    .invest-other li{margin-bottom:5px}
+
+    /* roi */
+    .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius);box-shadow:var(--shadow);border:2px solid var(--beige)}
+    table.roi{width:100%;border-collapse:collapse;background:#fff;min-width:680px}
+    table.roi th,table.roi td{padding:14px 16px;text-align:center;border-bottom:1px solid var(--beige-soft);white-space:nowrap}
+    table.roi thead th{background:var(--espresso);color:#fff;font-family:'Mitr';font-weight:500}
+    table.roi tbody td:first-child,table.roi thead th:first-child{text-align:left;color:var(--brown-soft);position:sticky;left:0;background:#fff}
+    table.roi thead th:first-child{background:var(--espresso);color:#fff}
+    table.roi tbody tr:nth-child(even){background:rgba(232,201,160,.16)}
+    table.roi tbody tr:nth-child(even) td:first-child{background:#F8EDDB}
+    table.roi tbody tr:last-child td{font-family:'Mitr';font-weight:600;color:var(--espresso);background:rgba(242,145,61,.2)}
+    table.roi tbody tr:last-child td:first-child{background:rgba(242,145,61,.2)}
+    .roi-notes{margin:18px auto 0;max-width:700px;padding-left:22px;color:var(--brown-soft);font-size:14px}
+    .roi-notes li{margin-bottom:5px}
+
+    /* support */
+    .support-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+    .support-card{background:#fff;border-radius:var(--radius);padding:26px 24px;box-shadow:var(--shadow);
+      border:2px solid var(--beige);border-top:5px solid var(--orange)}
+    .support-card h3{font-family:'Mitr';font-size:19px;margin-bottom:8px;color:var(--espresso)}
+    .support-card p{color:var(--brown-soft);font-size:15px}
+
+    /* contact */
+    .contact{background:var(--espresso);color:var(--cream)}
+    .contact .section-heading{color:#fff}
+    .contact .section-sub{color:var(--beige)}
+    .contact-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+    .btn-line,.btn-fb{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Mitr';font-weight:500;
+      padding:15px 30px;border-radius:999px;font-size:17px;box-shadow:var(--shadow);transition:transform .15s}
+    .btn-line{background:#06C755;color:#fff} .btn-fb{background:#1877F2;color:#fff}
+    .btn-line:hover,.btn-fb:hover{transform:translateY(-2px)}
+
+    /* footer */
+    footer{background:#1f140d;color:var(--beige);text-align:center;padding:26px 20px;font-size:14px}
+
+    /* sticky cta */
+    .sticky-cta{position:fixed;left:16px;right:16px;bottom:16px;z-index:60;display:none;text-align:center}
+    .sticky-cta a{display:block;background:#06C755;color:#fff;text-decoration:none;font-family:'Mitr';font-weight:500;
+      padding:15px;border-radius:999px;font-size:17px;box-shadow:0 8px 24px rgba(6,199,85,.4)}
+
+    .loading-note{text-align:center;padding:80px 20px;color:var(--brown-soft)}
+
+    @media(max-width:860px){
+      .hero-grid{grid-template-columns:1fr;text-align:center}
+      .eyebrow,.cta-row,.price-flag{justify-content:center}
+      .hero #heroSubtitle{margin-left:auto;margin-right:auto}
+      .hero-vis{order:-1;min-height:330px}
+      .hero-vis #heroImg{width:280px;height:280px} .blob{width:330px;height:330px}
+    }
+    @media(max-width:720px){
+      .sticky-cta{display:block} body{padding-bottom:80px}
+      .header-cta{display:none}
+      .carousel-arrow{display:none}
+      section{padding:46px 0}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <a href="#" class="brand">
+        <img id="brandLogo" class="hidden" alt="TARUKA" />
+        <span><span class="bn" id="brandName">TARUKA</span><span class="bt" id="brandTagline">ชานมไข่มุก</span></span>
+      </a>
+      <a class="pill header-cta" id="headerCta" href="#contact">สนใจแฟรนไชส์ 🧋</a>
+    </div>
+  </header>
+
+  <main id="app">
+    <div class="loading-note" id="loadingNote">กำลังโหลดเนื้อหา…</div>
+
+    <!-- Hero -->
+    <section class="hero hidden" id="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="dot"></span> ชานมไข่มุก · กว่า 50 สาขาทั่วไทย</span>
+          <h1 id="heroTitle"></h1>
+          <p id="heroSubtitle"></p>
+          <div class="cta-row">
+            <a class="pill" id="heroCta" href="#contact"></a>
+            <a class="pill ghost" href="#menuSection">ดูเมนู</a>
+          </div>
+          <div class="price-flag">เริ่มต้นเพียง <b>19฿</b> / แก้ว</div>
+        </div>
+        <div class="hero-vis">
+          <div class="blob"></div>
+          <span class="pearl p1"></span><span class="pearl p2"></span><span class="pearl p3"></span>
+          <span class="pearl p4"></span><span class="pearl p5"></span>
+          <img id="heroImg" alt="TARUKA" />
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="hidden" id="aboutSection">
+      <div class="wrap">
+        <h2 class="section-heading" id="aboutHeading"></h2>
+        <p class="about-body" id="aboutBody"></p>
+        <div class="about-images" id="aboutImages"></div>
+      </div>
+    </section>
+
+    <!-- Menu (คอลเลกชัน) -->
+    <section class="menu-section hidden" id="menuSection">
+      <div class="wrap">
+        <h2 class="section-heading" id="menuHeading"></h2>
+        <p class="section-sub" id="menuBody"></p>
+        <div class="menu-grid" id="menuGrid"></div>
+      </div>
+    </section>
+
+    <!-- Highlights -->
+    <section class="highlights hidden" id="highlightsSection">
+      <div class="wrap">
+        <h2 class="section-heading" id="highlightsHeading"></h2>
+        <p class="section-sub" id="highlightsBody"></p>
+        <div class="stats-grid" id="statsGrid"></div>
+      </div>
+    </section>
+
+    <!-- Store formats -->
+    <section class="formats hidden" id="formatsSection">
+      <div class="wrap">
+        <h2 class="section-heading">รูปแบบร้าน</h2>
+        <p class="section-sub">เลือกรูปแบบที่เหมาะกับทำเลและงบของคุณ</p>
+        <div class="formats-grid" id="formatsGrid"></div>
+      </div>
+    </section>
+
+    <!-- Branches carousel -->
+    <section class="menu-section hidden" id="branchesSection">
+      <div class="wrap">
+        <h2 class="section-heading" id="branchesHeading"></h2>
+        <p class="section-sub" id="branchesBody"></p>
+        <div class="menu-carousel">
+          <button class="carousel-arrow prev" id="branchesPrev" type="button" aria-label="ก่อนหน้า">‹</button>
+          <div class="menu-track" id="branchesTrack"></div>
+          <button class="carousel-arrow next" id="branchesNext" type="button" aria-label="ถัดไป">›</button>
+        </div>
+        <div class="carousel-dots" id="branchesDots"></div>
+      </div>
+    </section>
+
+    <!-- Investment -->
+    <section class="investment hidden" id="investmentSection">
+      <div class="wrap">
+        <h2 class="section-heading" id="investHeading"></h2>
+        <div class="invest-card" id="investCard"></div>
+        <p class="invest-notes" id="investNotes"></p>
+        <ul class="invest-other" id="investOther"></ul>
+      </div>
+    </section>
+
+    <!-- ROI -->
+    <section class="hidden" id="roiSection">
+      <div class="wrap">
+        <h2 class="section-heading" id="roiHeading"></h2>
+        <div class="table-scroll"><table class="roi" id="roiTable"></table></div>
+        <ul class="roi-notes" id="roiNotes"></ul>
+      </div>
+    </section>
+
+    <!-- Support -->
+    <section class="hidden" id="supportSection">
+      <div class="wrap">
+        <h2 class="section-heading" id="supportHeading"></h2>
+        <div class="support-grid" id="supportGrid"></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact hidden" id="contact">
+      <div class="wrap">
+        <h2 class="section-heading">สนใจเปิดร้าน TARUKA?</h2>
+        <p class="section-sub">ทักหาเราได้เลย ทีมงานพร้อมให้คำปรึกษาฟรี</p>
+        <div class="contact-btns">
+          <a class="btn-line" id="contactLine" target="_blank" rel="noopener"><span>LINE</span> <span id="contactLineLabel"></span></a>
+          <a class="btn-fb" id="contactFb" target="_blank" rel="noopener"><span>Facebook</span> <span id="contactFbLabel"></span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> <span id="footerBrand">TARUKA</span> · สงวนลิขสิทธิ์</div>
+  </footer>
+
+  <div class="sticky-cta" id="stickyCta">
+    <a id="stickyLine" target="_blank" rel="noopener">🧋 สนใจแฟรนไชส์ ทักไลน์</a>
+  </div>
+
+  <!-- เนื้อหาทั้งหมดอยู่ใน default-content.js (แก้ไขในโค้ดได้โดยตรง) -->
+  <script src="default-content.js"></script>
+
+  <script>
+    function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+    function show(id){var el=document.getElementById(id);if(el)el.classList.remove("hidden")}
+    function setText(id,val){var el=document.getElementById(id);if(el)el.textContent=val||""}
+
+    // ---- carousel (scroll-snap + arrows + dots + auto-advance) ----
+    // จำนวน dot = "ตำแหน่งเลื่อนจริง" (วัดจากความกว้างจริง) ไม่ใช่จำนวนการ์ด —
+    // เพราะการ์ดโชว์หลายใบพร้อมกัน ตำแหน่งเลื่อนจึงน้อยกว่าจำนวนการ์ด
+    function setupCarousel(prefix) {
+      var track = document.getElementById(prefix + "Track");
+      var prev = document.getElementById(prefix + "Prev");
+      var next = document.getElementById(prefix + "Next");
+      var dotsWrap = document.getElementById(prefix + "Dots");
+      var dots = [], timer = null;
+
+      function step(){var card=track.querySelector(".menu-card");if(!card)return 240;var gap=parseInt(getComputedStyle(track).gap)||16;return card.getBoundingClientRect().width+gap}
+      function stops(){var max=track.scrollWidth-track.clientWidth;if(max<=2)return 1;return Math.round(max/step())+1}
+      function currentIndex(){return Math.max(0,Math.min(stops()-1,Math.round(track.scrollLeft/step())))}
+      function scrollToIndex(i){i=Math.max(0,Math.min(stops()-1,i));var max=track.scrollWidth-track.clientWidth;track.scrollTo({left:i>=stops()-1?max:i*step(),behavior:"smooth"})}
+      function updateDots(){var idx=currentIndex();dots.forEach(function(d,di){d.classList.toggle("active",di===idx)})}
+      function stopAuto(){if(timer){clearInterval(timer);timer=null}}
+      function buildDots(){
+        var n=stops();
+        dotsWrap.innerHTML=""; dots=[];
+        dotsWrap.style.display=n>1?"flex":"none";
+        if(n<=1)return;
+        for(var i=0;i<n;i++){(function(idx){
+          var d=document.createElement("button");d.className="dot";d.type="button";
+          d.setAttribute("aria-label","ไปสไลด์ที่ "+(idx+1));
+          d.addEventListener("click",function(){stopAuto();scrollToIndex(idx)});
+          dotsWrap.appendChild(d);dots.push(d);
+        })(i)}
+        updateDots();
+      }
+
+      buildDots();
+      if(prev)prev.addEventListener("click",function(){stopAuto();scrollToIndex(currentIndex()-1)});
+      if(next)next.addEventListener("click",function(){stopAuto();var idx=currentIndex();scrollToIndex(idx>=stops()-1?0:idx+1)});
+      track.addEventListener("scroll",updateDots,{passive:true});
+
+      // จำนวน dot เปลี่ยนตามขนาดจอ — สร้างใหม่เมื่อ resize
+      var rt; window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(buildDots,200)});
+
+      // เลื่อนอัตโนมัติ — หยุดเมื่อผู้ใช้แตะ/เลื่อน
+      timer=setInterval(function(){if(stops()<=1)return;var idx=currentIndex();scrollToIndex(idx>=stops()-1?0:idx+1)},4000);
+      ["pointerdown","touchstart","mouseenter","wheel"].forEach(function(ev){track.addEventListener(ev,stopAuto,{passive:true})});
+    }
+
+    // เมนูแบบคอลเลกชัน
+    function renderMenu(m) {
+      if (!m) return;
+      var cats = (m.categories || []).filter(function (c) { return c && c.image; });
+      if (cats.length === 0) return;
+      setText("menuHeading", m.heading);
+      setText("menuBody", m.body);
+      var grid = document.getElementById("menuGrid");
+      grid.innerHTML = "";
+      cats.forEach(function (cat) {
+        var items = (cat.items || []).map(function (it) {
+          var hasPrice = !!it.price;
+          return '<li class="mcat-item"><span class="nm">' + esc(it.name) + '</span>' +
+            (hasPrice ? '<span class="lead"></span><span class="pr">' + esc(it.price) + '</span>' : '') + '</li>';
+        }).join("");
+        var card = document.createElement("div");
+        card.className = "mcat-card";
+        card.innerHTML =
+          '<img class="mcat-img" loading="lazy" src="' + esc(cat.image) + '" alt="' + esc(cat.nameTh || cat.name) + '">' +
+          '<div class="mcat-body">' +
+            (cat.nameTh ? '<span class="mcat-eyebrow">' + esc(cat.nameTh) + '</span>' : '') +
+            '<ul class="mcat-items">' + items + '</ul>' +
+          '</div>';
+        grid.appendChild(card);
+      });
+      show("menuSection");
+    }
+
+    // carousel รูป (สาขา)
+    function renderCarousel(prefix, sectionId, data) {
+      if (!data) return;
+      var imgs = (data.images || []).filter(function (u) { return u; });
+      if (imgs.length === 0) return;
+      setText(prefix + "Heading", data.heading);
+      setText(prefix + "Body", data.body);
+      var track = document.getElementById(prefix + "Track");
+      track.innerHTML = "";
+      imgs.forEach(function (url, i) {
+        var card = document.createElement("div");
+        card.className = "menu-card";
+        var img = document.createElement("img");
+        img.className = "menu-img"; img.src = url;
+        img.alt = (data.heading || "TARUKA") + " " + (i + 1); img.loading = "lazy";
+        card.appendChild(img); track.appendChild(card);
+      });
+      show(sectionId);          // แสดงก่อน เพื่อให้วัดความกว้างจริงได้
+      setupCarousel(prefix);
+    }
+
+    function render(c) {
+      document.getElementById("loadingNote").classList.add("hidden");
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      if (c.seo) {
+        if (c.seo.title) document.title = c.seo.title;
+        if (c.seo.description) { var m = document.querySelector('meta[name="description"]'); if (m) m.setAttribute("content", c.seo.description); }
+      }
+      if (c.brand) {
+        setText("brandName", c.brand.name); setText("footerBrand", c.brand.name); setText("brandTagline", c.brand.tagline);
+        if (c.brand.logoUrl) { var logo = document.getElementById("brandLogo"); logo.src = c.brand.logoUrl; logo.classList.remove("hidden"); }
+      }
+      if (c.hero) {
+        setText("heroTitle", c.hero.title);
+        setText("heroSubtitle", c.hero.subtitle);
+        setText("heroCta", c.hero.primaryCtaText || "สนใจแฟรนไชส์");
+        if (c.hero.bgImageUrl) { var hi = document.getElementById("heroImg"); if (hi) hi.src = c.hero.bgImageUrl; }
+        show("hero");
+      }
+      if (c.about) {
+        setText("aboutHeading", c.about.heading);
+        setText("aboutBody", c.about.body);
+        var imgWrap = document.getElementById("aboutImages"); imgWrap.innerHTML = "";
+        (c.about.images || []).filter(Boolean).forEach(function (url) {
+          var img = document.createElement("img"); img.src = url; img.alt = c.about.heading || "TARUKA"; img.loading = "lazy"; imgWrap.appendChild(img);
+        });
+        show("aboutSection");
+      }
+
+      renderMenu(c.menu);
+      renderCarousel("branches", "branchesSection", c.branches);
+
+      if (c.highlights) {
+        setText("highlightsHeading", c.highlights.heading);
+        setText("highlightsBody", c.highlights.body);
+        var grid = document.getElementById("statsGrid"); grid.innerHTML = "";
+        (c.highlights.stats || []).forEach(function (s) {
+          var card = document.createElement("div"); card.className = "stat-card";
+          card.innerHTML = '<div class="stat-value">' + esc(s.value) + '</div><div class="stat-label">' + esc(s.label) + '</div>';
+          grid.appendChild(card);
+        });
+        show("highlightsSection");
+      }
+      if (c.storeFormats && c.storeFormats.length) {
+        var fg = document.getElementById("formatsGrid"); fg.innerHTML = "";
+        c.storeFormats.forEach(function (f) {
+          var pts = (f.points || []).map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("");
+          var imgStyle = f.imageUrl ? ' style="background-image:url(\'' + esc(f.imageUrl) + '\')"' : "";
+          var card = document.createElement("div"); card.className = "format-card";
+          card.innerHTML = '<div class="img-box"' + imgStyle + '></div><div class="body"><h3>' + esc(f.name) + '</h3><ul>' + pts + '</ul></div>';
+          fg.appendChild(card);
+        });
+        show("formatsSection");
+      }
+      if (c.investment) {
+        setText("investHeading", c.investment.heading);
+        var ic = document.getElementById("investCard"); ic.innerHTML = "";
+        (c.investment.rows || []).forEach(function (r) {
+          var row = document.createElement("div"); row.className = "invest-row";
+          row.innerHTML = "<span>" + esc(r.label) + "</span><span>" + esc(r.value) + "</span>"; ic.appendChild(row);
+        });
+        if (c.investment.total) {
+          var t = document.createElement("div"); t.className = "invest-total";
+          t.innerHTML = '<span class="lbl">งบลงทุนรวม</span><span class="val">' + esc(c.investment.total) + "</span>"; ic.appendChild(t);
+        }
+        setText("investNotes", c.investment.notes);
+        var io = document.getElementById("investOther"); io.innerHTML = "";
+        (c.investment.otherCosts || []).forEach(function (x) { var li = document.createElement("li"); li.textContent = x; io.appendChild(li); });
+        show("investmentSection");
+      }
+      if (c.roi) {
+        setText("roiHeading", c.roi.heading);
+        var tbl = document.getElementById("roiTable");
+        var head = "<thead><tr><th>รายการ</th>" + (c.roi.columns || []).map(function (col) { return "<th>" + esc(col) + "</th>"; }).join("") + "</tr></thead>";
+        var bodyRows = (c.roi.rows || []).map(function (r) {
+          var cells = (r.values || []).map(function (v) { return "<td>" + esc(v) + "</td>"; }).join("");
+          return "<tr><td>" + esc(r.label) + "</td>" + cells + "</tr>";
+        }).join("");
+        tbl.innerHTML = head + "<tbody>" + bodyRows + "</tbody>";
+        var rn = document.getElementById("roiNotes"); rn.innerHTML = "";
+        (c.roi.notes || []).forEach(function (n) { var li = document.createElement("li"); li.textContent = n; rn.appendChild(li); });
+        show("roiSection");
+      }
+      if (c.support) {
+        setText("supportHeading", c.support.heading);
+        var sg = document.getElementById("supportGrid"); sg.innerHTML = "";
+        (c.support.items || []).forEach(function (it) {
+          var card = document.createElement("div"); card.className = "support-card";
+          card.innerHTML = "<h3>" + esc(it.title) + "</h3><p>" + esc(it.detail) + "</p>"; sg.appendChild(card);
+        });
+        show("supportSection");
+      }
+      if (c.contact) {
+        var line = document.getElementById("contactLine"); line.href = c.contact.lineUrl || "#"; setText("contactLineLabel", c.contact.lineLabel);
+        var fb = document.getElementById("contactFb"); fb.href = c.contact.facebookUrl || "#"; setText("contactFbLabel", c.contact.facebookLabel);
+        document.getElementById("stickyLine").href = c.contact.lineUrl || "#";
+        show("contact");
+      }
+    }
+
+    render(window.DEFAULT_CONTENT || {});
+  </script>
+</body>
+</html>

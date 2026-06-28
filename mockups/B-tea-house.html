@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TARUKA — Mockup B · Tea House Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Trirong:ital,wght@0,400;0,500;0,600;1,400&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ivory:#F6F1E7; --paper:#FCFAF4; --ink:#221C17; --ink-soft:#6a5f54;
+    --sage:#6E7B5B; --mauve:#9A7B86; --gold:#B89B5E; --line:#ddd2bf;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Sarabun',sans-serif;background:var(--ivory);color:var(--ink);line-height:1.7;font-weight:300}
+  h1,h2,h3,.disp{font-family:'Trirong',serif;font-weight:500}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 30px}
+  .eyebrow{font-family:'Sarabun';font-size:12px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+  a{color:inherit}
+
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(246,241,231,.9);backdrop-filter:blur(8px);z-index:30}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .brand{display:flex;align-items:center;gap:13px}
+  .brand img{height:40px}
+  .brand b{font-family:'Trirong';font-weight:600;font-size:23px;letter-spacing:.14em}
+  .brand small{display:block;font-size:10px;letter-spacing:.34em;color:var(--ink-soft);text-transform:uppercase}
+  .navlink{text-decoration:none;font-size:14px;letter-spacing:.05em;border-bottom:1px solid var(--ink);padding-bottom:3px}
+
+  /* hero */
+  .hero{padding:74px 0 80px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center}
+  .hero .eyebrow{display:block;margin-bottom:26px}
+  .hero h1{font-size:clamp(42px,6.2vw,76px);line-height:1.04;font-weight:500;letter-spacing:-.01em}
+  .hero h1 em{font-style:italic;color:var(--sage)}
+  .hero .lede{font-size:18px;color:var(--ink-soft);max-width:440px;margin:26px 0 32px}
+  .meta-row{display:flex;gap:34px;margin-top:36px;padding-top:26px;border-top:1px solid var(--line)}
+  .meta .n{font-family:'Trirong';font-size:30px;color:var(--ink)}
+  .meta .k{font-size:12.5px;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase}
+  .btn{display:inline-block;text-decoration:none;background:var(--ink);color:var(--ivory);
+    font-size:15px;letter-spacing:.06em;padding:14px 30px;border-radius:2px;transition:background .2s}
+  .btn:hover{background:var(--sage)}
+  .hero-fig{position:relative}
+  .hero-fig img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;filter:saturate(.92)}
+  .hero-fig figcaption{position:absolute;bottom:14px;left:14px;background:var(--paper);padding:7px 14px;
+    font-size:12px;letter-spacing:.08em;color:var(--ink-soft)}
+  .hero-fig .frame{position:absolute;inset:14px;border:1px solid rgba(255,255,255,.55);pointer-events:none}
+
+  /* index / menu editorial */
+  .menu{padding:72px 0 84px}
+  .menu-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:8px}
+  .menu-head h2{font-size:clamp(28px,4.4vw,44px);font-weight:500}
+  .menu-head .eyebrow{text-align:right}
+  .mrow{display:grid;grid-template-columns:54px 1.4fr 2fr auto;gap:24px;align-items:center;
+    padding:22px 0;border-bottom:1px solid var(--line)}
+  .mrow .no{font-family:'Trirong';font-size:20px;color:var(--gold)}
+  .mrow .nm{font-family:'Trirong';font-size:21px}
+  .mrow .nm small{display:block;font-family:'Sarabun';font-size:13px;letter-spacing:.16em;color:var(--ink-soft);text-transform:uppercase;margin-top:2px}
+  .mrow .ds{font-size:14.5px;color:var(--ink-soft)}
+  .mrow .pr{font-family:'Trirong';font-size:19px;white-space:nowrap}
+  .mrow .pr .tag{display:inline-block;border:1px solid var(--line);padding:4px 12px;border-radius:2px}
+  .mrow:hover .nm{color:var(--mauve)}
+
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:36px}
+    .menu-head{flex-direction:column;align-items:flex-start;gap:6px}.menu-head .eyebrow{text-align:left}
+    .mrow{grid-template-columns:38px 1fr;row-gap:6px}
+    .mrow .ds{grid-column:2}.mrow .pr{grid-column:2;text-align:left}
+  }
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <div class="brand"><img src="../assets/logo.png" alt="TARUKA"><span><b>TARUKA</b><small>Specialty Bubble Tea</small></span></div>
+  <a class="navlink" href="#">เปิดร้านกับเรา</a>
+</div></header>
+
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow">Est. · ชานมไข่มุก & ชาพิเศษ</span>
+    <h1>ศิลปะของ<br><em>ชาแก้วโปรด</em><br>ในราคาที่จับต้องได้</h1>
+    <p class="lede">TARUKA คัดใบชาและวัตถุดิบคุณภาพ คิดค้นสูตรเฉพาะตัว เพื่อเครื่องดื่มที่มีเอกลักษณ์ — พร้อมโอกาสเป็นเจ้าของแฟรนไชส์</p>
+    <a class="btn" href="#">ดูรายละเอียดแฟรนไชส์</a>
+    <div class="meta-row">
+      <div class="meta"><div class="n">19฿</div><div class="k">เริ่มต้น/แก้ว</div></div>
+      <div class="meta"><div class="n">50+</div><div class="k">เมนู</div></div>
+      <div class="meta"><div class="n">50+</div><div class="k">สาขา</div></div>
+    </div>
+  </div>
+  <figure class="hero-fig">
+    <img src="../assets/menu/purple-latte.jpg" alt="TARUKA signature">
+    <span class="frame"></span>
+    <figcaption>Signature Purple Latte</figcaption>
+  </figure>
+</div></section>
+
+<section class="menu"><div class="wrap">
+  <div class="menu-head"><h2>คอลเลกชันเครื่องดื่ม</h2><span class="eyebrow">Selected Menu</span></div>
+  <div class="mrow"><span class="no">01</span>
+    <span class="nm">ชานม & ไข่มุก<small>My Boba Mood</small></span>
+    <span class="ds">นมสดบราวน์ชูการ์ไข่มุก · ชานมไต้หวันไข่มุก หนึบเด้งกำลังดี</span>
+    <span class="pr"><span class="tag">เริ่ม 24฿</span></span></div>
+  <div class="mrow"><span class="no">02</span>
+    <span class="nm">ชาผลไม้ชีส<small>Creamy Fruit Kiss</small></span>
+    <span class="ds">ชาพีชชีส · ชาแอปเปิ้ลชีส ครีมชีสนุ่มละมุน</span>
+    <span class="pr"><span class="tag">39฿</span></span></div>
+  <div class="mrow"><span class="no">03</span>
+    <span class="nm">มัทฉะ<small>Signature Matcha</small></span>
+    <span class="ds">ชาเขียวมัทฉะนมสด · มัทฉะเลมอนโซดา จากผงมัทฉะแท้</span>
+    <span class="pr"><span class="tag">แนะนำ</span></span></div>
+  <div class="mrow"><span class="no">04</span>
+    <span class="nm">มันม่วง<small>Purple Latte</small></span>
+    <span class="ds">มันม่วงนมสด · ชานมมันม่วง หวานหอมธรรมชาติ</span>
+    <span class="pr"><span class="tag">Signature</span></span></div>
+</div></section>
+</body>
+</html>

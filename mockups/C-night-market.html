@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TARUKA — Mockup C · Night Market Glow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700;800&family=IBM+Plex+Sans+Thai:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#15100A; --bg2:#1F1810; --card:#241B11; --cream:#F3E5CC; --cream-dim:#b6a588;
+    --amber:#F4A93C; --amber-glow:rgba(244,169,60,.55); --peach:#E98A6B; --line:rgba(244,169,60,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'IBM Plex Sans Thai',sans-serif;background:var(--bg);color:var(--cream);line-height:1.7;font-weight:300;overflow-x:hidden}
+  h1,h2,h3,.disp{font-family:'Kanit',sans-serif;font-weight:700;letter-spacing:.01em}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  .glow{text-shadow:0 0 18px var(--amber-glow),0 0 40px rgba(244,169,60,.25)}
+
+  /* ambient bokeh */
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(380px 380px at 78% 12%,rgba(244,169,60,.16),transparent 70%),
+      radial-gradient(420px 420px at 12% 88%,rgba(233,138,107,.12),transparent 70%)}
+  header,section{position:relative;z-index:1}
+
+  header{position:sticky;top:0;z-index:40;background:rgba(21,16,10,.72);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{height:40px;filter:invert(1) sepia(1) saturate(4) hue-rotate(2deg) brightness(1.05)}
+  .brand b{font-family:'Kanit';font-weight:700;font-size:23px;letter-spacing:.08em}
+  .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;cursor:pointer;border:none;
+    font-family:'Kanit';font-weight:600;font-size:15px;padding:12px 24px;border-radius:999px;
+    background:var(--amber);color:#241400;box-shadow:0 0 24px var(--amber-glow);transition:transform .15s,box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 0 36px var(--amber-glow)}
+  .btn.ghost{background:transparent;color:var(--amber);border:1.5px solid var(--amber);box-shadow:none}
+
+  /* hero */
+  .hero{padding:64px 0 76px}
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:34px;align-items:center}
+  .sign{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:999px;
+    padding:7px 16px;font-size:13px;color:var(--amber);letter-spacing:.06em;margin-bottom:24px}
+  .sign .blink{width:8px;height:8px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber);animation:blink 1.8s infinite}
+  @keyframes blink{50%{opacity:.3}}
+  .hero h1{font-size:clamp(46px,7.4vw,88px);line-height:.96;font-weight:800;color:#fff}
+  .hero h1 .am{color:var(--amber)}
+  .hero p{font-size:18.5px;color:var(--cream-dim);max-width:470px;margin:22px 0 32px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .neon-price{margin-top:34px;display:inline-flex;align-items:baseline;gap:10px;
+    border:2px solid var(--amber);border-radius:14px;padding:12px 22px;box-shadow:0 0 26px var(--amber-glow),inset 0 0 18px rgba(244,169,60,.12)}
+  .neon-price b{font-family:'Kanit';font-weight:800;font-size:40px;color:var(--amber);line-height:1}
+  .neon-price span{color:var(--cream-dim);font-size:14px}
+
+  .hero-vis{position:relative;display:flex;justify-content:center}
+  .hero-vis img{width:100%;max-width:420px;aspect-ratio:1/1;object-fit:cover;border-radius:24px;
+    border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 50px rgba(244,169,60,.18)}
+  .deco-ring{position:absolute;width:130px;height:130px;border:2px solid var(--amber);border-radius:50%;
+    top:-22px;right:6%;opacity:.5;box-shadow:0 0 30px var(--amber-glow)}
+
+  /* stats strip */
+  .strip{border-block:1px solid var(--line);background:var(--bg2)}
+  .strip-row{display:grid;grid-template-columns:repeat(3,1fr)}
+  .strip .s{padding:26px 18px;text-align:center;border-left:1px solid var(--line)}
+  .strip .s:first-child{border-left:none}
+  .strip .v{font-family:'Kanit';font-weight:700;font-size:38px;color:var(--amber)}
+  .strip .l{font-size:14px;color:var(--cream-dim)}
+
+  /* menu */
+  .menu{padding:66px 0 80px}
+  .sec-head{text-align:center;margin-bottom:36px}
+  .sec-head h2{font-size:clamp(30px,5vw,48px);color:#fff}
+  .sec-head p{color:var(--cream-dim);margin-top:6px}
+  .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .mcard{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .18s,box-shadow .2s}
+  .mcard:hover{transform:translateY(-6px);box-shadow:0 0 40px rgba(244,169,60,.16)}
+  .mcard .imgwrap{position:relative}
+  .mcard img{width:100%;aspect-ratio:1/1;object-fit:cover}
+  .mcard .price{position:absolute;top:12px;right:12px;background:var(--amber);color:#241400;font-family:'Kanit';font-weight:700;
+    font-size:14px;padding:5px 12px;border-radius:999px;box-shadow:0 0 18px var(--amber-glow)}
+  .mcard .b{padding:14px 18px 18px}
+  .mcard .cat{font-family:'Kanit';font-weight:600;font-size:17px;color:#fff}
+  .mcard .it{font-size:13.5px;color:var(--cream-dim);margin-top:4px}
+
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;text-align:center}
+    .sign,.cta-row{justify-content:center}.hero p{margin-inline:auto}
+    .mgrid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:520px){.mgrid{grid-template-columns:1fr}.strip .v{font-size:30px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <div class="brand"><img src="../assets/logo.png" alt="TARUKA"><b>TARUKA</b></div>
+  <a class="btn" href="#">สนใจแฟรนไชส์</a>
+</div></header>
+
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="sign"><span class="blink"></span> OPEN · ชานมไข่มุก กว่า 50 สาขา</span>
+    <h1 class="glow">ทารุกะ<br><span class="am">TARUKA</span></h1>
+    <p>ชานมไข่มุกหอมกลมกล่อม สดชื่นทุกค่ำคืน — แบรนด์ที่ลงทุนคุ้ม คืนทุนไว พร้อมทีมดูแลถึงหน้าร้าน</p>
+    <div class="cta-row">
+      <a class="btn" href="#">เปิดร้านกับเรา</a>
+      <a class="btn ghost" href="#">ดูเมนู</a>
+    </div>
+    <div class="neon-price"><b>19฿</b><span>เริ่มต้น/แก้ว</span></div>
+  </div>
+  <div class="hero-vis">
+    <span class="deco-ring"></span>
+    <img src="../assets/menu/boba-mood.jpg" alt="TARUKA boba">
+  </div>
+</div></section>
+
+<section class="strip"><div class="wrap strip-row">
+  <div class="s"><div class="v">19฿</div><div class="l">เริ่มต้นต่อแก้ว</div></div>
+  <div class="s"><div class="v">50+</div><div class="l">เมนูเครื่องดื่ม</div></div>
+  <div class="s"><div class="v">50+</div><div class="l">สาขาทั่วประเทศ</div></div>
+</div></section>
+
+<section class="menu"><div class="wrap">
+  <div class="sec-head"><h2 class="glow">เมนูของเรา</h2><p>คัดเมนูเด่นแบ่งเป็นคอลเลกชัน</p></div>
+  <div class="mgrid">
+    <div class="mcard"><div class="imgwrap"><img src="../assets/menu/boba-mood.jpg" alt=""><span class="price">เริ่ม 24฿</span></div>
+      <div class="b"><div class="cat">ชานม & ไข่มุก</div><div class="it">นมสดบราวน์ชูการ์ · ชานมไต้หวันไข่มุก</div></div></div>
+    <div class="mcard"><div class="imgwrap"><img src="../assets/menu/must-try.jpg" alt=""><span class="price">34฿</span></div>
+      <div class="b"><div class="cat">บุกป๊อบข้าวบาร์เลย์</div><div class="it">ชาไทย · ชานมไต้หวัน · ชาเขียวมะลิ</div></div></div>
+    <div class="mcard"><div class="imgwrap"><img src="../assets/menu/matcha.jpg" alt=""><span class="price">แนะนำ</span></div>
+      <div class="b"><div class="cat">มัทฉะ</div><div class="it">มัทฉะนมสด · มัทฉะเลมอนโซดา</div></div></div>
+  </div>
+</div></section>
+</body>
+</html>

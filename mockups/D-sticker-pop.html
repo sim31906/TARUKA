@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TARUKA — Mockup D · Sticker Pop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Thai+2:wght@500;600;700;800&family=Mali:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* TARUKA brand palette (จาก Canva): cream · espresso · caramel · tan · coffee */
+    --paper:#F7F1E5; --ink:#1C140E;
+    --pink:#C89B62; --lime:#DCBE92; --sky:#E6D5B6; --sun:#E6C892; --grape:#7A5638;
+    --line:#1C140E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Mali',cursive;background:var(--paper);color:var(--ink);line-height:1.7;overflow-x:hidden;
+    background-image:radial-gradient(var(--sun) 1.6px,transparent 1.7px);background-size:26px 26px}
+  h1,h2,h3,.disp{font-family:'Baloo Thai 2',cursive;font-weight:800;line-height:1.02}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  a{color:inherit}
+
+  /* sticker primitives — the signature: every key element is a die-cut sticker
+     with a hard ink outline + offset drop = scrapbook feel */
+  .sticker{border:3px solid var(--ink);box-shadow:5px 6px 0 var(--ink);background:#fff}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-family:'Baloo Thai 2';font-weight:700;font-size:14px;
+    padding:7px 16px;border-radius:999px;border:3px solid var(--ink);box-shadow:3px 4px 0 var(--ink);background:#fff}
+
+  /* marquee tape under the header */
+  .tape{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;border-block:3px solid var(--ink)}
+  .tape .run{display:inline-block;padding:9px 0;font-family:'Baloo Thai 2';font-weight:700;font-size:14px;letter-spacing:.04em;
+    animation:slide 22s linear infinite}
+  .tape .run span{margin:0 26px}
+  .tape .run b{color:var(--sun)}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:3px solid var(--ink)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand img{height:42px;transform:rotate(-6deg)}
+  .brand b{font-family:'Baloo Thai 2';font-weight:800;font-size:25px;letter-spacing:.02em}
+  .pill{cursor:pointer;text-decoration:none;border-radius:999px;padding:11px 22px;
+    background:var(--pink);color:#fff;font-family:'Baloo Thai 2';font-weight:700;font-size:15px;
+    border:3px solid var(--ink);box-shadow:4px 5px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+  .pill:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+  .pill.lime{background:var(--lime)}.pill.sky{background:var(--sky)}.pill.white{background:#fff;color:var(--ink)}
+
+  /* hero */
+  .hero{padding:46px 0 30px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}
+  .hero h1{font-size:clamp(46px,7.6vw,90px)}
+  .hero h1 .out{-webkit-text-stroke:3px var(--ink);color:var(--sun);text-shadow:4px 4px 0 var(--ink)}
+  .hero h1 .pk{color:var(--pink);text-shadow:3px 3px 0 var(--ink)}
+  .hero .lede{font-size:18px;margin:20px 0 26px;max-width:430px;color:#4a3b49}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .pricetag{display:inline-flex;align-items:center;gap:9px;margin-top:26px;font-family:'Baloo Thai 2';font-weight:600;font-size:15px}
+  .pricetag .b{background:var(--lime);border:3px solid var(--ink);box-shadow:3px 4px 0 var(--ink);
+    border-radius:14px;padding:6px 14px;font-weight:800;font-size:30px;transform:rotate(-3deg)}
+
+  .hero-vis{position:relative;display:flex;justify-content:center;align-items:center;min-height:400px}
+  .photo{width:330px;height:330px;border-radius:30px;object-fit:cover;border:4px solid var(--ink);
+    box-shadow:8px 9px 0 var(--ink);transform:rotate(3deg)}
+  .badge{position:absolute;display:grid;place-items:center;text-align:center;border-radius:50%;
+    font-family:'Baloo Thai 2';font-weight:800;color:var(--ink);border:3px solid var(--ink);box-shadow:4px 5px 0 var(--ink)}
+  .b-new{width:96px;height:96px;background:var(--sun);top:-14px;left:2%;transform:rotate(-12deg);font-size:15px;line-height:1.05}
+  .b-yum{width:80px;height:80px;background:var(--sky);bottom:6%;right:0;transform:rotate(10deg);font-size:15px}
+  .star{position:absolute;width:34px;height:34px;background:var(--pink);border:3px solid var(--ink);
+    clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+  .s1{top:8%;right:14%;transform:rotate(6deg)} .s2{bottom:16%;left:4%;background:var(--lime);transform:rotate(-8deg)}
+
+  /* stat stickers */
+  .stats{padding:34px 0 8px}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .stat{border-radius:22px;padding:24px 18px;text-align:center;transform:rotate(-1.5deg)}
+  .stat:nth-child(2){transform:rotate(1.5deg)} .stat:nth-child(3){transform:rotate(-1deg)}
+  .stat .v{font-family:'Baloo Thai 2';font-weight:800;font-size:44px;line-height:1}
+  .stat:nth-child(1) .v{color:var(--pink)} .stat:nth-child(2) .v{color:var(--sky)} .stat:nth-child(3) .v{color:var(--grape)}
+  .stat .l{font-size:15px;color:#4a3b49;margin-top:4px}
+
+  /* menu */
+  .menu{padding:56px 0 72px}
+  .sec-head{text-align:center;margin-bottom:30px}
+  .sec-head h2{font-size:clamp(32px,5.4vw,52px)}
+  .sec-head h2 .hl{background:var(--sun);border:3px solid var(--ink);box-shadow:3px 4px 0 var(--ink);
+    border-radius:12px;padding:0 12px;display:inline-block;transform:rotate(-1.5deg)}
+  .sec-head p{margin-top:12px;color:#4a3b49}
+  .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .mcard{border-radius:24px;overflow:hidden;background:#fff;transition:transform .14s,box-shadow .14s}
+  .mcard:nth-child(odd){transform:rotate(-1.2deg)} .mcard:nth-child(even){transform:rotate(1.2deg)}
+  .mcard:hover{transform:rotate(0) translateY(-4px);box-shadow:8px 10px 0 var(--ink)}
+  .mcard .imgwrap{position:relative}
+  .mcard img{width:100%;aspect-ratio:1/1;object-fit:cover;border-bottom:3px solid var(--ink)}
+  .mcard .tag{position:absolute;top:12px;left:12px;font-family:'Baloo Thai 2';font-weight:700;font-size:13px;
+    padding:5px 13px;border-radius:999px;border:3px solid var(--ink);box-shadow:2px 3px 0 var(--ink);color:#fff}
+  .mcard:nth-child(1) .tag{background:var(--pink)} .mcard:nth-child(2) .tag{background:var(--sky)} .mcard:nth-child(3) .tag{background:var(--grape)}
+  .mcard .b{padding:14px 18px 18px}
+  .mcard .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:3px 0;font-size:15px}
+  .mcard .row b{font-family:'Baloo Thai 2';font-weight:700;color:var(--pink)}
+
+  footer{border-top:3px solid var(--ink);background:var(--ink);color:var(--paper);text-align:center;padding:26px 0}
+  footer b{font-family:'Baloo Thai 2';font-weight:700;color:var(--sun)}
+
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;text-align:center}
+    .cta-row,.pricetag{justify-content:center}.hero .lede{margin-inline:auto}
+    .stat-row,.mgrid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:520px){.stat-row,.mgrid{grid-template-columns:1fr}.photo{width:260px;height:260px}}
+  @media(prefers-reduced-motion:reduce){.tape .run{animation:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <div class="brand"><img src="../assets/logo.png" alt="TARUKA"><b>TARUKA</b></div>
+  <a class="pill" href="#">สนใจแฟรนไชส์ 🧋</a>
+</div></header>
+
+<div class="tape" aria-hidden="true"><div class="run">
+  <span>🦌 ทารุกะ</span><span>เริ่มต้น <b>19฿</b></span><span>หนึบเด้งทุกแก้ว</span><span>กว่า <b>50</b> สาขา</span><span>คืนทุนไว</span>
+  <span>🦌 ทารุกะ</span><span>เริ่มต้น <b>19฿</b></span><span>หนึบเด้งทุกแก้ว</span><span>กว่า <b>50</b> สาขา</span><span>คืนทุนไว</span>
+</div></div>
+
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="chip" style="background:var(--lime)">🦌 ชานมไข่มุก · ป็อปทุกแก้ว</span>
+    <h1 style="margin-top:18px">อร่อย<span class="pk">หนึบ</span><br><span class="out">เด้งดึ๋ง</span></h1>
+    <p class="lede">TARUKA ทารุกะ — ชานมไข่มุกหนึบเด้ง สดชื่นทุกอึก สีสันจัดเต็ม เปิดร้านง่าย คืนทุนไว เริ่มแค่ 19฿</p>
+    <div class="cta-row">
+      <a class="pill" href="#">เริ่มเปิดร้าน</a>
+      <a class="pill white" href="#">ดูเมนูทั้งหมด</a>
+    </div>
+    <div class="pricetag">เริ่มต้นเพียง <span class="b">19฿</span> / แก้ว</div>
+  </div>
+  <div class="hero-vis">
+    <span class="badge b-new">ป็อป<br>ใหม่!</span>
+    <span class="star s1"></span>
+    <span class="star s2"></span>
+    <img class="photo" src="../assets/menu/boba-mood.jpg" alt="ชานมไข่มุก TARUKA">
+    <span class="badge b-yum">อร่อย<br>มาก</span>
+  </div>
+</div></section>
+
+<section class="stats"><div class="wrap stat-row">
+  <div class="stat sticker"><div class="v">19฿</div><div class="l">เริ่มต้นต่อแก้ว</div></div>
+  <div class="stat sticker"><div class="v">50+</div><div class="l">เมนูเครื่องดื่ม</div></div>
+  <div class="stat sticker"><div class="v">50+</div><div class="l">สาขาทั่วประเทศ</div></div>
+</div></section>
+
+<section class="menu"><div class="wrap">
+  <div class="sec-head">
+    <h2>เมนู<span class="hl">ของเรา</span></h2>
+    <p>คัดเมนูเด่นแบ่งเป็นคอลเลกชัน เลือกได้ตามมู้ด</p>
+  </div>
+  <div class="mgrid">
+    <div class="mcard"><div class="imgwrap"><img src="../assets/menu/boba-mood.jpg" alt=""><span class="tag">ชานม & ไข่มุก</span></div>
+      <div class="b">
+        <div class="row"><span>นมสดบราวน์ชูการ์ไข่มุก</span><b>49฿</b></div>
+        <div class="row"><span>ชานมไต้หวันไข่มุก</span><b>24฿</b></div></div></div>
+    <div class="mcard"><div class="imgwrap"><img src="../assets/menu/fruit-cheese.jpg" alt=""><span class="tag">ชาผลไม้ชีส</span></div>
+      <div class="b">
+        <div class="row"><span>ชาพีชชีส</span><b>39฿</b></div>
+        <div class="row"><span>ชาแอปเปิ้ลชีส</span><b>39฿</b></div></div></div>
+    <div class="mcard"><div class="imgwrap"><img src="../assets/menu/matcha.jpg" alt=""><span class="tag">มัทฉะ</span></div>
+      <div class="b">
+        <div class="row"><span>ชาเขียวมัทฉะนมสด</span><b>แนะนำ</b></div>
+        <div class="row"><span>มัทฉะเลมอนโซดา</span><b>ใหม่</b></div></div></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">🦌 <b>TARUKA</b> ทารุกะ · ชานมไข่มุกป็อปทุกแก้ว · เริ่มเปิดร้านกับเราวันนี้</div></footer>
+</body>
+</html>
