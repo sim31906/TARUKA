@@ -26,7 +26,12 @@
 | 4 | เพิ่ม "โหมดดูตัวอย่าง" (preview ไม่ต้องตั้ง Firebase) | เปิดดู/แก้หน้า admin ผ่าน localStorage |
 | 5 | ใส่เนื้อหา + รูปจริงจากโฟลเดอร์ `data/` | เนื้อหา/ตัวเลขจาก Canva + รูปสาขาจริง 12 รูป + โลโก้ |
 | 6 | **ตัดระบบ admin/Firebase ออก → เว็บ static** | ลบ admin/Firestore/Auth/Storage แก้เนื้อหาในโค้ดแทน |
-| 7 | เปลี่ยนฟอนต์เนื้อหาเป็น Google Sans | heading=Kanit, body=Google Sans+Prompt(ไทย) |
+| 7 | คงธีม "Boba Pop" + ฟอนต์ Mitr (หัวข้อ) / Prompt (เนื้อหา) | โทนครีม-ส้ม-มัทฉะ ตรงแบรนด์ |
+| 8 | ตัดคำ "ทารุกะ" ออก + ลบสเตตัส eyebrow ใน hero | หัวข้อเหลือ "TARUKA", hero สะอาดขึ้น |
+| 9 | เพิ่มลูกเล่นหน้า index | scroll-reveal, count-up สถิติ, ไข่มุกลอย, เงา header, ปุ่มวิ้ง (เคารพ reduced-motion) |
+| 10 | เพิ่ม OG/Twitter card + favicon | พรีวิวสวยตอนแชร์ LINE/FB, ไอคอนหัวกวาง |
+| 11 | **Deploy ขึ้น Firebase Hosting** | live: <https://taruka-fbe28.web.app> (project `taruka-fbe28`) |
+| 12 | เพิ่ม mockup ดีไซน์สำรอง D/E (สี Canva) | D: Sticker Pop, E: Jelly Pop ใน [mockups/](mockups/) — ยังไม่ได้ใช้บนหน้าจริง |
 
 > **เหตุผลที่เปลี่ยนเป็น static (ข้อ 6):** เจ้าของเลือกแก้เนื้อหาในโค้ดเองแทนการใช้หน้า admin
 > ทำให้ระบบเรียบง่ายขึ้นมาก (ไม่ต้องตั้ง Firebase/ผูกบัตร) — แลกกับการที่เจ้าของร้านแก้เองไม่ได้
@@ -133,5 +138,6 @@ firebase deploy
 
 - ไม่มีระบบหลังบ้าน/ฐานข้อมูล (เจ้าของร้านแก้เองผ่านหน้าเว็บไม่ได้ — ต้องแก้โค้ด)
 - ไม่มีฟอร์มเก็บรายชื่อผู้สนใจ (ใช้ปุ่มลิงก์ตรงไป LINE/Facebook แทน)
-- ยังไม่ได้ deploy ขึ้น production (รอเจ้าของใส่ project id + deploy)
-- ยังไม่ได้ใส่ลิงก์ LINE/Facebook จริง (ใช้ค่าตัวอย่าง `@taruka` — เปลี่ยนใน `contact`)
+- ✅ deploy ขึ้น production แล้ว → <https://taruka-fbe28.web.app>
+- ⚠️ **ลิงก์ LINE/Facebook ยังเป็นค่าตัวอย่าง** (`@taruka`) — ต้องเปลี่ยนเป็นของจริงใน `contact` ของ `default-content.js`
+- (optional) ยังไม่ได้ทำ custom domain / analytics / auto-deploy

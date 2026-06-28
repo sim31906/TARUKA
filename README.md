@@ -3,6 +3,8 @@
 เว็บ landing page หน้าเดียวสำหรับโปรโมทแฟรนไชส์ชานมไข่มุก **TARUKA**
 เป็น **เว็บ static ล้วน** — แก้เนื้อหาทั้งหมดในไฟล์โค้ดไฟล์เดียว แล้ว deploy
 
+🌐 **เว็บจริง (live):** <https://taruka-fbe28.web.app>
+
 - เนื้อหาทั้งหมดอยู่ใน **`default-content.js`** (แก้ข้อความ/ราคา/ตารางคืนทุน/รูปได้ที่นี่ที่เดียว)
 - รูปภาพอยู่ในโฟลเดอร์ **`assets/`**
 - โฮสต์ฟรีด้วย **Firebase Hosting** (ไม่ใช้ฐานข้อมูล/ล็อกอิน)
@@ -56,20 +58,23 @@ npx serve .
 
 ## ☁️ Deploy ขึ้นเว็บจริง (Firebase Hosting — ฟรี)
 
-1. ติดตั้ง Firebase CLI ครั้งเดียว + ล็อกอิน:
-   ```bash
-   npm i -g firebase-tools
-   firebase login
-   ```
-2. สร้าง Firebase project ที่ <https://console.firebase.google.com> (แผน Spark ฟรีพอ — **ไม่ต้องเปิด Firestore/Auth**)
-3. ใส่ project id ใน `.firebaserc` (แทน `YOUR_PROJECT_ID`)
-4. deploy:
-   ```bash
-   firebase deploy
-   ```
-5. เปิด URL ที่ได้ (เช่น `https://taruka-landing.web.app`)
+ตั้งค่าเสร็จแล้ว — `.firebaserc` ผูกกับ project **`taruka-fbe28`** และ deploy ขึ้น <https://taruka-fbe28.web.app> แล้ว
 
-> แก้เนื้อหาเมื่อไหร่ → แก้ `default-content.js` แล้ว `firebase deploy` ใหม่
+**อัปเดตเว็บครั้งต่อไป** (หลังแก้ `default-content.js` หรือโค้ด):
+```bash
+firebase deploy --only hosting
+```
+
+<details>
+<summary>ตั้งค่าเครื่องใหม่ตั้งแต่ต้น (ถ้าย้ายเครื่อง)</summary>
+
+```bash
+npm i -g firebase-tools
+firebase login            # เปิดเบราว์เซอร์ให้ล็อกอินบัญชี Google ที่เป็นเจ้าของ project
+firebase deploy --only hosting
+```
+แผน Spark ฟรีพอ — **ไม่ต้องเปิด Firestore/Auth/Storage** (เว็บเป็น static ล้วน)
+</details>
 
 ---
 
