@@ -16,10 +16,38 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy to Firebase Hosting (live)
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: actions/setup-node@v4
         with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          projectId: taruka-fbe28
-          channelId: live
+          node-version: 20
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Write service account credentials
+        env:
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: printf '%s' "$SA" > "$RUNNER_TEMP/sa.json"
+
+      - name: Deploy to Firebase Hosting (live)
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/sa.json
+        run: |
+          set +e
+          out=$(firebase deploy --only hosting --project taruka-fbe28 --non-interactive 2>&1)
+          code=$?
+          echo "$out"
+          if [ $code -eq 0 ]; then
+            exit 0
+          fi
+          # ถ้าเนื้อหาเหมือน live อยู่แล้ว (หรือ release ซ้ำจาก network retry) — ถือว่าสำเร็จ
+          if echo "$out" | grep -q "is the current active version"; then
+            echo "::notice::ไม่มีการเปลี่ยนแปลงที่ต้อง deploy (เนื้อหาตรงกับ live แล้ว) — ถือว่าสำเร็จ"
+            exit 0
+          fi
+          exit $code
+
+      - name: Verify live site
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" https://taruka-fbe28.web.app/)
+          echo "live status: $code"
+          test "$code" = "200"
