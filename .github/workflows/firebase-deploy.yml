@@ -1,0 +1,25 @@
+name: Deploy to Firebase Hosting
+
+# Deploy หน้าเว็บไป Firebase Hosting อัตโนมัติทุกครั้งที่ push ขึ้น master
+# (กดรันเองได้จากแท็บ Actions ผ่าน workflow_dispatch)
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Firebase Hosting (live)
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: taruka-fbe28
+          channelId: live

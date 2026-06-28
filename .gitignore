@@ -3,6 +3,11 @@
 firebase-debug.log
 *-debug.log
 
+# Service account / credentials — ห้าม commit เด็ดขาด
+*-firebase-adminsdk-*.json
+*serviceAccount*.json
+*.key.json
+
 # OS / editor
 .DS_Store
 Thumbs.db
