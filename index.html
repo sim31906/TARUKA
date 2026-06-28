@@ -76,7 +76,7 @@
       color:var(--orange-dk);font-family:'Mitr';font-weight:500;font-size:14px;padding:7px 16px;border-radius:999px;margin-bottom:22px}
     .eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--matcha)}
     .hero h1{font-size:clamp(42px,7vw,78px);font-weight:700;line-height:1.0;color:var(--espresso)}
-    .hero #heroSubtitle{font-size:19px;color:var(--brown-soft);max-width:480px;margin:22px 0 30px}
+    .hero #heroSubtitle{font-size:19px;color:var(--brown-soft);max-width:480px;margin:22px 0 30px;white-space:pre-line}
     .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
     .price-flag{display:flex;align-items:center;gap:10px;margin-top:28px;font-family:'Mitr';color:var(--brown-soft);font-size:15px}
     .price-flag b{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-size:34px;color:var(--espresso);font-weight:600}
@@ -157,7 +157,7 @@
     .invest-row span:last-child{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-weight:600;color:var(--espresso);white-space:nowrap}
     .invest-total{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px;background:var(--espresso);color:#fff}
     .invest-total .lbl{font-family:'Mitr';font-size:16px}
-    .invest-total .val{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-weight:600;font-size:26px;color:var(--orange)}
+    .invest-total .val{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-weight:600;font-size:clamp(20px,4.6vw,26px);color:var(--orange);text-align:right;white-space:nowrap}
     .invest-notes{max-width:660px;margin:18px auto 0;color:var(--brown-soft);font-size:15px;text-align:center}
     .invest-other{max-width:660px;margin:14px auto 0;padding-left:22px;color:var(--brown-soft);font-size:15px}
     .invest-other li{margin-bottom:5px}
@@ -167,12 +167,12 @@
     table.roi{width:100%;border-collapse:collapse;background:#fff;min-width:680px}
     table.roi th,table.roi td{padding:14px 16px;text-align:center;border-bottom:1px solid var(--beige-soft);white-space:nowrap}
     table.roi thead th{background:var(--espresso);color:#fff;font-family:'Mitr';font-weight:500}
-    table.roi tbody td:first-child,table.roi thead th:first-child{text-align:left;color:var(--brown-soft);position:sticky;left:0;background:#fff}
+    table.roi tbody td:first-child,table.roi thead th:first-child{text-align:left;color:var(--brown-soft);position:sticky;left:0;background:#fff;white-space:normal;min-width:148px;box-shadow:6px 0 8px -6px rgba(42,27,18,.18)}
     table.roi thead th:first-child{background:var(--espresso);color:#fff}
     table.roi tbody tr:nth-child(even){background:rgba(232,201,160,.16)}
     table.roi tbody tr:nth-child(even) td:first-child{background:#F8EDDB}
     table.roi tbody tr:last-child td{font-family:'Mitr';font-weight:600;color:var(--espresso);background:rgba(242,145,61,.2)}
-    table.roi tbody tr:last-child td:first-child{background:rgba(242,145,61,.2)}
+    table.roi tbody tr:last-child td:first-child{background:#FCE7D4}
     .roi-notes{margin:18px auto 0;max-width:700px;padding-left:22px;color:var(--brown-soft);font-size:14px}
     .roi-notes li{margin-bottom:5px}
 
@@ -244,6 +244,9 @@
       .cta-row .pill{width:100%;justify-content:center}
       .contact-btns{flex-direction:column;align-items:stretch}
       .btn-line,.btn-fb{justify-content:center}
+      /* งบลงทุนรวม: วางป้ายบน-ตัวเลขล่าง เต็มกว้าง ไม่อึดอัด */
+      .invest-total{flex-direction:column;align-items:flex-start;gap:6px}
+      .invest-total .val{text-align:left}
     }
   </style>
 </head>
