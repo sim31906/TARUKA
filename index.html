@@ -65,18 +65,26 @@
     h1,h2,h3,.disp{font-family:'Mitr',sans-serif;font-weight:600;letter-spacing:-.01em}
     .wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 22px}
     section{padding:60px 0;position:relative}
+    section[id]{scroll-margin-top:84px}  /* กัน header sticky บังหัวข้อตอน jump */
     .hidden{display:none !important}
+
+    /* ── ทุกข้อความเนื้อหาเคารพการขึ้นบรรทัด \n ที่พิมพ์เองใน default-content.js (ผู้ใช้ตัดบรรทัดเอง) ── */
+    .section-heading,.section-sub,.about-body,.hero #heroSubtitle,
+    .mcat-eyebrow,.mcat-item .nm,.stat-label,
+    .format-card h3,.format-card li,.support-card h3,.support-card p,
+    .invest-row span:first-child,.invest-notes,.invest-other li,
+    .roi-picker-label,.roi-row .roi-k,.roi-notes li,#footerAddress{white-space:pre-line}
 
     /* shared heading */
     .section-heading{font-family:'Mitr';font-weight:700;font-size:clamp(30px,5vw,46px);text-align:center;color:var(--espresso);line-height:1.15}
     .section-heading::after{content:"";display:block;width:58px;height:6px;border-radius:6px;background:var(--orange);margin:24px auto 0}
     /* เว้นระยะใต้หัวข้อก่อนเนื้อหา เฉพาะ section ที่ไม่มีคำโปรย (เช่น ตารางคืนทุน/งบลงทุน/การสนับสนุน) */
     .section-heading:not(:has(+ .section-sub)){margin-bottom:36px}
-    .section-sub{text-align:center;color:var(--brown-soft);max-width:640px;margin:10px auto 34px;font-size:17px}
+    .section-sub{text-align:center;color:var(--brown-soft);max-width:640px;margin:10px auto 34px;font-size:clamp(15px,4vw,17px)}
 
     /* buttons */
     .pill{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;text-decoration:none;
-      background:var(--orange);color:#fff;font-family:'Mitr';font-weight:500;font-size:15px;
+      background:var(--orange);color:#fff;font-family:'Mitr';font-weight:500;font-size:clamp(13.5px,3.6vw,15px);
       padding:12px 24px;border-radius:999px;box-shadow:0 8px 20px rgba(242,145,61,.38);transition:transform .15s,background .2s}
     .pill:hover{transform:translateY(-2px) scale(1.02);background:var(--orange-dk)}
     .pill.ghost{background:#fff;color:var(--espresso);border:2px solid var(--espresso);box-shadow:none}
@@ -87,22 +95,34 @@
     .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
     .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
     .brand img{height:42px;width:auto}
-    .brand .bn{font-family:'Mitr';font-size:23px;font-weight:700;letter-spacing:.04em;color:var(--espresso);line-height:1}
-    .brand .bt{display:block;font-size:11px;color:var(--brown-soft);line-height:1.1}
-    .header-cta{font-size:14px;padding:10px 20px}
+    .brand .bn{font-family:'Mitr';font-size:clamp(19px,5vw,23px);font-weight:700;letter-spacing:.04em;color:var(--espresso);line-height:1}
+    .brand .bt{display:block;font-size:clamp(10px,2.7vw,11px);color:var(--brown-soft);line-height:1.1}
+    .header-cta{font-size:clamp(12.5px,3.4vw,14px);padding:10px 20px}
+    /* hamburger + แผงเมนูดรอป (เฉพาะมือถือ) */
+    .nav-toggle{display:none;width:44px;height:44px;padding:12px 10px;border:none;background:transparent;cursor:pointer;
+      flex-direction:column;justify-content:space-between;align-items:stretch}
+    .nav-toggle span{display:block;height:3px;border-radius:3px;background:var(--espresso);transition:transform .3s ease,opacity .2s ease}
+    .nav-toggle.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+    .nav-toggle.open span:nth-child(2){opacity:0}
+    .nav-toggle.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+    /* desktop: เมนู section เป็นแถวแนวนอนกลาง header */
+    .nav-menu{display:flex;align-items:center;justify-content:center;flex:1;gap:clamp(6px,1.5vw,20px)}
+    .nav-menu a{text-decoration:none;color:var(--espresso);font-family:'Mitr';font-weight:500;
+      font-size:clamp(13px,1.35vw,15px);padding:6px 2px;white-space:nowrap;transition:color .2s}
+    .nav-menu a:hover{color:var(--orange-dk)}
 
     /* hero */
     .hero{padding:48px 0 70px}
     .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
     .eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--beige);
-      color:var(--orange-dk);font-family:'Mitr';font-weight:500;font-size:14px;padding:7px 16px;border-radius:999px;margin-bottom:22px}
+      color:var(--orange-dk);font-family:'Mitr';font-weight:500;font-size:clamp(12.5px,3.4vw,14px);padding:7px 16px;border-radius:999px;margin-bottom:22px}
     .eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--matcha)}
     .hero h1{font-size:clamp(42px,7vw,78px);font-weight:700;line-height:1.0;color:var(--espresso)}
     /* คง line break (pre-line) ทุกจอ แต่ย่อฟอนต์ตามความกว้างจอ ให้แต่ละบรรทัดพอดีไม่ wrap ต่อ */
     .hero #heroSubtitle{font-size:clamp(12px,3.8vw,19px);color:var(--brown-soft);max-width:480px;margin:22px 0 30px;white-space:pre-line}
     .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-    .price-flag{display:flex;align-items:center;gap:10px;margin-top:28px;font-family:'Mitr';color:var(--brown-soft);font-size:15px}
-    .price-flag b{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-size:34px;color:var(--espresso);font-weight:600}
+    .price-flag{display:flex;align-items:center;gap:10px;margin-top:28px;font-family:'Mitr';color:var(--brown-soft);font-size:clamp(13.5px,3.6vw,15px)}
+    .price-flag b{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-size:clamp(26px,7vw,34px);color:var(--espresso);font-weight:600}
     .hero-vis{position:relative;display:flex;justify-content:center;align-items:center;min-height:430px}
     .blob{position:absolute;width:440px;height:440px;border-radius:46% 54% 52% 48%/52% 46% 54% 48%;
       background:radial-gradient(circle at 35% 30%,var(--beige),var(--orange));filter:blur(2px);animation:morph 9s ease-in-out infinite}
@@ -115,7 +135,7 @@
     .p5{width:34px;height:34px;top:52%;left:-2%}
 
     /* about */
-    .about-body{max-width:760px;margin:0 auto;text-align:center;font-size:18px;color:var(--brown-soft)}
+    .about-body{max-width:760px;margin:0 auto;text-align:center;font-size:clamp(15px,4.2vw,18px);color:var(--brown-soft)}
     .about-images{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:32px}
     .about-images img{width:210px;height:210px;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow);border:4px solid #fff}
 
@@ -127,41 +147,43 @@
     .mcat-card:hover{transform:translateY(-6px) rotate(-1deg)}
     .mcat-img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--beige-soft)}
     .mcat-body{padding:16px 20px 20px}
-    .mcat-eyebrow{display:inline-block;font-family:'Mitr';font-size:12px;font-weight:500;letter-spacing:.3px;
+    .mcat-eyebrow{display:inline-block;font-family:'Mitr';font-size:clamp(11px,2.9vw,12px);font-weight:500;letter-spacing:.3px;
       color:#fff;background:var(--matcha);padding:4px 14px;border-radius:999px;margin-bottom:13px}
     .mcat-items{list-style:none}
     .mcat-item{display:flex;align-items:baseline;gap:6px;padding:6px 0}
     .mcat-item+.mcat-item{border-top:1px solid rgba(201,165,124,.2)}
-    .mcat-item .nm{color:var(--brown-soft);font-size:14.5px}
+    .mcat-item .nm{color:var(--brown-soft);font-size:clamp(13px,3.5vw,14.5px)}
     .mcat-item .lead{flex:1 1 auto;min-width:12px;border-bottom:2px dotted var(--beige);transform:translateY(-4px)}
-    .mcat-item .pr{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-weight:600;color:var(--orange-dk);font-size:15px;white-space:nowrap}
+    .mcat-item .pr{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-weight:600;color:var(--orange-dk);font-size:clamp(13.5px,3.6vw,15px);white-space:nowrap}
 
     /* stats / highlights */
     .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;margin-top:6px}
     .stat-card{background:#fff;border-radius:var(--radius);padding:30px 18px;text-align:center;border:2px solid var(--beige);
       position:relative;overflow:hidden}
     .stat-card::before{content:"";position:absolute;top:-22px;right:-22px;width:72px;height:72px;border-radius:50%;background:var(--cream)}
-    .stat-value{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-weight:600;font-size:46px;color:var(--orange);position:relative;line-height:1}
-    .stat-label{font-size:15px;color:var(--brown-soft);position:relative;margin-top:6px}
+    .stat-value{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-weight:600;font-size:clamp(32px,9vw,46px);color:var(--orange);position:relative;line-height:1}
+    .stat-label{font-size:clamp(13.5px,3.6vw,15px);color:var(--brown-soft);position:relative;margin-top:6px}
 
     /* store formats */
     .formats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px}
     .format-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;border:2px solid var(--beige)}
     .format-card .img-box{aspect-ratio:1/1;background:var(--beige-soft);background-size:cover;background-position:center}
     .format-card .body{padding:22px 24px}
-    .format-card h3{font-size:23px;color:var(--espresso);margin-bottom:12px}
+    .format-card h3{font-size:clamp(19px,5vw,23px);color:var(--espresso);margin-bottom:12px}
     .format-card ul{list-style:none}
     .format-card li{padding-left:28px;position:relative;margin-bottom:9px;color:var(--brown-soft)}
     .format-card li::before{content:"✓";position:absolute;left:0;top:-1px;width:20px;height:20px;border-radius:50%;
-      background:var(--matcha);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700}
+      background:var(--matcha);color:#fff;font-size:clamp(11px,2.9vw,12px);display:flex;align-items:center;justify-content:center;font-weight:700}
 
     /* carousel (branches) */
     .menu-carousel{position:relative}
     .menu-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;scroll-behavior:smooth;padding:8px 2px 18px;scrollbar-width:thin}
     .menu-track::-webkit-scrollbar{height:8px}
     .menu-track::-webkit-scrollbar-thumb{background:var(--beige);border-radius:8px}
-    .menu-card{flex:0 0 auto;width:clamp(300px,80vw,360px);scroll-snap-align:start;border-radius:var(--radius);overflow:hidden;
+    .menu-card{flex:0 0 auto;width:calc((100% - 32px)/3);scroll-snap-align:start;border-radius:var(--radius);overflow:hidden;
       box-shadow:var(--shadow);border:2px solid var(--beige);background:#fff}
+    @media(max-width:860px){.menu-card{width:calc((100% - 16px)/2)}}  /* แท็บเล็ต: 2 ใบเต็ม */
+    @media(max-width:560px){.menu-card{width:100%}}                    /* มือถือ: 1 ใบเต็ม ไม่มีการ์ดถูกตัด */
     .menu-img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--beige-soft)}
     .carousel-arrow{position:absolute;top:42%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
       background:var(--orange);color:#fff;font-size:26px;line-height:1;box-shadow:0 8px 20px rgba(242,145,61,.4);z-index:5;
@@ -182,17 +204,17 @@
     .invest-row span:first-child{color:var(--brown-soft)}
     .invest-row span:last-child{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-weight:600;color:var(--espresso);white-space:nowrap}
     .invest-total{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 26px;background:var(--espresso);color:#fff}
-    .invest-total .lbl{font-family:'Mitr';font-size:16px}
+    .invest-total .lbl{font-family:'Mitr';font-size:clamp(14px,3.8vw,16px)}
     .invest-total .val{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-weight:600;font-size:clamp(20px,4.6vw,26px);color:var(--orange);text-align:right;white-space:nowrap}
-    .invest-notes{max-width:660px;margin:18px auto 0;color:var(--brown-soft);font-size:15px;text-align:center;text-wrap:pretty}
-    .invest-other{max-width:660px;margin:14px auto 0;padding-left:22px;color:var(--brown-soft);font-size:15px}
+    .invest-notes{max-width:660px;margin:18px auto 0;color:var(--brown-soft);font-size:clamp(13.5px,3.6vw,15px);text-align:center}
+    .invest-other{max-width:660px;margin:14px auto 0;padding-left:22px;color:var(--brown-soft);font-size:clamp(13.5px,3.6vw,15px)}
     .invest-other li{margin-bottom:5px}
 
     /* roi — เลือกจำนวนขาย/วัน แล้วแสดงตัวเลขของ scenario นั้น */
     .roi-picker{max-width:560px;margin:0 auto}
-    .roi-picker-label{text-align:center;font-family:'Mitr';font-weight:500;color:var(--brown-soft);font-size:15px;margin-bottom:14px}
+    .roi-picker-label{text-align:center;font-family:'Mitr';font-weight:500;color:var(--brown-soft);font-size:clamp(13.5px,3.6vw,15px);margin-bottom:14px}
     .roi-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:22px}
-    .roi-tab{font-family:'Mitr';font-weight:500;font-size:15px;line-height:1;min-height:40px;padding:0 18px;
+    .roi-tab{font-family:'Mitr';font-weight:500;font-size:clamp(13.5px,3.6vw,15px);line-height:1;min-height:40px;padding:0 18px;
       border:2px solid var(--beige);background:#fff;color:var(--brown-soft);border-radius:999px;cursor:pointer;
       transition:transform .12s,background .2s,border-color .2s,color .2s,box-shadow .2s}
     .roi-tab:hover{border-color:var(--orange);transform:translateY(-1px)}
@@ -201,20 +223,20 @@
     .roi-detail{background:#fff;border:2px solid var(--beige);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
     .roi-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 22px;border-bottom:1px solid var(--beige-soft)}
     .roi-row:last-child{border-bottom:none}
-    .roi-row .roi-k{color:var(--brown-soft);font-size:15px}
-    .roi-row .roi-v{font-family:'Mitr';font-weight:500;color:var(--espresso);font-size:16px;white-space:nowrap}
+    .roi-row .roi-k{color:var(--brown-soft);font-size:clamp(13.5px,3.6vw,15px)}
+    .roi-row .roi-v{font-family:'Mitr';font-weight:500;color:var(--espresso);font-size:clamp(14px,3.8vw,16px);white-space:nowrap}
     .roi-row.is-total{background:var(--espresso);padding-top:16px;padding-bottom:16px}
     .roi-row.is-total .roi-k{color:#fff;font-family:'Mitr';font-weight:500}
     .roi-row.is-total .roi-v{color:var(--orange);font-size:clamp(20px,5vw,24px);font-weight:600}
-    .roi-notes{margin:18px auto 0;max-width:560px;padding-left:22px;color:var(--brown-soft);font-size:14px}
+    .roi-notes{margin:18px auto 0;max-width:560px;padding-left:22px;color:var(--brown-soft);font-size:clamp(12.5px,3.4vw,14px)}
     .roi-notes li{margin-bottom:5px}
 
     /* support */
     .support-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
     .support-card{background:#fff;border-radius:var(--radius);padding:26px 24px;box-shadow:var(--shadow);
       border:2px solid var(--beige);border-top:5px solid var(--orange)}
-    .support-card h3{font-family:'Mitr';font-size:19px;margin-bottom:8px;color:var(--espresso)}
-    .support-card p{color:var(--brown-soft);font-size:15px}
+    .support-card h3{font-family:'Mitr';font-size:clamp(16px,4.4vw,19px);margin-bottom:8px;color:var(--espresso)}
+    .support-card p{color:var(--brown-soft);font-size:clamp(13.5px,3.6vw,15px)}
 
     /* contact */
     .contact{background:var(--espresso);color:var(--cream)}
@@ -222,17 +244,25 @@
     .contact .section-sub{color:var(--beige)}
     .contact-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px}
     .btn-line,.btn-fb{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Mitr';font-weight:500;
-      padding:15px 30px;border-radius:999px;font-size:17px;box-shadow:var(--shadow);transition:transform .15s}
+      padding:15px 30px;border-radius:999px;font-size:clamp(15px,4vw,17px);box-shadow:var(--shadow);transition:transform .15s}
     .btn-line{background:#06C755;color:#fff} .btn-fb{background:#1877F2;color:#fff}
-    .btn-line:hover,.btn-fb:hover{transform:translateY(-2px)}
+    .btn-tel{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-family:'Mitr';font-weight:500;
+      padding:15px 30px;border-radius:999px;font-size:clamp(15px,4vw,17px);box-shadow:var(--shadow);transition:transform .15s;
+      background:var(--orange);color:#fff}
+    .btn-line:hover,.btn-fb:hover,.btn-tel:hover{transform:translateY(-2px)}
+    .btn-line .ico,.btn-fb .ico,.btn-tel .ico{flex:0 0 auto}
 
     /* footer */
-    footer{background:#1f140d;color:var(--beige);text-align:center;padding:26px 20px;font-size:14px}
+    footer{background:#1f140d;color:var(--beige);text-align:center;padding:26px 20px;font-size:clamp(12.5px,3.4vw,14px)}
+    /* ที่อยู่: ตัดเฉพาะที่เว้นวรรค (ไม่ตัดกลางคำไทย) + ถ้าต้องขึ้น 2 บรรทัดให้ยาวพอ ๆ กัน — desktop ยังบรรทัดเดียว */
+    #footerAddress{word-break:keep-all;text-wrap:balance}
 
     /* sticky cta */
-    .sticky-cta{position:fixed;left:16px;right:16px;bottom:16px;z-index:60;display:none;text-align:center}
+    .sticky-cta{position:fixed;left:16px;right:16px;bottom:16px;z-index:60;display:none;text-align:center;
+      opacity:0;transform:translateY(130%);pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+    .sticky-cta.show{opacity:1;transform:none;pointer-events:auto}
     .sticky-cta a{display:block;background:#06C755;color:#fff;text-decoration:none;font-family:'Mitr';font-weight:500;
-      padding:15px;border-radius:999px;font-size:17px;box-shadow:0 8px 24px rgba(6,199,85,.4)}
+      padding:15px;border-radius:999px;font-size:clamp(15px,4vw,17px);box-shadow:0 8px 24px rgba(6,199,85,.4)}
 
     .loading-note{text-align:center;padding:80px 20px;color:var(--brown-soft)}
 
@@ -253,6 +283,8 @@
     .pill:hover::after{left:150%}
     @media(prefers-reduced-motion:reduce){
       .reveal{opacity:1;transform:none;transition:none}
+      .sticky-cta{transition:none}
+      .nav-menu,.nav-toggle span{transition:none}
       .p1,.p2,.p3,.p4,.p5,.blob{animation:none}
       .pill::after{display:none}
     }
@@ -267,6 +299,16 @@
     @media(max-width:720px){
       .sticky-cta{display:block} body{padding-bottom:80px}
       .header-cta{display:none}
+      .nav-toggle{display:flex}
+      /* มือถือ: เมนู section กลายเป็นแผงดรอปลงใต้ header */
+      .nav-menu{position:absolute;left:0;right:0;top:100%;flex-direction:column;justify-content:flex-start;align-items:stretch;flex:none;gap:0;
+        background:rgba(255,247,236,.98);backdrop-filter:blur(10px);border-top:1px solid var(--beige);
+        box-shadow:0 14px 26px rgba(42,27,18,.14);
+        max-height:0;overflow:hidden;opacity:0;pointer-events:none;transition:max-height .3s ease,opacity .25s ease}
+      .nav-menu.open{max-height:78vh;overflow:auto;opacity:1;pointer-events:auto}
+      .nav-menu a{padding:14px 22px;font-size:clamp(15px,4vw,17px);border-bottom:1px solid rgba(232,201,160,.4)}
+      .nav-menu a:last-child{border-bottom:none}
+      .nav-menu a:active{background:var(--beige-soft)}
       .carousel-arrow{display:none}
       section{padding:46px 0}
       .stats-grid{grid-template-columns:1fr 1fr}   /* การ์ดสถิติ 2×2 บนมือถือ ไม่เรียงยาว 1 คอลัมน์ */
@@ -276,10 +318,13 @@
       .cta-row{flex-direction:column;align-items:stretch}
       .cta-row .pill{width:100%;justify-content:center}
       .contact-btns{flex-direction:column;align-items:stretch}
-      .btn-line,.btn-fb{justify-content:center}
+      .btn-line,.btn-fb,.btn-tel{justify-content:center}
+      /* ROI: ปุ่มเลือกจำนวนขาย/วัน 5 ปุ่มอยู่บรรทัดเดียว ไม่ให้ "500" ตกบรรทัดใหม่ */
+      .roi-tabs{flex-wrap:nowrap;gap:6px}
+      .roi-tab{flex:1 1 0;min-width:0;padding:0 8px}
       /* งบลงทุน: วางป้ายบน-ตัวเลขล่าง เต็มกว้าง ไม่ตัดคำกลางบรรทัด */
       .invest-row{flex-direction:column;align-items:flex-start;gap:2px}
-      .invest-row span:last-child{font-size:17px}
+      .invest-row span:last-child{font-size:clamp(15px,4vw,17px)}
       .invest-total{flex-direction:column;align-items:flex-start;gap:6px}
       .invest-total .lbl{white-space:nowrap}
       .invest-total .val{text-align:left}
@@ -299,7 +344,20 @@
         <img id="brandLogo" class="hidden" alt="TARUKA" />
         <span><span class="bn" id="brandName">TARUKA</span><span class="bt" id="brandTagline">ชานมไข่มุก</span></span>
       </a>
+      <nav class="nav-menu" id="navMenu" aria-label="เมนูนำทาง">
+        <a href="#menuSection">เมนู</a>
+        <a href="#highlightsSection">จุดเด่น</a>
+        <a href="#formatsSection">รูปแบบร้าน</a>
+        <a href="#branchesSection">สาขา</a>
+        <a href="#investmentSection">งบลงทุน</a>
+        <a href="#roiSection">คืนทุน</a>
+        <a href="#supportSection">การสนับสนุน</a>
+        <a href="#contact">ติดต่อ</a>
+      </nav>
       <a class="pill header-cta" id="headerCta" href="#contact">สนใจแฟรนไชส์ 🧋</a>
+      <button class="nav-toggle" id="navToggle" aria-label="เมนู" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -414,15 +472,19 @@
         <h2 class="section-heading">สนใจเปิดร้าน TARUKA?</h2>
         <p class="section-sub">ทักหาเราได้เลย ทีมงานพร้อมให้คำปรึกษาฟรี</p>
         <div class="contact-btns">
-          <a class="btn-line" id="contactLine" target="_blank" rel="noopener"><span>LINE</span> <span id="contactLineLabel"></span></a>
-          <a class="btn-fb" id="contactFb" target="_blank" rel="noopener"><span>Facebook</span> <span id="contactFbLabel"></span></a>
+          <a class="btn-line" id="contactLine" target="_blank" rel="noopener" aria-label="ติดต่อทาง LINE"><svg class="ico" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.69 2 10.23c0 4.07 3.56 7.48 8.37 8.12.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.04.26-.2 1.02.9.56s5.92-3.49 8.08-5.97C21.4 13.66 22 12 22 10.23 22 5.69 17.52 2 12 2zM7.6 12.9H5.55c-.3 0-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54s.54.24.54.54v3.55h1.5c.3 0 .54.24.54.54s-.24.54-.53.54zm2.13-.54c0 .3-.24.54-.54.54s-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54s.54.24.54.54v4.09zm4.94 0c0 .23-.15.44-.37.51a.6.6 0 0 1-.17.03c-.17 0-.33-.08-.43-.22l-2.1-2.85v2.53c0 .3-.24.54-.54.54s-.54-.24-.54-.54V8.27c0-.23.15-.44.37-.51.06-.02.11-.03.17-.03.17 0 .33.08.43.22l2.1 2.85V8.27c0-.3.24-.54.54-.54s.54.24.54.54v4.09zm3.42-2.59c.3 0 .54.24.54.54s-.24.54-.54.54h-1.5v.97h1.5c.3 0 .54.24.54.54s-.24.54-.54.54h-2.05c-.3 0-.54-.24-.54-.54V8.27c0-.3.24-.54.54-.54h2.05c.3 0 .54.24.54.54s-.24.54-.54.54h-1.5v.97h1.5z"/></svg> <span id="contactLineLabel"></span></a>
+          <a class="btn-fb" id="contactFb" target="_blank" rel="noopener" aria-label="ติดต่อทาง Facebook"><svg class="ico" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 16.99 22 12z"/></svg> <span id="contactFbLabel"></span></a>
         </div>
+        <div class="contact-btns" id="contactPhones"></div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap">© <span id="year"></span> <span id="footerBrand">TARUKA</span> · สงวนลิขสิทธิ์</div>
+    <div class="wrap">
+      <div id="footerAddress" style="margin-bottom:8px;line-height:1.6"></div>
+      © <span id="year"></span> <span id="footerBrand">TARUKA</span> · สงวนลิขสิทธิ์
+    </div>
   </footer>
 
   <div class="sticky-cta" id="stickyCta">
@@ -655,6 +717,22 @@
         var line = document.getElementById("contactLine"); line.href = c.contact.lineUrl || "#"; setText("contactLineLabel", c.contact.lineLabel);
         var fb = document.getElementById("contactFb"); fb.href = c.contact.facebookUrl || "#"; setText("contactFbLabel", c.contact.facebookLabel);
         document.getElementById("stickyLine").href = c.contact.lineUrl || "#";
+        var addr = document.getElementById("footerAddress");
+        if (addr) {
+          if (c.contact.address) { addr.textContent = "📍 " + c.contact.address; }
+          else { addr.style.display = "none"; }
+        }
+        var ph = document.getElementById("contactPhones");
+        if (ph) {
+          ph.innerHTML = "";
+          (c.contact.phones || []).forEach(function (num) {
+            var a = document.createElement("a");
+            a.className = "btn-tel";
+            a.href = "tel:" + String(num).replace(/[^0-9+]/g, "");
+            a.innerHTML = '<svg class="ico" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> <span>' + esc(num) + "</span>";
+            ph.appendChild(a);
+          });
+        }
         show("contact");
       }
     }
@@ -681,7 +759,13 @@
 
     function setupFx(){
       var hdr=document.querySelector("header");
-      function onScroll(){if(hdr)hdr.classList.toggle("scrolled",window.scrollY>10)}
+      var sticky=document.getElementById("stickyCta");
+      var heroCta=document.getElementById("heroCta");
+      function onScroll(){
+        if(hdr)hdr.classList.toggle("scrolled",window.scrollY>10);
+        // sticky CTA โผล่เฉพาะเมื่อเลื่อนพ้นปุ่มใน hero แล้ว (กันปุ่มซ้ำกันตอนอยู่บนสุด)
+        if(sticky&&heroCta){var r=heroCta.getBoundingClientRect();sticky.classList.toggle("show",r.bottom<8);}
+      }
       window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
 
       var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -711,6 +795,31 @@
       Array.prototype.forEach.call(document.querySelectorAll(".stat-value"),function(s){cio.observe(s)});
     }
     setupFx();
+
+    // ---- เมนู hamburger (มือถือ): เปิด/ปิด + jump ไป section ----
+    (function () {
+      var tgl = document.getElementById("navToggle");
+      var menu = document.getElementById("navMenu");
+      if (!tgl || !menu) return;
+      function setOpen(open) {
+        tgl.classList.toggle("open", open);
+        menu.classList.toggle("open", open);
+        tgl.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+      tgl.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setOpen(!menu.classList.contains("open"));
+      });
+      menu.addEventListener("click", function (e) {
+        if (e.target.closest("a")) setOpen(false); // กดลิงก์แล้วปิด ปล่อยให้ #id เลื่อนเอง
+      });
+      document.addEventListener("click", function (e) {
+        if (menu.classList.contains("open") && !e.target.closest("header")) setOpen(false);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setOpen(false);
+      });
+    })();
   </script>
 </body>
 </html>
