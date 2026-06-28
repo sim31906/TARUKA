@@ -16,3 +16,6 @@ version.txt
 Thumbs.db
 node_modules/
 .vscode/
+
+# playwright temp output
+.playwright-mcp/
