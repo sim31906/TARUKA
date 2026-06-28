@@ -7,8 +7,8 @@
   <title>TARUKA — แฟรนไชส์ชานมไข่มุก</title>
   <meta name="description" content="TARUKA แฟรนไชส์ชานมไข่มุก เริ่มต้นแก้วละ 19฿ คืนทุนไว มีทีมดูแลครบวงจร" />
   <link rel="canonical" href="https://taruka-fbe28.web.app/" />
-  <!-- preload รูป hero (LCP) ให้ขึ้นเร็ว -->
-  <link rel="preload" as="image" href="assets/hero.webp" fetchpriority="high" />
+  <!-- preload โลโก้ hero (LCP) ให้ขึ้นเร็ว -->
+  <link rel="preload" as="image" href="assets/logo.png" fetchpriority="high" />
 
   <!-- favicon -->
   <link rel="icon" type="image/png" href="assets/logo.png" />
@@ -107,7 +107,7 @@
     .blob{position:absolute;width:440px;height:440px;border-radius:46% 54% 52% 48%/52% 46% 54% 48%;
       background:radial-gradient(circle at 35% 30%,var(--beige),var(--orange));filter:blur(2px);animation:morph 9s ease-in-out infinite}
     @keyframes morph{50%{border-radius:54% 46% 48% 52%/46% 54% 48% 52%;transform:rotate(8deg)}}
-    .hero-vis #heroImg{position:relative;width:370px;height:370px;object-fit:cover;border-radius:50%;
+    .hero-vis #heroImg{position:relative;width:370px;height:370px;object-fit:contain;background:#fff;padding:9%;border-radius:50%;
       border:10px solid #fff;box-shadow:var(--shadow);z-index:2}
     .pearl{position:absolute;border-radius:50%;background:var(--boba);box-shadow:inset -4px -4px 8px rgba(255,255,255,.15);z-index:3}
     .p1{width:46px;height:46px;top:6%;left:12%} .p2{width:28px;height:28px;top:22%;right:8%}
