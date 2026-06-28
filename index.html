@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TARUKA — แฟรนไชส์ชานมไข่มุก</title>
   <meta name="description" content="TARUKA แฟรนไชส์ชานมไข่มุก เริ่มต้นแก้วละ 19฿ คืนทุนไว มีทีมดูแลครบวงจร" />
+  <link rel="canonical" href="https://taruka-fbe28.web.app/" />
+  <!-- preload รูป hero (LCP) ให้ขึ้นเร็ว -->
+  <link rel="preload" as="image" href="assets/hero.webp" fetchpriority="high" />
 
   <!-- favicon -->
   <link rel="icon" type="image/png" href="assets/logo.png" />
@@ -29,6 +32,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Structured data (Google rich results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TARUKA",
+    "alternateName": "ทารุกะ",
+    "url": "https://taruka-fbe28.web.app/",
+    "logo": "https://taruka-fbe28.web.app/assets/logo.png",
+    "image": "https://taruka-fbe28.web.app/assets/menu/boba-mood.jpg",
+    "description": "แฟรนไชส์ชานมไข่มุก TARUKA เริ่มต้นแก้วละ 19฿ มีสาขากว่า 50 สาขาทั่วประเทศ ลงทุนคุ้ม คืนทุนไว",
+    "areaServed": "TH",
+    "sameAs": [
+      "https://www.facebook.com/p/Taruka-Thailand-%E3%82%BF%E3%83%AB%E3%82%AB-100091922111471/",
+      "https://line.me/R/ti/p/@taruka"
+    ]
+  }
+  </script>
 
   <style>
     :root{
@@ -145,9 +167,12 @@
       display:flex;align-items:center;justify-content:center;padding:0;transition:transform .15s,background .2s}
     .carousel-arrow.prev{left:-8px} .carousel-arrow.next{right:-8px}
     .carousel-arrow:hover{background:var(--orange-dk);transform:translateY(-50%) scale(1.08)}
-    .carousel-dots{display:flex;gap:8px;justify-content:center;margin-top:10px}
-    .carousel-dots .dot{width:9px;height:9px;border-radius:50%;border:none;padding:0;background:var(--beige);opacity:.7;cursor:pointer;transition:all .2s}
-    .carousel-dots .dot.active{background:var(--orange);opacity:1;transform:scale(1.3)}
+    .carousel-dots{display:flex;gap:2px;justify-content:center;margin-top:6px}
+    /* พื้นที่แตะ 24px (a11y) แต่จุดที่เห็นยังเล็ก 9px */
+    .carousel-dots .dot{width:24px;height:24px;border:none;padding:0;background:transparent;cursor:pointer;display:grid;place-items:center}
+    .carousel-dots .dot::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--beige);opacity:.7;transition:transform .2s,background .2s,opacity .2s}
+    .carousel-dots .dot.active::before{background:var(--orange);opacity:1;transform:scale(1.35)}
+    .carousel-dots .dot:focus-visible{outline:2px solid var(--orange);outline-offset:0;border-radius:50%}
 
     /* investment */
     .investment{background:linear-gradient(180deg,var(--cream),var(--beige-soft))}
@@ -170,7 +195,7 @@
       border:2px solid var(--beige);background:#fff;color:var(--brown-soft);border-radius:999px;cursor:pointer;
       transition:transform .12s,background .2s,border-color .2s,color .2s,box-shadow .2s}
     .roi-tab:hover{border-color:var(--orange);transform:translateY(-1px)}
-    .roi-tab.active{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 8px 18px rgba(242,145,61,.38)}
+    .roi-tab.active{background:var(--orange);border-color:var(--orange-dk);color:var(--espresso);font-weight:600;box-shadow:0 8px 18px rgba(242,145,61,.38)}
     .roi-tab:focus-visible{outline:3px solid rgba(242,145,61,.45);outline-offset:2px}
     .roi-detail{background:#fff;border:2px solid var(--beige);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
     .roi-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 22px;border-bottom:1px solid var(--beige-soft)}

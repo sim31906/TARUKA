@@ -26,7 +26,7 @@ window.DEFAULT_CONTENT = {
     title: "TARUKA",
     subtitle:
       "แฟรนไชส์ชานมไข่มุก อร่อยคุ้ม เริ่มต้นแก้วละ 19฿\nมีสาขากว่า 50 สาขาทั่วประเทศ ลงทุนคุ้ม คืนทุนไว\nพร้อมทีมดูแลคุณตั้งแต่วันแรก",
-    bgImageUrl: "assets/hero.jpg",
+    bgImageUrl: "assets/hero.webp",
     primaryCtaText: "สนใจแฟรนไชส์ ทักไลน์เลย",
   },
 
@@ -45,7 +45,7 @@ window.DEFAULT_CONTENT = {
       {
         name: "MY BOBA MOOD",
         nameTh: "ชานม & ไข่มุก",
-        image: "assets/menu/boba-mood.jpg",
+        image: "assets/menu/boba-mood.webp",
         items: [
           { name: "นมสดบราวน์ชูการ์ไข่มุก", price: "49฿" },
           { name: "ชานมไต้หวันไข่มุก", price: "24฿" },
@@ -54,7 +54,7 @@ window.DEFAULT_CONTENT = {
       {
         name: "CREAMY FRUIT KISS",
         nameTh: "ชาผลไม้ชีส",
-        image: "assets/menu/fruit-cheese.jpg",
+        image: "assets/menu/fruit-cheese.webp",
         items: [
           { name: "ชาพีชชีส", price: "39฿" },
           { name: "ชาแอปเปิ้ลชีส", price: "39฿" },
@@ -63,7 +63,7 @@ window.DEFAULT_CONTENT = {
       {
         name: "SIGNATURE PURPLE LATTE",
         nameTh: "มันม่วง",
-        image: "assets/menu/purple-latte.jpg",
+        image: "assets/menu/purple-latte.webp",
         items: [
           { name: "มันม่วงนมสด", price: "" },
           { name: "ชานมมันม่วง", price: "" },
@@ -72,7 +72,7 @@ window.DEFAULT_CONTENT = {
       {
         name: "AIYU JELLY FRESH VIBES",
         nameTh: "อัญชัน & โซดา",
-        image: "assets/menu/aiyu-jelly.jpg",
+        image: "assets/menu/aiyu-jelly.webp",
         items: [
           { name: "พีชเลมอนโซดา", price: "" },
           { name: "ซันไชน์", price: "" },
@@ -81,7 +81,7 @@ window.DEFAULT_CONTENT = {
       {
         name: "MUST TRY",
         nameTh: "บุกป๊อบข้าวบาร์เลย์",
-        image: "assets/menu/must-try.jpg",
+        image: "assets/menu/must-try.webp",
         items: [
           { name: "ชาไทยบุกป๊อบข้าวบาร์เลย์", price: "39฿" },
           { name: "ชานมไต้หวันบุกป๊อบข้าวบาร์เลย์", price: "34฿" },
@@ -91,7 +91,7 @@ window.DEFAULT_CONTENT = {
       {
         name: "SIGNATURE MATCHA",
         nameTh: "มัทฉะ",
-        image: "assets/menu/matcha.jpg",
+        image: "assets/menu/matcha.webp",
         items: [
           { name: "ชาเขียวมัทฉะนมสด", price: "" },
           { name: "มัทฉะเลมอน", price: "" },
@@ -118,25 +118,25 @@ window.DEFAULT_CONTENT = {
     heading: "สาขาของเรา",
     body: "บรรยากาศร้าน TARUKA สาขาต่าง ๆ ทั่วประเทศ",
     images: [
-      "assets/1.jpg",
-      "assets/2.jpg",
-      "assets/3.jpg",
-      "assets/4.jpg",
-      "assets/5.jpg",
-      "assets/6.jpg",
-      "assets/7.jpg",
-      "assets/8.jpg",
-      "assets/9.jpg",
-      "assets/10.jpg",
-      "assets/11.jpg",
-      "assets/12.jpg",
+      "assets/1.webp",
+      "assets/2.webp",
+      "assets/3.webp",
+      "assets/4.webp",
+      "assets/5.webp",
+      "assets/6.webp",
+      "assets/7.webp",
+      "assets/8.webp",
+      "assets/9.webp",
+      "assets/10.webp",
+      "assets/11.webp",
+      "assets/12.webp",
     ],
   },
 
   storeFormats: [
     {
       name: "KIOSK (คีออส)",
-      imageUrl: "assets/2.jpg",
+      imageUrl: "assets/2.webp",
       points: [
         "เหมาะสำหรับตั้งในพื้นที่ว่าง",
         "ขนาดเริ่มต้นที่ 2 x 2 เมตร",
@@ -145,7 +145,7 @@ window.DEFAULT_CONTENT = {
     },
     {
       name: "CAFE (คาเฟ่)",
-      imageUrl: "assets/6.jpg",
+      imageUrl: "assets/6.webp",
       points: [
         "เหมาะกับพื้นที่ที่เป็นอาคาร / ร้านค้า",
         "ออกแบบและตกแต่งเพิ่มเติม ให้เข้ากับพื้นที่เดิม",
