@@ -98,7 +98,8 @@
       color:var(--orange-dk);font-family:'Mitr';font-weight:500;font-size:14px;padding:7px 16px;border-radius:999px;margin-bottom:22px}
     .eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--matcha)}
     .hero h1{font-size:clamp(42px,7vw,78px);font-weight:700;line-height:1.0;color:var(--espresso)}
-    .hero #heroSubtitle{font-size:19px;color:var(--brown-soft);max-width:480px;margin:22px 0 30px;white-space:pre-line}
+    /* คง line break (pre-line) ทุกจอ แต่ย่อฟอนต์ตามความกว้างจอ ให้แต่ละบรรทัดพอดีไม่ wrap ต่อ */
+    .hero #heroSubtitle{font-size:clamp(12px,3.8vw,19px);color:var(--brown-soft);max-width:480px;margin:22px 0 30px;white-space:pre-line}
     .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
     .price-flag{display:flex;align-items:center;gap:10px;margin-top:28px;font-family:'Mitr';color:var(--brown-soft);font-size:15px}
     .price-flag b{font-family:'Noto Sans Thai','Noto Sans',sans-serif;font-size:34px;color:var(--espresso);font-weight:600}
@@ -271,8 +272,6 @@
       .stats-grid{grid-template-columns:1fr 1fr}   /* การ์ดสถิติ 2×2 บนมือถือ ไม่เรียงยาว 1 คอลัมน์ */
     }
     @media(max-width:520px){
-      /* มือถือ: ไม่บังคับ line break (กันคำโดดเช่น "19฿"/"ไว") ปล่อยไหล+สมดุล */
-      .hero #heroSubtitle{white-space:normal;text-wrap:balance}
       /* ปุ่มเต็มความกว้าง แตะง่ายบนจอแคบ */
       .cta-row{flex-direction:column;align-items:stretch}
       .cta-row .pill{width:100%;justify-content:center}
