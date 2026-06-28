@@ -135,7 +135,7 @@
     .menu-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;scroll-behavior:smooth;padding:8px 2px 18px;scrollbar-width:thin}
     .menu-track::-webkit-scrollbar{height:8px}
     .menu-track::-webkit-scrollbar-thumb{background:var(--beige);border-radius:8px}
-    .menu-card{flex:0 0 auto;width:230px;scroll-snap-align:start;border-radius:var(--radius);overflow:hidden;
+    .menu-card{flex:0 0 auto;width:clamp(300px,80vw,360px);scroll-snap-align:start;border-radius:var(--radius);overflow:hidden;
       box-shadow:var(--shadow);border:2px solid var(--beige);background:#fff}
     .menu-img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--beige-soft)}
     .carousel-arrow{position:absolute;top:42%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
