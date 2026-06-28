@@ -139,5 +139,5 @@ firebase deploy
 - ไม่มีระบบหลังบ้าน/ฐานข้อมูล (เจ้าของร้านแก้เองผ่านหน้าเว็บไม่ได้ — ต้องแก้โค้ด)
 - ไม่มีฟอร์มเก็บรายชื่อผู้สนใจ (ใช้ปุ่มลิงก์ตรงไป LINE/Facebook แทน)
 - ✅ deploy ขึ้น production แล้ว → <https://taruka-fbe28.web.app>
-- ⚠️ **ลิงก์ LINE/Facebook ยังเป็นค่าตัวอย่าง** (`@taruka`) — ต้องเปลี่ยนเป็นของจริงใน `contact` ของ `default-content.js`
+- ✅ ลิงก์ LINE (`@taruka`) / Facebook (Taruka Thailand) เป็นของจริงแล้ว
 - (optional) ยังไม่ได้ทำ custom domain / analytics / auto-deploy
