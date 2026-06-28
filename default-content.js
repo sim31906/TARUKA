@@ -26,7 +26,7 @@ window.DEFAULT_CONTENT = {
     title: "TARUKA",
     subtitle:
       "แฟรนไชส์ชานมไข่มุก อร่อยคุ้ม เริ่มต้นแก้วละ 19฿ มีสาขากว่า 50 สาขาทั่วประเทศ ลงทุนคุ้ม คืนทุนไว พร้อมทีมดูแลคุณตั้งแต่วันแรก",
-    bgImageUrl: "assets/menu/boba-mood.jpg",
+    bgImageUrl: "data/Branch/7.jpg",
     primaryCtaText: "สนใจแฟรนไชส์ ทักไลน์เลย",
   },
 
