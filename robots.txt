@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://taruka-fbe28.web.app/sitemap.xml
+Sitemap: https://tarukathailand.com/sitemap.xml

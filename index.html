@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TARUKA Thailand — แฟรนไชส์ชานมไข่มุก</title>
   <meta name="description" content="TARUKA แฟรนไชส์ชานมไข่มุก เริ่มต้นแก้วละ 19฿ คืนทุนไว มีทีมดูแลครบวงจร" />
-  <link rel="canonical" href="https://taruka-fbe28.web.app/" />
+  <link rel="canonical" href="https://tarukathailand.com/" />
   <!-- preload โลโก้ hero (LCP) ให้ขึ้นเร็ว -->
   <link rel="preload" as="image" href="assets/logo.png" fetchpriority="high" />
 
@@ -19,15 +19,15 @@
   <meta property="og:site_name" content="TARUKA" />
   <meta property="og:title" content="TARUKA Thailand — แฟรนไชส์ชานมไข่มุก" />
   <meta property="og:description" content="แฟรนไชส์ชานมไข่มุก กว่า 50 เมนู มีสาขากว่า 50 สาขาทั่วประเทศ ลงทุนคุ้ม คืนทุนไว พร้อมทีมดูแลครบวงจร" />
-  <meta property="og:image" content="https://taruka-fbe28.web.app/assets/menu/boba-mood.webp" />
-  <meta property="og:url" content="https://taruka-fbe28.web.app/" />
+  <meta property="og:image" content="https://tarukathailand.com/assets/menu/boba-mood.webp" />
+  <meta property="og:url" content="https://tarukathailand.com/" />
   <meta property="og:locale" content="th_TH" />
 
   <!-- Twitter / X card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="TARUKA Thailand — แฟรนไชส์ชานมไข่มุก" />
   <meta name="twitter:description" content="แฟรนไชส์ชานมไข่มุก กว่า 50 เมนู ลงทุนคุ้ม คืนทุนไว พร้อมทีมดูแลครบวงจร" />
-  <meta name="twitter:image" content="https://taruka-fbe28.web.app/assets/menu/boba-mood.webp" />
+  <meta name="twitter:image" content="https://tarukathailand.com/assets/menu/boba-mood.webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,9 +40,9 @@
     "@type": "Organization",
     "name": "TARUKA",
     "alternateName": "ทารุกะ",
-    "url": "https://taruka-fbe28.web.app/",
-    "logo": "https://taruka-fbe28.web.app/assets/logo.png",
-    "image": "https://taruka-fbe28.web.app/assets/menu/boba-mood.webp",
+    "url": "https://tarukathailand.com/",
+    "logo": "https://tarukathailand.com/assets/logo.png",
+    "image": "https://tarukathailand.com/assets/menu/boba-mood.webp",
     "description": "แฟรนไชส์ชานมไข่มุก TARUKA เริ่มต้นแก้วละ 19฿ มีสาขากว่า 50 สาขาทั่วประเทศ ลงทุนคุ้ม คืนทุนไว",
     "areaServed": "TH",
     "sameAs": [
@@ -287,7 +287,7 @@
     #footerAddress{word-break:keep-all;text-wrap:balance}
 
     /* ปุ่มกลมรวมช่องทางติดต่อ (FAB speed-dial) */
-    .fab{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+    .fab{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px;pointer-events:none}
     .fab-items{display:flex;flex-direction:column;align-items:flex-end;gap:12px;
       opacity:0;transform:translateY(12px) scale(.96);pointer-events:none;transition:opacity .25s ease,transform .25s ease}
     .fab.open .fab-items{opacity:1;transform:none;pointer-events:auto}
@@ -297,7 +297,7 @@
     .fab-btn{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;
       box-shadow:0 6px 16px rgba(42,27,18,.28);flex:0 0 auto;transition:transform .15s}
     .fab-item:hover .fab-btn{transform:scale(1.08)}
-    .fab-main{position:relative;width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;background:var(--orange);color:#fff;
+    .fab-main{position:relative;width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;pointer-events:auto;background:var(--orange);color:#fff;
       box-shadow:0 12px 28px rgba(242,145,61,.5);display:flex;align-items:center;justify-content:center;transition:background .2s}
     .fab-main:hover{background:var(--orange-dk)}
     .fab-ico{position:absolute;transition:opacity .2s ease,transform .25s ease}
@@ -397,7 +397,7 @@
         <a href="#investmentSection">งบลงทุน</a>
         <a href="#roiSection">คืนทุน</a>
         <a href="#supportSection">การสนับสนุน</a>
-        <a href="#contact">ติดต่อ</a>
+        <a href="#contact">ติดต่อเรา</a>
       </nav>
       <a class="pill header-cta" id="headerCta" href="#contact">สนใจแฟรนไชส์ 🧋</a>
       <button class="nav-toggle" id="navToggle" aria-label="เมนู" aria-expanded="false" aria-controls="navMenu">
@@ -958,6 +958,36 @@
         var el = document.getElementById(id);
         if (el) el.addEventListener("click", function (e) { burst(e.clientX, e.clientY); });
       });
+    })();
+
+    // ---- Google Analytics (GA4) + นับคลิกปุ่มสำคัญ ----
+    // ใส่รหัส GA4 ของคุณตรงนี้ (เช่น "G-XXXXXXXXXX") — ถ้าเว้นว่างไว้ ระบบจะไม่ทำงาน (ปลอดภัย)
+    var GA_MEASUREMENT_ID = "";
+    (function () {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      if (/^G-[A-Z0-9]+$/i.test(GA_MEASUREMENT_ID)) {
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_MEASUREMENT_ID;
+        document.head.appendChild(s);
+        gtag("js", new Date());
+        gtag("config", GA_MEASUREMENT_ID);
+      }
+      function track(action, params) { try { gtag("event", action, params || {}); } catch (e) {} }
+      function capOf(a, sel) { var s = a.querySelector(sel); return s ? (s.textContent || "").trim() : ""; }
+      // ดักคลิกแบบ delegation → รองรับปุ่มที่สร้างด้วย JS (ช่องทางติดต่อ/FAB) ด้วย
+      document.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("a,button") : null;
+        if (!a) return;
+        if (a.closest("#contactChannels")) track("contact_click", { channel: capOf(a, ".channel-cap"), source: "section" });
+        else if (a.closest("#fabItems")) track("contact_click", { channel: capOf(a, ".fab-label"), source: "fab" });
+        else if (a.id === "heroCta" || a.id === "headerCta") track("cta_click", { location: a.id === "heroCta" ? "hero" : "header" });
+        else if (a.closest("#navMenu")) track("nav_click", { section: a.getAttribute("href") });
+        else if (a.classList.contains("roi-tab")) track("roi_scenario", { value: (a.textContent || "").trim() });
+        else if (a.id === "fabMain") track("fab_toggle", {});
+        else if (a.getAttribute("href") === "#menuSection") track("view_menu_click", {});
+      }, true);
     })();
   </script>
 </body>

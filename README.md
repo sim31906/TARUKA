@@ -3,7 +3,7 @@
 เว็บ landing page หน้าเดียวสำหรับโปรโมทแฟรนไชส์ชานมไข่มุก **TARUKA**
 เป็น **เว็บ static ล้วน** — แก้เนื้อหาทั้งหมดในไฟล์โค้ดไฟล์เดียว แล้ว deploy
 
-🌐 **เว็บจริง (live):** <https://taruka-fbe28.web.app>
+🌐 **เว็บจริง (live):** <https://tarukathailand.com>
 
 - เนื้อหาทั้งหมดอยู่ใน **`default-content.js`** (แก้ข้อความ/ราคา/ตารางคืนทุน/รูปได้ที่นี่ที่เดียว)
 - รูปภาพอยู่ในโฟลเดอร์ **`assets/`**
@@ -58,7 +58,7 @@ npx serve .
 
 ## ☁️ Deploy ขึ้นเว็บจริง (Firebase Hosting — ฟรี)
 
-ตั้งค่าเสร็จแล้ว — `.firebaserc` ผูกกับ project **`taruka-fbe28`** และ deploy ขึ้น <https://taruka-fbe28.web.app> แล้ว
+ตั้งค่าเสร็จแล้ว — `.firebaserc` ผูกกับ project **`taruka-fbe28`** และ deploy ขึ้น <https://tarukathailand.com> แล้ว
 
 **อัปเดตเว็บครั้งต่อไป** (หลังแก้ `default-content.js` หรือโค้ด):
 ```bash
