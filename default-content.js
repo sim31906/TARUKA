@@ -71,7 +71,7 @@ window.DEFAULT_CONTENT = {
       },
       {
         name: "AIYU JELLY FRESH VIBES",
-        nameTh: "อัญชัน & โซดา",
+        nameTh: "โซดา",
         image: "assets/menu/aiyu-jelly.webp",
         items: [
           { name: "พีชเลมอนโซดา", price: "" },
@@ -129,7 +129,6 @@ window.DEFAULT_CONTENT = {
       "assets/9.webp",
       "assets/10.webp",
       "assets/11.webp",
-      "assets/12.webp",
     ],
   },
 
