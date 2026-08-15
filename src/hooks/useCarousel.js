@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 // carousel (scroll-snap + arrows + dots + auto-advance) — จำนวน dot = "ตำแหน่งเลื่อนจริง"
 // (วัดจากความกว้างจริง) ไม่ใช่จำนวนการ์ด เพราะการ์ดโชว์หลายใบพร้อมกัน
-export function useCarousel(itemCount, cardSelector = '.carousel-card-trk') {
+export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', autoplayMs = 4000) {
   const trackRef = useRef(null);
   const [dotCount, setDotCount] = useState(1);
   const [activeDot, setActiveDot] = useState(0);
@@ -67,7 +67,7 @@ export function useCarousel(itemCount, cardSelector = '.carousel-card-trk') {
       if (n <= 1) return;
       const idx = currentIndex();
       scrollToIndex(idx >= n - 1 ? 0 : idx + 1);
-    }, 4000);
+    }, autoplayMs);
 
     const stopEvents = ['pointerdown', 'touchstart', 'mouseenter', 'wheel'];
     stopEvents.forEach((ev) => track.addEventListener(ev, stopAuto, { passive: true }));
@@ -79,7 +79,7 @@ export function useCarousel(itemCount, cardSelector = '.carousel-card-trk') {
       stopAuto();
       stopEvents.forEach((ev) => track.removeEventListener(ev, stopAuto));
     };
-  }, [itemCount, stops, currentIndex, scrollToIndex, stopAuto]);
+  }, [itemCount, stops, currentIndex, scrollToIndex, stopAuto, autoplayMs]);
 
   const prev = () => { stopAuto(); scrollToIndex(currentIndex() - 1); };
   const next = () => { stopAuto(); const idx = currentIndex(); scrollToIndex(idx >= stops() - 1 ? 0 : idx + 1); };

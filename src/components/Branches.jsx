@@ -6,7 +6,7 @@ import Reveal from './Reveal';
 
 export default function Branches() {
   const images = (branches.images || []).filter(Boolean);
-  const { trackRef, dotCount, activeDot, prev, next, goTo } = useCarousel(images.length, '.carousel-card-trk');
+  const { trackRef, dotCount, activeDot, prev, next, goTo } = useCarousel(images.length, '.carousel-card-trk', 7000);
 
   if (images.length === 0) return null;
 
