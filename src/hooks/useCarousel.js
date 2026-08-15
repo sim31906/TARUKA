@@ -7,12 +7,15 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 // เดียวกัน — พอเลื่อนเข้าเขตชุดโคลน (ซึ่งพิกเซลเหมือนชุดจริงทุกประการ) จะสลับ scrollLeft
 // กลับไปตำแหน่งเทียบเท่าในชุดจริงแบบ instant (ไม่ animate) ทำให้ loop มองไม่เห็นรอยต่อ
 // ไม่มีอาการ "เลื่อนย้อนกลับ" ไปจุดเริ่มต้นแบบเดิม
+//
+// autoplay ไม่มี "หยุดถาวร" — ทุกการโต้ตอบ (ลาก/ปัด/กดปุ่มลูกศร-จุด/hover) แค่พักไว้ชั่วคราว
+// แล้วเล่นต่อเองถ้าผู้ใช้ไม่ได้โต้ตอบซ้ำภายในเวลาสั้นๆ
 export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', autoplayMs = 4000) {
   const trackRef = useRef(null);
   const [dotCount, setDotCount] = useState(1);
   const [activeDot, setActiveDot] = useState(0);
   const timerRef = useRef(null);
-  const userStoppedRef = useRef(false); // true เฉพาะตอนผู้ใช้ตั้งใจโต้ตอบจริง (ลาก/ปัด/กดปุ่ม) ไม่ใช่แค่เมาส์ผ่าน
+  const resumeTimeoutRef = useRef(null);
 
   const step = useCallback(() => {
     const track = trackRef.current;
@@ -64,11 +67,22 @@ export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', auto
     track.scrollTo({ left: track.scrollLeft + step(), behavior: 'smooth' });
   }, [step, stops]);
 
-  // หยุดถาวรสำหรับ session นี้ — ใช้ตอนผู้ใช้ตั้งใจโต้ตอบ (ลาก/ปัด/กดปุ่มลูกศร-จุด)
-  const stopAuto = useCallback(() => {
-    userStoppedRef.current = true;
+  const startTimer = useCallback(() => {
+    if (timerRef.current) return;
+    timerRef.current = setInterval(advance, autoplayMs);
+  }, [advance, autoplayMs]);
+
+  const pauseAuto = useCallback(() => {
     if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
   }, []);
+
+  // พัก autoplay ไว้ก่อน แล้วนัดเล่นต่อเองถ้าผู้ใช้ไม่โต้ตอบซ้ำภายใน delay ms —
+  // ใช้ทั้งกับ event บน track (ลาก/ปัด) และปุ่มลูกศร/จุดที่ผู้ใช้กดเอง ไม่มีการหยุดถาวรอีกต่อไป
+  const pauseThenResume = useCallback((delay = autoplayMs) => {
+    pauseAuto();
+    clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(startTimer, delay);
+  }, [pauseAuto, startTimer, autoplayMs]);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -98,48 +112,40 @@ export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', auto
     const onResize = () => { clearTimeout(rt); rt = setTimeout(rebuild, 200); };
     window.addEventListener('resize', onResize);
 
-    function startTimer() {
-      if (timerRef.current) return;
-      timerRef.current = setInterval(advance, autoplayMs);
-    }
-    // พัก autoplay ชั่วคราว (เมาส์ผ่าน) — ไม่ใช่การตั้งใจโต้ตอบ จึงกลับมาเล่นต่อได้ตอนเมาส์ออก
-    function pauseAuto() {
-      if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
-    }
-    function resumeAuto() {
-      if (!userStoppedRef.current) startTimer();
-    }
+    function onInteract() { pauseThenResume(); }
+    // hover: พักไว้ตราบใดที่ยัง hover อยู่ (ไม่นัด resume จนกว่าจะออก) แล้วเล่นต่อไวตอนเมาส์ออก
+    function onMouseEnter() { pauseAuto(); clearTimeout(resumeTimeoutRef.current); }
+    function onMouseLeave() { clearTimeout(resumeTimeoutRef.current); resumeTimeoutRef.current = setTimeout(startTimer, 400); }
     // เลื่อนแนวตั้งของทั้งหน้าด้วยล้อเมาส์ผ่านตำแหน่ง carousel ไม่นับเป็นการโต้ตอบกับ carousel —
     // นับเฉพาะตอน delta แนวนอนเด่นชัด (ลาก touchpad ปัดซ้าย-ขวา) ว่าผู้ใช้ตั้งใจเลื่อน carousel เอง
-    function onWheel(e) {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) stopAuto();
-    }
+    function onWheel(e) { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) onInteract(); }
 
     startTimer();
 
-    track.addEventListener('pointerdown', stopAuto, { passive: true });
-    track.addEventListener('touchstart', stopAuto, { passive: true });
+    track.addEventListener('pointerdown', onInteract, { passive: true });
+    track.addEventListener('touchstart', onInteract, { passive: true });
     track.addEventListener('wheel', onWheel, { passive: true });
-    track.addEventListener('mouseenter', pauseAuto, { passive: true });
-    track.addEventListener('mouseleave', resumeAuto, { passive: true });
+    track.addEventListener('mouseenter', onMouseEnter, { passive: true });
+    track.addEventListener('mouseleave', onMouseLeave, { passive: true });
 
     return () => {
       track.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
       clearTimeout(rt);
       clearTimeout(settleTimer);
-      if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
-      track.removeEventListener('pointerdown', stopAuto);
-      track.removeEventListener('touchstart', stopAuto);
+      clearTimeout(resumeTimeoutRef.current);
+      pauseAuto();
+      track.removeEventListener('pointerdown', onInteract);
+      track.removeEventListener('touchstart', onInteract);
       track.removeEventListener('wheel', onWheel);
-      track.removeEventListener('mouseenter', pauseAuto);
-      track.removeEventListener('mouseleave', resumeAuto);
+      track.removeEventListener('mouseenter', onMouseEnter);
+      track.removeEventListener('mouseleave', onMouseLeave);
     };
-  }, [itemCount, stops, currentIndex, setWidth, advance, stopAuto, autoplayMs]);
+  }, [itemCount, stops, currentIndex, setWidth, startTimer, pauseAuto, pauseThenResume]);
 
-  const prev = () => { stopAuto(); scrollToIndex(currentIndex() - 1); };
-  const next = () => { stopAuto(); advance(); }; // ปุ่มถัดไปก็ loop ต่อเนื่องเหมือน autoplay ไม่เลื่อนย้อนกลับตอนถึงใบสุดท้าย
-  const goTo = (i) => { stopAuto(); scrollToIndex(i); };
+  const prev = () => { pauseThenResume(); scrollToIndex(currentIndex() - 1); };
+  const next = () => { pauseThenResume(); advance(); }; // ปุ่มถัดไปก็ loop ต่อเนื่องเหมือน autoplay ไม่เลื่อนย้อนกลับตอนถึงใบสุดท้าย
+  const goTo = (i) => { pauseThenResume(); scrollToIndex(i); };
 
   return { trackRef, dotCount, activeDot, prev, next, goTo };
 }
