@@ -1,4 +1,4 @@
-import { colors, radius, shadow } from '../styles/theme';
+import { colors, radius } from '../styles/theme';
 import { branches } from '../data/siteData';
 import { useCarousel } from '../hooks/useCarousel';
 import SectionHeading from './SectionHeading';
@@ -20,7 +20,7 @@ export default function Branches() {
         .menu-track-trk { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity;
           padding: 8px 2px 18px; }
         .carousel-card-trk { flex: 0 0 auto; width: calc((100% - 32px)/3); scroll-snap-align: start; border-radius: ${radius.lg};
-          overflow: hidden; box-shadow: ${shadow}; border: 2px solid ${colors.beige}; background: #fff; }
+          overflow: hidden; border: 2px solid ${colors.beige}; background: #fff; }
         @media (max-width: 860px) { .carousel-card-trk { width: calc((100% - 16px)/2); } }
         @media (max-width: 560px) { .carousel-card-trk { width: 100%; } }
         .carousel-arrow-trk { position: absolute; top: 42%; transform: translateY(-50%); width: 48px; height: 48px;
