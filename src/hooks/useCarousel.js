@@ -7,6 +7,7 @@ export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', auto
   const [dotCount, setDotCount] = useState(1);
   const [activeDot, setActiveDot] = useState(0);
   const timerRef = useRef(null);
+  const userStoppedRef = useRef(false); // true เฉพาะตอนผู้ใช้ตั้งใจโต้ตอบจริง (ลาก/ปัด/กดปุ่ม) ไม่ใช่แค่เมาส์ผ่าน
 
   const step = useCallback(() => {
     const track = trackRef.current;
@@ -41,7 +42,9 @@ export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', auto
     track.scrollTo({ left: idx >= n - 1 ? max : idx * step(), behavior: 'smooth' });
   }, [step, stops]);
 
+  // หยุดถาวรสำหรับ session นี้ — ใช้ตอนผู้ใช้ตั้งใจโต้ตอบ (ลาก/ปัด/กดปุ่มลูกศร-จุด)
   const stopAuto = useCallback(() => {
+    userStoppedRef.current = true;
     if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
   }, []);
 
@@ -62,22 +65,46 @@ export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', auto
     const onResize = () => { clearTimeout(rt); rt = setTimeout(rebuild, 200); };
     window.addEventListener('resize', onResize);
 
-    timerRef.current = setInterval(() => {
-      const n = stops();
-      if (n <= 1) return;
-      const idx = currentIndex();
-      scrollToIndex(idx >= n - 1 ? 0 : idx + 1);
-    }, autoplayMs);
+    function startTimer() {
+      if (timerRef.current) return;
+      timerRef.current = setInterval(() => {
+        const n = stops();
+        if (n <= 1) return;
+        const idx = currentIndex();
+        scrollToIndex(idx >= n - 1 ? 0 : idx + 1);
+      }, autoplayMs);
+    }
+    // พัก autoplay ชั่วคราว (เมาส์ผ่าน) — ไม่ใช่การตั้งใจโต้ตอบ จึงกลับมาเล่นต่อได้ตอนเมาส์ออก
+    function pauseAuto() {
+      if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
+    }
+    function resumeAuto() {
+      if (!userStoppedRef.current) startTimer();
+    }
+    // เลื่อนแนวตั้งของทั้งหน้าด้วยล้อเมาส์ผ่านตำแหน่ง carousel ไม่นับเป็นการโต้ตอบกับ carousel —
+    // นับเฉพาะตอน delta แนวนอนเด่นชัด (ลาก touchpad ปัดซ้าย-ขวา) ว่าผู้ใช้ตั้งใจเลื่อน carousel เอง
+    function onWheel(e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) stopAuto();
+    }
 
-    const stopEvents = ['pointerdown', 'touchstart', 'mouseenter', 'wheel'];
-    stopEvents.forEach((ev) => track.addEventListener(ev, stopAuto, { passive: true }));
+    startTimer();
+
+    track.addEventListener('pointerdown', stopAuto, { passive: true });
+    track.addEventListener('touchstart', stopAuto, { passive: true });
+    track.addEventListener('wheel', onWheel, { passive: true });
+    track.addEventListener('mouseenter', pauseAuto, { passive: true });
+    track.addEventListener('mouseleave', resumeAuto, { passive: true });
 
     return () => {
       track.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
       clearTimeout(rt);
-      stopAuto();
-      stopEvents.forEach((ev) => track.removeEventListener(ev, stopAuto));
+      if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
+      track.removeEventListener('pointerdown', stopAuto);
+      track.removeEventListener('touchstart', stopAuto);
+      track.removeEventListener('wheel', onWheel);
+      track.removeEventListener('mouseenter', pauseAuto);
+      track.removeEventListener('mouseleave', resumeAuto);
     };
   }, [itemCount, stops, currentIndex, scrollToIndex, stopAuto, autoplayMs]);
 
