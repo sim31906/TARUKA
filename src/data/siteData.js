@@ -51,7 +51,7 @@ export const menu = {
     {
       name: 'MY BOBA MOOD',
       nameTh: 'ชานม & ไข่มุก',
-      image: '/assets/menu/boba-mood.webp',
+      image: '/assets/menu/boba-mood.jpg',
       items: [
         { name: 'นมสดบราวน์ชูการ์ไข่มุก', price: '49฿' },
         { name: 'ชานมไต้หวันไข่มุก', price: '24฿' },
@@ -60,7 +60,7 @@ export const menu = {
     {
       name: 'CREAMY FRUIT KISS',
       nameTh: 'ชาผลไม้ชีส',
-      image: '/assets/menu/fruit-cheese.webp',
+      image: '/assets/menu/fruit-cheese.jpg',
       items: [
         { name: 'ชาพีชชีส', price: '39฿' },
         { name: 'ชาแอปเปิ้ลชีส', price: '39฿' },
@@ -69,7 +69,7 @@ export const menu = {
     {
       name: 'SIGNATURE PURPLE LATTE',
       nameTh: 'มันม่วง',
-      image: '/assets/menu/purple-latte.webp',
+      image: '/assets/menu/purple-latte.jpg',
       items: [
         { name: 'มันม่วงนมสด', price: '' },
         { name: 'ชานมมันม่วง', price: '' },
@@ -78,7 +78,7 @@ export const menu = {
     {
       name: 'AIYU JELLY FRESH VIBES',
       nameTh: 'โซดา',
-      image: '/assets/menu/aiyu-jelly.webp',
+      image: '/assets/menu/aiyu-jelly.jpg',
       items: [
         { name: 'พีชเลมอนโซดา', price: '' },
         { name: 'ซันไชน์', price: '' },
@@ -87,7 +87,7 @@ export const menu = {
     {
       name: 'MUST TRY',
       nameTh: 'บุกป๊อบข้าวบาร์เลย์',
-      image: '/assets/menu/must-try.webp',
+      image: '/assets/menu/must-try.jpg',
       items: [
         { name: 'ชาไทยบุกป๊อบข้าวบาร์เลย์', price: '39฿' },
         { name: 'ชานมไต้หวันบุกป๊อบข้าวบาร์เลย์', price: '34฿' },
@@ -97,7 +97,7 @@ export const menu = {
     {
       name: 'SIGNATURE MATCHA',
       nameTh: 'มัทฉะ',
-      image: '/assets/menu/matcha.webp',
+      image: '/assets/menu/matcha.jpg',
       items: [
         { name: 'ชาเขียวมัทฉะนมสด', price: '' },
         { name: 'มัทฉะเลมอน', price: '' },
@@ -124,24 +124,24 @@ export const branches = {
   heading: 'สาขาของเรา',
   body: 'บรรยากาศร้าน TARUKA สาขาต่าง ๆ ทั่วประเทศ',
   images: [
-    '/assets/1.webp',
-    '/assets/2.webp',
-    '/assets/3.webp',
-    '/assets/4.webp',
-    '/assets/5.webp',
-    '/assets/6.webp',
-    '/assets/7.webp',
-    '/assets/8.webp',
-    '/assets/9.webp',
-    '/assets/10.webp',
-    '/assets/11.webp',
+    '/assets/1.jpg',
+    '/assets/2.jpg',
+    '/assets/3.jpg',
+    '/assets/4.jpg',
+    '/assets/5.jpg',
+    '/assets/6.jpg',
+    '/assets/7.jpg',
+    '/assets/8.jpg',
+    '/assets/9.jpg',
+    '/assets/10.jpg',
+    '/assets/11.jpg',
   ],
 };
 
 export const storeFormats = [
   {
     name: 'KIOSK (คีออส)',
-    imageUrl: '/assets/kiosk.webp',
+    imageUrl: '/assets/kiosk.jpg',
     points: [
       'เหมาะสำหรับตั้งในพื้นที่ว่าง',
       'ขนาดเริ่มต้นที่ 2 x 2 เมตร',
@@ -150,7 +150,7 @@ export const storeFormats = [
   },
   {
     name: 'CAFE (คาเฟ่)',
-    imageUrl: '/assets/cafe.webp',
+    imageUrl: '/assets/cafe.jpg',
     points: [
       'เหมาะกับพื้นที่ที่เป็นอาคาร / ร้านค้า',
       'ออกแบบและตกแต่งเพิ่มเติม ให้เข้ากับพื้นที่เดิม',
