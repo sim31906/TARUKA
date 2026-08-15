@@ -1,0 +1,23 @@
+{
+  "name": "taruka-landing",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Official website for TARUKA Thailand — แฟรนไชส์ชานมไข่มุก",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "vite preview --host 0.0.0.0 --port $PORT"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.3.4"
+  }
+}

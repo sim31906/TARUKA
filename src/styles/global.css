@@ -1,0 +1,91 @@
+/* ============ RESET ============ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Noto Sans Thai', 'Noto Sans', sans-serif;
+  background: #FFF7EC;
+  color: #2A1B12;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: 'Mitr', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ── ทุกข้อความเนื้อหาเคารพการขึ้นบรรทัด \n ที่พิมพ์เองใน siteData.js ── */
+.pre-line {
+  white-space: pre-line;
+}
+
+/* ============ ANIMATIONS (shared) ============ */
+@keyframes morph {
+  50% { border-radius: 54% 46% 48% 52%/46% 54% 48% 52%; transform: rotate(8deg); }
+}
+@keyframes floaty {
+  50% { transform: translateY(-14px); }
+}
+@keyframes bobaRise {
+  0% { transform: translateY(0) scale(.7); opacity: 0; }
+  12% { opacity: .75; }
+  86% { opacity: .4; }
+  100% { transform: translateY(-460px) scale(1.05); opacity: 0; }
+}
+@keyframes bobaSpark {
+  0% { opacity: 1; transform: translate(-50%,-50%) scale(.5); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1); }
+}
+
+/* section spacing — ใช้ร่วมกันทุก section, กัน header sticky บังหัวข้อตอน jump */
+.section-trk {
+  padding: 60px 0;
+  position: relative;
+}
+section[id] {
+  scroll-margin-top: 84px;
+}
+@media (max-width: 720px) {
+  .section-trk { padding: 46px 0; }
+}
+
+/* carousel track — ซ่อน scrollbar */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

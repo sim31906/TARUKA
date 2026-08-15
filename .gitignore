@@ -1,20 +1,15 @@
-# Firebase
-.firebase/
-firebase-debug.log
-*-debug.log
+# Node / Vite build output
+node_modules/
+dist/
+dist-ssr/
+*.local
 
-# Service account / credentials — ห้าม commit เด็ดขาด
-*-firebase-adminsdk-*.json
-*serviceAccount*.json
-*.key.json
-
-# สร้างโดย CI ตอน deploy (stamp commit SHA)
-version.txt
+# Vercel
+.vercel/
 
 # OS / editor
 .DS_Store
 Thumbs.db
-node_modules/
 .vscode/
 
 # playwright temp output
