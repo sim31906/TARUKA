@@ -22,7 +22,7 @@ export default function Menu() {
       <style>{`
         .mcat-card-trk { display: flex; flex-direction: column; background: #fff; border-radius: ${radius.lg}; overflow: hidden;
           box-shadow: ${shadow}; border: 2px solid ${colors.beige}; transition: transform .18s ease; }
-        .mcat-card-trk:hover { transform: translateY(-6px) rotate(-1deg); }
+        .mcat-card-trk:hover { transform: translateY(-6px) scale(1.03); }
         .mcat-item-trk + .mcat-item-trk { border-top: 1px solid rgba(201,165,124,.2); }
         .mcat-img-wrap-trk { position: relative; cursor: zoom-in; }
         .mcat-img-zoom-trk { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
