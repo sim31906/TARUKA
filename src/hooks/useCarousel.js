@@ -2,6 +2,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 // carousel (scroll-snap + arrows + dots + auto-advance) — จำนวน dot = "ตำแหน่งเลื่อนจริง"
 // (วัดจากความกว้างจริง) ไม่ใช่จำนวนการ์ด เพราะการ์ดโชว์หลายใบพร้อมกัน
+//
+// loop ต่อเนื่อง: ผู้เรียกต้อง render รายการการ์ดซ้ำ 2 ชุดต่อกัน (ชุดจริง + ชุดโคลน) ใน track
+// เดียวกัน — พอเลื่อนเข้าเขตชุดโคลน (ซึ่งพิกเซลเหมือนชุดจริงทุกประการ) จะสลับ scrollLeft
+// กลับไปตำแหน่งเทียบเท่าในชุดจริงแบบ instant (ไม่ animate) ทำให้ loop มองไม่เห็นรอยต่อ
+// ไม่มีอาการ "เลื่อนย้อนกลับ" ไปจุดเริ่มต้นแบบเดิม
 export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', autoplayMs = 4000) {
   const trackRef = useRef(null);
   const [dotCount, setDotCount] = useState(1);
@@ -18,28 +23,45 @@ export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', auto
     return card.getBoundingClientRect().width + gap;
   }, [cardSelector]);
 
+  // ความกว้างของชุด "จริง" 1 รอบ — track render ซ้ำ 2 ชุด จึงเท่ากับครึ่งหนึ่งของ scrollWidth
+  const setWidth = useCallback(() => {
+    const track = trackRef.current;
+    return track ? track.scrollWidth / 2 : 0;
+  }, []);
+
   const stops = useCallback(() => {
     const track = trackRef.current;
     if (!track) return 1;
-    const max = track.scrollWidth - track.clientWidth;
+    const max = setWidth() - track.clientWidth;
     if (max <= 2) return 1;
     return Math.round(max / step()) + 1;
-  }, [step]);
+  }, [step, setWidth]);
 
   const currentIndex = useCallback(() => {
     const track = trackRef.current;
     if (!track) return 0;
     const n = stops();
-    return Math.max(0, Math.min(n - 1, Math.round(track.scrollLeft / step())));
-  }, [step, stops]);
+    const w = setWidth();
+    const wrapped = w > 0 ? track.scrollLeft % w : track.scrollLeft;
+    return Math.max(0, Math.min(n - 1, Math.round(wrapped / step())));
+  }, [step, stops, setWidth]);
 
+  // เลื่อนไปตำแหน่งจริง i (0..n-1) แบบ clamp — ใช้กับปุ่มย้อนกลับ/จุด (ไม่ loop)
   const scrollToIndex = useCallback((i) => {
     const track = trackRef.current;
     if (!track) return;
     const n = stops();
     const idx = Math.max(0, Math.min(n - 1, i));
-    const max = track.scrollWidth - track.clientWidth;
+    const max = setWidth() - track.clientWidth;
     track.scrollTo({ left: idx >= n - 1 ? max : idx * step(), behavior: 'smooth' });
+  }, [step, stops, setWidth]);
+
+  // เลื่อนต่อไปข้างหน้าทีละการ์ด ไม่สนใจว่าจะเกินชุดจริงหรือไม่ — ใช้กับ autoplay/ปุ่มถัดไป
+  // เพื่อให้ loop ต่อเนื่องไปข้างหน้าเสมอ ไม่มีการเลื่อนย้อนกลับ
+  const advance = useCallback(() => {
+    const track = trackRef.current;
+    if (!track || stops() <= 1) return;
+    track.scrollTo({ left: track.scrollLeft + step(), behavior: 'smooth' });
   }, [step, stops]);
 
   // หยุดถาวรสำหรับ session นี้ — ใช้ตอนผู้ใช้ตั้งใจโต้ตอบ (ลาก/ปัด/กดปุ่มลูกศร-จุด)
@@ -58,7 +80,18 @@ export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', auto
     }
     rebuild();
 
-    const onScroll = () => setActiveDot(currentIndex());
+    // รอให้ scroll (รวม animation ของ smooth-scroll) นิ่งก่อน ค่อยเช็คว่าเลื่อนเข้าเขตชุดโคลน
+    // หรือยัง — กันไม่ให้การ set scrollLeft กลางคันไปขัดจังหวะ animation ที่กำลังเลื่อนอยู่
+    let settleTimer;
+    function checkWrap() {
+      const w = setWidth();
+      if (w > 0 && track.scrollLeft >= w - 1) track.scrollLeft -= w; // instant (ไม่มี behavior:smooth) เพราะเนื้อหาช่วงนั้นเหมือนกันทุกพิกเซล
+    }
+    function onScroll() {
+      setActiveDot(currentIndex());
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(checkWrap, 160);
+    }
     track.addEventListener('scroll', onScroll, { passive: true });
 
     let rt;
@@ -67,12 +100,7 @@ export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', auto
 
     function startTimer() {
       if (timerRef.current) return;
-      timerRef.current = setInterval(() => {
-        const n = stops();
-        if (n <= 1) return;
-        const idx = currentIndex();
-        scrollToIndex(idx >= n - 1 ? 0 : idx + 1);
-      }, autoplayMs);
+      timerRef.current = setInterval(advance, autoplayMs);
     }
     // พัก autoplay ชั่วคราว (เมาส์ผ่าน) — ไม่ใช่การตั้งใจโต้ตอบ จึงกลับมาเล่นต่อได้ตอนเมาส์ออก
     function pauseAuto() {
@@ -99,6 +127,7 @@ export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', auto
       track.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
       clearTimeout(rt);
+      clearTimeout(settleTimer);
       if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
       track.removeEventListener('pointerdown', stopAuto);
       track.removeEventListener('touchstart', stopAuto);
@@ -106,10 +135,10 @@ export function useCarousel(itemCount, cardSelector = '.carousel-card-trk', auto
       track.removeEventListener('mouseenter', pauseAuto);
       track.removeEventListener('mouseleave', resumeAuto);
     };
-  }, [itemCount, stops, currentIndex, scrollToIndex, stopAuto, autoplayMs]);
+  }, [itemCount, stops, currentIndex, setWidth, advance, stopAuto, autoplayMs]);
 
   const prev = () => { stopAuto(); scrollToIndex(currentIndex() - 1); };
-  const next = () => { stopAuto(); const idx = currentIndex(); scrollToIndex(idx >= stops() - 1 ? 0 : idx + 1); };
+  const next = () => { stopAuto(); advance(); }; // ปุ่มถัดไปก็ loop ต่อเนื่องเหมือน autoplay ไม่เลื่อนย้อนกลับตอนถึงใบสุดท้าย
   const goTo = (i) => { stopAuto(); scrollToIndex(i); };
 
   return { trackRef, dotCount, activeDot, prev, next, goTo };

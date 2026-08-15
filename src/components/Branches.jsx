@@ -6,14 +6,18 @@ import Reveal from './Reveal';
 
 export default function Branches() {
   const images = (branches.images || []).filter(Boolean);
-  const { trackRef, dotCount, activeDot, prev, next, goTo } = useCarousel(images.length, '.carousel-card-trk', 7000);
+  // ต่อชุดรูปซ้ำอีก 1 รอบท้าย track ให้ loop เลื่อนต่อเนื่องไปข้างหน้าได้เรื่อยๆ โดยไม่ต้องเลื่อนย้อนกลับไปจุดเริ่มต้น
+  const loopImages = images.length > 1 ? [...images, ...images] : images;
+  const { trackRef, dotCount, activeDot, prev, next, goTo } = useCarousel(images.length, '.carousel-card-trk', 5000);
 
   if (images.length === 0) return null;
 
   return (
     <section id="branches" className="section-trk" style={{ background: `linear-gradient(180deg, ${colors.cream}, #fff)` }}>
       <style>{`
-        .menu-track-trk { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; scroll-behavior: smooth;
+        /* หมายเหตุ: ไม่ใส่ scroll-behavior:smooth ที่นี่ — ควบคุม animation เองผ่าน JS (scrollTo behavior:'smooth')
+           เพื่อให้การสลับ scrollLeft ตอน loop กลับไปชุดจริงเป็น instant จริงๆ ไม่โดน CSS บังคับ smooth ทับ */
+        .menu-track-trk { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity;
           padding: 8px 2px 18px; }
         .carousel-card-trk { flex: 0 0 auto; width: calc((100% - 32px)/3); scroll-snap-align: start; border-radius: ${radius.lg};
           overflow: hidden; box-shadow: ${shadow}; border: 2px solid ${colors.beige}; background: #fff; }
@@ -39,11 +43,11 @@ export default function Branches() {
         <div style={{ position: 'relative' }}>
           <button className="carousel-arrow-trk prev" type="button" aria-label="ก่อนหน้า" onClick={prev}>‹</button>
           <div ref={trackRef} className="menu-track-trk no-scrollbar">
-            {images.map((url, i) => (
-              <div key={url} className="carousel-card-trk">
+            {loopImages.map((url, i) => (
+              <div key={url + '-' + i} className="carousel-card-trk" aria-hidden={i >= images.length}>
                 <img
                   src={url}
-                  alt={(branches.heading || 'TARUKA') + ' ' + (i + 1)}
+                  alt={(branches.heading || 'TARUKA') + ' ' + ((i % images.length) + 1)}
                   loading="lazy"
                   style={{ display: 'block', width: '100%', aspectRatio: '1/1', objectFit: 'cover', background: colors.beigeSoft }}
                 />
