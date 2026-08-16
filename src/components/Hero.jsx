@@ -1,6 +1,7 @@
 import { colors, fonts, shadow } from '../styles/theme';
 import { hero } from '../data/siteData';
 import { triggerBobaSpark } from '../utils/bobaSpark';
+import { handleAnchorClick } from '../utils/scrollTo';
 
 export default function Hero() {
   return (
@@ -75,11 +76,17 @@ export default function Hero() {
                 className="pill-trk"
                 id="heroCta"
                 href="#contact"
-                onClick={(e) => triggerBobaSpark(e.clientX, e.clientY)}
+                onClick={(e) => { triggerBobaSpark(e.clientX, e.clientY); handleAnchorClick(e, 'contact'); }}
               >
                 {hero.primaryCtaText}
               </a>
-              <a className="pill-trk pill-ghost-trk" href="#menu">ดูเมนู</a>
+              <a
+                className="pill-trk pill-ghost-trk"
+                href="#menu"
+                onClick={(e) => handleAnchorClick(e, 'menu')}
+              >
+                ดูเมนู
+              </a>
             </div>
             <div className="price-flag-trk">เริ่มต้นเพียง <b>19฿</b> / แก้ว</div>
           </div>

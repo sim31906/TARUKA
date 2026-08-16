@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { colors, fonts } from '../styles/theme';
 import { brand, navItems } from '../data/siteData';
+import { handleAnchorClick } from '../utils/scrollTo';
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -76,11 +77,24 @@ export default function Navigation() {
 
           <nav id="navMenu" className={`nav-menu-trk${open ? ' open' : ''}`} aria-label="เมนูนำทาง">
             {navItems.map((item) => (
-              <a key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</a>
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => { handleAnchorClick(e, item.href.slice(1)); setOpen(false); }}
+              >
+                {item.label}
+              </a>
             ))}
           </nav>
 
-          <a className="header-cta-trk" id="headerCta" href="#contact">สนใจแฟรนไชส์ 🧋</a>
+          <a
+            className="header-cta-trk"
+            id="headerCta"
+            href="#contact"
+            onClick={(e) => handleAnchorClick(e, 'contact')}
+          >
+            สนใจแฟรนไชส์ 🧋
+          </a>
 
           <button
             className={`nav-toggle-trk${open ? ' open' : ''}`}
