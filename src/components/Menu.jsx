@@ -6,8 +6,23 @@ import SectionHeading from './SectionHeading';
 import Reveal from './Reveal';
 import Lightbox from './Lightbox';
 
+const PREVIEW_COUNT = 6;
+
+function pickRandom(list, n) {
+  const arr = [...list];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr.slice(0, n);
+}
+
 export default function Menu() {
-  const categories = menu.categories.filter((c) => c && c.image);
+  const allCategories = menu.categories.filter((c) => c && c.image);
+  // สุ่มโชว์แค่ 6 หมวดในหน้าแรก (ดูเมนูครบทุกหมวดได้ที่หน้า /menu) — สุ่มครั้งเดียวตอน mount ไม่สุ่มซ้ำตอนกดปุ่มกรอง
+  const [categories] = useState(() =>
+    allCategories.length > PREVIEW_COUNT ? pickRandom(allCategories, PREVIEW_COUNT) : allCategories
+  );
   const [lightboxIdx, setLightboxIdx] = useState(null);
   const [activeCat, setActiveCat] = useState('ทั้งหมด');
 
