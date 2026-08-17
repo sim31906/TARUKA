@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { colors, fonts, radius, shadow } from '../styles/theme';
 import { menu } from '../data/siteData';
 import SectionHeading from './SectionHeading';
@@ -42,6 +43,7 @@ export default function Menu() {
         .mcat-tab-trk.active { background: ${colors.orange}; border-color: ${colors.orangeDk}; color: #fff;
           font-weight: 600; box-shadow: 0 8px 18px rgba(242,145,61,.38); }
         .mcat-tab-trk:focus-visible { outline: 3px solid rgba(242,145,61,.45); outline-offset: 2px; }
+        .mcat-viewall-trk:hover { background: ${colors.espresso}; color: #fff; }
       `}</style>
       <div style={{ width: '100%', maxWidth: 1140, margin: '0 auto', padding: '0 22px' }}>
         <Reveal><SectionHeading title={menu.heading} subtitle={menu.body} /></Reveal>
@@ -109,6 +111,25 @@ export default function Menu() {
             </Reveal>
           ))}
         </div>
+        <Reveal>
+          <div style={{ textAlign: 'center', marginTop: 34 }}>
+            <Link
+              to="/menu"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none',
+                fontFamily: fonts.display, fontWeight: 500, fontSize: 'clamp(13.5px,3.6vw,15px)',
+                color: colors.espresso, background: '#fff', border: `2px solid ${colors.espresso}`,
+                padding: '12px 26px', borderRadius: 999, transition: 'background .2s, color .2s',
+              }}
+              className="mcat-viewall-trk"
+            >
+              ดูเมนูทั้งหมด
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+              </svg>
+            </Link>
+          </div>
+        </Reveal>
       </div>
 
       {lightboxIdx !== null && (
