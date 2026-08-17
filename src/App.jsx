@@ -1,6 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, useLayoutEffect } from 'react';
-import ScrollProgress from './components/ScrollProgress';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -36,7 +35,6 @@ function MainPage() {
 
   return (
     <>
-      <ScrollProgress />
       <Navigation />
       <main id="app">
         <Hero />
