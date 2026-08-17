@@ -45,7 +45,18 @@ export default function Menu() {
           background: rgba(42,27,18,0); opacity: 0; transition: opacity .2s ease, background .2s ease; }
         .mcat-img-wrap-trk:hover .mcat-img-zoom-trk { opacity: 1; background: rgba(42,27,18,.28); }
         .mcat-img-zoom-trk svg { filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
-        .mcat-viewall-trk:hover { background: ${colors.espresso}; color: #fff; }
+        .mcat-viewall-trk { position: relative; overflow: hidden; color: ${colors.espresso}; background: #fff;
+          transition: transform .15s ease, background .2s ease, color .2s ease; }
+        .mcat-viewall-trk:hover { background: ${colors.espresso}; color: #fff; transform: translateY(-2px) scale(1.02); }
+        .mcat-viewall-trk::after { content: ""; position: absolute; top: 0; left: -130%; width: 55%; height: 100%;
+          background: linear-gradient(120deg, transparent, rgba(255,255,255,.6), transparent); transform: skewX(-20deg); transition: left .6s ease; }
+        .mcat-viewall-trk:hover::after { left: 150%; }
+        .mcat-viewall-trk svg { transition: transform .25s ease; }
+        .mcat-viewall-trk:hover svg { transform: translateX(4px); }
+        @media (prefers-reduced-motion: reduce) {
+          .mcat-viewall-trk, .mcat-viewall-trk::after, .mcat-viewall-trk svg { transition: none; }
+          .mcat-viewall-trk::after { display: none; }
+        }
       `}</style>
       <div style={{ width: '100%', maxWidth: 1140, margin: '0 auto', padding: '0 22px' }}>
         <Reveal><SectionHeading title={menu.heading} subtitle={menu.body} /></Reveal>
@@ -106,8 +117,7 @@ export default function Menu() {
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none',
                 fontFamily: fonts.display, fontWeight: 500, fontSize: 'clamp(13.5px,3.6vw,15px)',
-                color: colors.espresso, background: '#fff', border: `2px solid ${colors.espresso}`,
-                padding: '12px 26px', borderRadius: 999, transition: 'background .2s, color .2s',
+                border: `2px solid ${colors.espresso}`, padding: '12px 26px', borderRadius: 999,
               }}
               className="mcat-viewall-trk"
             >
