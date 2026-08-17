@@ -110,6 +110,14 @@ export const menu = {
       image: '/assets/menu/cocoa.jpg',
       items: [
         { name: 'โกโก้นมสด', price: '' },
+        { name: 'ชานมโกโก้', price: '' },
+      ],
+    },
+    {
+      name: 'CLASSIC OR CHEESE',
+      nameTh: 'โกโก้',
+      image: '/assets/menu/cocoa-cheese.jpg',
+      items: [
         { name: 'ชานมโกโก้', price: '29฿' },
         { name: 'ชานมโกโก้ชีส', price: '49฿' },
       ],

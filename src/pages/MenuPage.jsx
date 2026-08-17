@@ -12,7 +12,7 @@ export default function MenuPage() {
   const [lightboxIdx, setLightboxIdx] = useState(null);
   const [activeCat, setActiveCat] = useState('ทั้งหมด');
 
-  const catLabels = ['ทั้งหมด', ...categories.map((c) => c.nameTh || c.name)];
+  const catLabels = ['ทั้งหมด', ...new Set(categories.map((c) => c.nameTh || c.name))];
   const visibleCategories = activeCat === 'ทั้งหมด'
     ? categories
     : categories.filter((c) => (c.nameTh || c.name) === activeCat);
