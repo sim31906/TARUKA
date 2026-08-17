@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { colors, fonts, radius, shadow } from '../styles/theme';
 import { brand, menu } from '../data/siteData';
@@ -11,6 +11,13 @@ export default function MenuPage() {
   const categories = menu.categories.filter((c) => c && c.image);
   const [lightboxIdx, setLightboxIdx] = useState(null);
   const [activeCat, setActiveCat] = useState('ทั้งหมด');
+
+  // react-router ไม่เลื่อนกลับขึ้นบนให้อัตโนมัติตอนเปลี่ยนหน้า — คงตำแหน่ง scroll เดิม
+  // จากหน้าแรกไว้ ทำให้ดูเหมือนเปิดมาแล้วอยู่ล่างสุด ต้องสั่งเลื่อนขึ้นบนเองตอน mount
+  // ระบุ behavior:'instant' ชัดเจน ไม่งั้น CSS html{scroll-behavior:smooth} จะแทรกแทนให้เลื่อนแบบ animate
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
 
   const catLabels = ['ทั้งหมด', ...new Set(categories.map((c) => c.nameTh || c.name))];
   const visibleCategories = activeCat === 'ทั้งหมด'

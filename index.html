@@ -50,6 +50,9 @@
     ]
   }
   </script>
+
+  <!-- ปิด browser scroll restoration อัตโนมัติ กัน react-router เปลี่ยนหน้าแล้วยังค้าง scroll position เดิม -->
+  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
 </head>
 <body>
   <!-- TARUKA landing · React + Vite · เนื้อหาทั้งหมดอยู่ใน src/data/siteData.js -->

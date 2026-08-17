@@ -20,7 +20,9 @@ function MainPage() {
   const location = useLocation();
 
   useLayoutEffect(() => {
-    if (!location.state?.scrollTo) window.scrollTo(0, 0);
+    // ต้องระบุ behavior:'instant' ชัดเจน ไม่งั้น CSS html{scroll-behavior:smooth} จะแทรกแทนให้เลื่อนแบบ
+    // animate แทนกระโดดขึ้นบนทันที (ยิ่งแย่ถ้ามี scroll animation ค้างจากหน้าก่อนหน้าพอดี)
+    if (!location.state?.scrollTo) window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
