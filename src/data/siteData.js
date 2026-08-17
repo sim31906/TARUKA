@@ -104,6 +104,15 @@ export const menu = {
         { name: 'มัทฉะเลมอนโซดา', price: '' },
       ],
     },
+    {
+      name: 'DELICIOUS COCOA DRINK',
+      nameTh: 'โกโก้',
+      image: '/assets/menu/cocoa.jpg',
+      items: [
+        { name: 'โกโก้นมสด', price: '' },
+        { name: 'ชานมโกโก้', price: '' },
+      ],
+    },
   ],
 };
 
