@@ -1,9 +1,9 @@
-# TARUKA Landing Page (ทารุกะ) — เว็บแฟรนไชส์
+g# TARUKA Landing Page (ทารุกะ) — เว็บแฟรนไชส์
 
 เว็บ landing page หน้าเดียวสำหรับโปรโมทแฟรนไชส์ชานมไข่มุก **TARUKA**
 สร้างด้วย **React + Vite** (โครงสร้างเดียวกับที่ใช้ในโปรเจกต์ tee-jaruji-website)
 
-🌐 **เว็บจริง (live):** <https://tarukathailand.com>
+🌐 **เว็บจริง (live):** <https://taruka-th.com>
 
 - เนื้อหาทั้งหมดอยู่ใน **`src/data/siteData.js`** (แก้ข้อความ/ราคา/ตารางคืนทุน/รูปได้ที่นี่ที่เดียว)
 - สี/ฟอนต์อยู่ใน **`src/styles/theme.js`**
