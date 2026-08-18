@@ -140,6 +140,17 @@ export default function BranchesPage() {
                             <div style={{ fontSize: 'clamp(12.5px,3.4vw,13.5px)', color: colors.brownSoft, lineHeight: 1.5 }}>
                               {b.location}
                             </div>
+                            {b.phone && (
+                              <a
+                                href={`tel:${b.phone.replace(/[^0-9+]/g, '')}`}
+                                style={{
+                                  display: 'inline-block', marginTop: 6, fontFamily: fonts.display, fontWeight: 500,
+                                  fontSize: 'clamp(12.5px,3.4vw,13.5px)', color: colors.orangeDk, textDecoration: 'none',
+                                }}
+                              >
+                                📞 {b.phone}
+                              </a>
+                            )}
                           </div>
                         ))}
                       </div>
