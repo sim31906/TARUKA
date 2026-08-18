@@ -5,9 +5,12 @@ import { brand, branchDirectory } from '../data/siteData';
 import Footer from '../components/Footer';
 import Reveal from '../components/Reveal';
 
-// สร้างลิงก์ค้นหาใน Google Maps จากชื่อสาขา+ที่ตั้ง+จังหวัด — ไม่ใช่พิกัดปักหมุดจริงของแต่ละสาขา
-// (ไม่มี Place ID จริงให้ส่วนใหญ่) แต่พาไปหน้าค้นหาที่ตรงที่สุดเท่าที่ทำได้จากชื่อ/ที่อยู่
-function mapsSearchUrl(branchName, location, provinceName) {
+// ถ้ามีพิกัด lat/lng จริง (จาก Google My Maps) ให้ลิงก์ไปที่หมุดตรงจุดเลย
+// ถ้าไม่มีพิกัดค่อย fallback เป็นลิงก์ค้นหาจากชื่อ+ที่ตั้ง+จังหวัด
+function mapsSearchUrl(branchName, location, provinceName, lat, lng) {
+  if (typeof lat === 'number' && typeof lng === 'number') {
+    return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+  }
   const q = `TARUKA ${branchName} ${location} ${provinceName}`.replace(/\s+/g, ' ').trim();
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 }
@@ -149,7 +152,7 @@ export default function BranchesPage() {
                             </div>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 14px', marginTop: 6 }}>
                               <a
-                                href={mapsSearchUrl(b.name, b.location, province.name)}
+                                href={mapsSearchUrl(b.name, b.location, province.name, b.lat, b.lng)}
                                 target="_blank"
                                 rel="noopener"
                                 style={{
