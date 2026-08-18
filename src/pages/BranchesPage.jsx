@@ -148,17 +148,6 @@ export default function BranchesPage() {
                               {b.location}
                             </div>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 14px', marginTop: 6 }}>
-                              {b.phone && (
-                                <a
-                                  href={`tel:${b.phone.replace(/[^0-9+]/g, '')}`}
-                                  style={{
-                                    fontFamily: fonts.display, fontWeight: 500,
-                                    fontSize: 'clamp(12.5px,3.4vw,13.5px)', color: colors.orangeDk, textDecoration: 'none',
-                                  }}
-                                >
-                                  📞 {b.phone}
-                                </a>
-                              )}
                               <a
                                 href={mapsSearchUrl(b.name, b.location, province.name)}
                                 target="_blank"
