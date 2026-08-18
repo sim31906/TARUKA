@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import ContactFab from './components/ContactFab';
 import Analytics from './components/Analytics';
 import MenuPage from './pages/MenuPage';
+import BranchesPage from './pages/BranchesPage';
 
 function MainPage() {
   const location = useLocation();
@@ -63,6 +64,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/menu" element={<MenuPage />} />
+        <Route path="/branches" element={<BranchesPage />} />
       </Routes>
     </>
   );

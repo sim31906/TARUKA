@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { colors, radius } from '../styles/theme';
+import { Link } from 'react-router-dom';
+import { colors, fonts, radius } from '../styles/theme';
 import { branches } from '../data/siteData';
 import { useCarousel } from '../hooks/useCarousel';
 import SectionHeading from './SectionHeading';
@@ -50,6 +51,18 @@ export default function Branches() {
           background: rgba(42,27,18,0); opacity: 0; transition: opacity .2s ease, background .2s ease; }
         .branch-img-wrap-trk:hover .branch-img-zoom-trk { opacity: 1; background: rgba(42,27,18,.28); }
         .branch-img-zoom-trk svg { filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
+        .branch-viewall-trk { position: relative; overflow: hidden; color: ${colors.espresso}; background: #fff;
+          transition: transform .15s ease, background .2s ease, color .2s ease; }
+        .branch-viewall-trk:hover { background: ${colors.espresso}; color: #fff; transform: translateY(-2px) scale(1.02); }
+        .branch-viewall-trk::after { content: ""; position: absolute; top: 0; left: -130%; width: 55%; height: 100%;
+          background: linear-gradient(120deg, transparent, rgba(255,255,255,.6), transparent); transform: skewX(-20deg); transition: left .6s ease; }
+        .branch-viewall-trk:hover::after { left: 150%; }
+        .branch-viewall-trk svg { transition: transform .25s ease; }
+        .branch-viewall-trk:hover svg { transform: translateX(4px); }
+        @media (prefers-reduced-motion: reduce) {
+          .branch-viewall-trk, .branch-viewall-trk::after, .branch-viewall-trk svg { transition: none; }
+          .branch-viewall-trk::after { display: none; }
+        }
       `}</style>
       <div style={{ width: '100%', maxWidth: 1140, margin: '0 auto', padding: '0 22px' }}>
         <Reveal><SectionHeading title={branches.heading} subtitle={branches.body} /></Reveal>
@@ -100,6 +113,24 @@ export default function Branches() {
             ))}
           </div>
         )}
+        <Reveal>
+          <div style={{ textAlign: 'center', marginTop: 34 }}>
+            <Link
+              to="/branches"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none',
+                fontFamily: fonts.display, fontWeight: 500, fontSize: 'clamp(13.5px,3.6vw,15px)',
+                border: `2px solid ${colors.espresso}`, padding: '12px 26px', borderRadius: 999,
+              }}
+              className="branch-viewall-trk"
+            >
+              ดูสาขาทั้งหมด
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+              </svg>
+            </Link>
+          </div>
+        </Reveal>
       </div>
 
       {lightboxIdx !== null && (
