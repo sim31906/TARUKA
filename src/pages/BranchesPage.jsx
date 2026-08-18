@@ -5,9 +5,13 @@ import { brand, branchDirectory } from '../data/siteData';
 import Footer from '../components/Footer';
 import Reveal from '../components/Reveal';
 
-// ถ้ามีพิกัด lat/lng จริง (จาก Google My Maps) ให้ลิงก์ไปที่หมุดตรงจุดเลย
-// ถ้าไม่มีพิกัดค่อย fallback เป็นลิงก์ค้นหาจากชื่อ+ที่ตั้ง+จังหวัด
-function mapsSearchUrl(branchName, location, provinceName, lat, lng) {
+// ค้นหาด้วยชื่อร้านจริงบน Google Maps (gmapsName ตรงกับชื่อ listing จริง) เพื่อให้ผลลัพธ์
+// เป็นการ์ดร้านที่มีชื่อ/รูป/รีวิว แทนที่จะเป็นแค่หมุดเปล่า ๆ ถ้าไม่มีชื่อ ใช้พิกัด lat/lng
+// เป็น fallback แทน (ตำแหน่งแม่นแต่ไม่มีชื่อร้านกำกับ)
+function mapsSearchUrl(branchName, location, provinceName, lat, lng, gmapsName) {
+  if (gmapsName) {
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(gmapsName)}`;
+  }
   if (typeof lat === 'number' && typeof lng === 'number') {
     return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
   }
@@ -152,7 +156,7 @@ export default function BranchesPage() {
                             </div>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 14px', marginTop: 6 }}>
                               <a
-                                href={mapsSearchUrl(b.name, b.location, province.name, b.lat, b.lng)}
+                                href={mapsSearchUrl(b.name, b.location, province.name, b.lat, b.lng, b.gmapsName)}
                                 target="_blank"
                                 rel="noopener"
                                 style={{
