@@ -11,22 +11,26 @@ export default function Contact() {
   return (
     <section id="contact" className="section-trk" style={{ background: colors.espresso, color: colors.cream, overflow: 'hidden' }}>
       <style>{`
-        .channel-trk { display: flex; flex-direction: column; align-items: center; gap: 9px; text-decoration: none;
-          color: ${colors.cream}; width: 104px; }
-        .channel-ic-trk { width: 62px; height: 62px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-          color: #fff; box-shadow: 0 10px 22px rgba(0,0,0,.32); transition: transform .15s; }
-        .channel-trk:hover .channel-ic-trk { transform: translateY(-4px) scale(1.05); }
-        .channel-trk:focus-visible .channel-ic-trk { outline: 3px solid rgba(255,255,255,.6); outline-offset: 3px; }
+        .channel-trk { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px;
+          text-decoration: none; color: ${colors.cream}; width: 128px; padding: 22px 14px 18px;
+          border-radius: 20px; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.1);
+          backdrop-filter: blur(6px); transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease; }
+        .channel-trk:hover { transform: translateY(-6px); background: rgba(255,255,255,.08);
+          border-color: rgba(255,255,255,.22); box-shadow: 0 16px 34px rgba(0,0,0,.35); }
+        .channel-ic-trk { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+          color: #fff; transition: transform .2s ease, box-shadow .2s ease; }
+        .channel-trk:hover .channel-ic-trk { transform: scale(1.08); }
+        .channel-trk:focus-visible { outline: 3px solid rgba(255,255,255,.6); outline-offset: 3px; }
         .channel-cap-trk { font-family: ${fonts.display}; font-weight: 500; font-size: clamp(13px,3.4vw,14px); white-space: nowrap; }
         @media (max-width: 520px) {
-          .contact-channels-trk { flex-direction: row; flex-wrap: wrap; align-items: flex-start; gap: 22px 10px; }
-          .contact-channels-trk .channel-trk { flex: 0 0 calc(50% - 5px); }
+          .contact-channels-trk { flex-direction: row; flex-wrap: wrap; align-items: stretch; gap: 14px 10px; }
+          .contact-channels-trk .channel-trk { flex: 0 0 calc(50% - 10px); width: auto; padding-left: 8px; padding-right: 8px; }
         }
       `}</style>
       <BobaBubbles />
       <div style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: 1140, margin: '0 auto', padding: '0 22px' }}>
         <Reveal><SectionHeading title="สนใจเปิดร้าน TARUKA?" subtitle="ทักหาเราได้เลย ทีมงานพร้อมให้คำปรึกษาฟรี" dark /></Reveal>
-        <div id="contactChannels" className="contact-channels-trk" style={{ display: 'flex', gap: 'clamp(18px,4vw,30px)', justifyContent: 'center', flexWrap: 'wrap', marginTop: 8 }}>
+        <div id="contactChannels" className="contact-channels-trk" style={{ display: 'flex', gap: 'clamp(16px,4vw,24px)', justifyContent: 'center', flexWrap: 'wrap', marginTop: 8 }}>
           {channels.map((c) => {
             const Icon = c.Icon;
             return (
@@ -38,7 +42,15 @@ export default function Contact() {
                 rel={c.blank ? 'noopener' : undefined}
                 aria-label={c.cap}
               >
-                <span className="channel-ic-trk" style={{ background: c.bg }}><Icon /></span>
+                <span
+                  className="channel-ic-trk"
+                  style={{
+                    background: `linear-gradient(150deg, ${c.bg}, ${c.bgDk})`,
+                    boxShadow: `0 10px 22px ${c.glow}`,
+                  }}
+                >
+                  <Icon />
+                </span>
                 <span className="channel-cap-trk">{c.cap}</span>
               </a>
             );
