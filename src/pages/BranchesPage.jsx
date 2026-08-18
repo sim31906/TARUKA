@@ -56,9 +56,10 @@ export default function BranchesPage() {
         .bp-tab-trk.active { background: ${colors.orange}; border-color: ${colors.orangeDk}; color: #fff;
           font-weight: 600; box-shadow: 0 8px 18px rgba(242,145,61,.38); }
         .bp-tab-trk:focus-visible { outline: 3px solid rgba(242,145,61,.45); outline-offset: 2px; }
-        .bp-branch-card-trk { background: #fff; border-radius: ${radius.sm}; border: 2px solid ${colors.beige};
-          padding: 14px 18px; transition: transform .15s ease, border-color .2s ease; }
-        .bp-branch-card-trk:hover { transform: translateY(-3px); border-color: ${colors.orange}; }
+        .bp-branch-card-trk { display: block; background: #fff; border-radius: ${radius.sm}; border: 2px solid ${colors.beige};
+          padding: 14px 18px; text-decoration: none; cursor: pointer; transition: transform .15s ease, border-color .2s ease, box-shadow .2s ease; }
+        .bp-branch-card-trk:hover { transform: translateY(-3px); border-color: ${colors.orange}; box-shadow: 0 10px 22px rgba(0,0,0,.08); }
+        .bp-branch-card-trk:focus-visible { outline: 3px solid rgba(242,145,61,.45); outline-offset: 2px; }
       `}</style>
 
       <div style={{ minHeight: '100vh', background: colors.cream }}>
@@ -147,27 +148,20 @@ export default function BranchesPage() {
                       </div>
                       <div style={{ display: 'grid', gap: 12, gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))' }}>
                         {province.branches.map((b) => (
-                          <div key={b.name} className="bp-branch-card-trk">
+                          <a
+                            key={b.name}
+                            href={mapsSearchUrl(b.name, b.location, province.name, b.lat, b.lng, b.gmapsName)}
+                            target="_blank"
+                            rel="noopener"
+                            className="bp-branch-card-trk"
+                          >
                             <div style={{ fontFamily: fonts.display, fontWeight: 600, fontSize: 'clamp(14px,3.6vw,15px)', color: colors.espresso, marginBottom: 4 }}>
                               {b.name}
                             </div>
                             <div style={{ fontSize: 'clamp(12.5px,3.4vw,13.5px)', color: colors.brownSoft, lineHeight: 1.5 }}>
                               {b.location}
                             </div>
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 14px', marginTop: 6 }}>
-                              <a
-                                href={mapsSearchUrl(b.name, b.location, province.name, b.lat, b.lng, b.gmapsName)}
-                                target="_blank"
-                                rel="noopener"
-                                style={{
-                                  fontFamily: fonts.display, fontWeight: 500,
-                                  fontSize: 'clamp(12.5px,3.4vw,13.5px)', color: colors.orangeDk, textDecoration: 'none',
-                                }}
-                              >
-                                📍 Google Maps
-                              </a>
-                            </div>
-                          </div>
+                          </a>
                         ))}
                       </div>
                     </div>
