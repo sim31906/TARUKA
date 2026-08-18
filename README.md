@@ -138,7 +138,7 @@ vercel --prod # deploy ขึ้น production
 
 หรือเชื่อม repo GitHub นี้กับ Vercel ผ่านหน้าเว็บ [vercel.com/new](https://vercel.com/new) — Vercel จะตรวจจับว่าเป็นโปรเจกต์ Vite อัตโนมัติ (build command `npm run build`, output `dist/`) แล้ว deploy อัตโนมัติทุกครั้งที่ push ขึ้น `master`
 
-> **ย้ายโดเมน:** โปรเจกต์นี้เพิ่งย้ายจาก Firebase Hosting มาเป็น Vercel — หลัง deploy ครั้งแรกสำเร็จ ต้องไปตั้งค่า custom domain `tarukathailand.com` / `www.tarukathailand.com` ในหน้า Vercel project settings แล้วอัปเดต DNS (nameserver หรือ A/CNAME record ตามที่ Vercel แนะนำ) เว็บเดิมบน Firebase จะยังทำงานอยู่จนกว่าจะสลับ DNS
+> **ย้ายโดเมน:** โปรเจกต์นี้เพิ่งย้ายจาก Firebase Hosting มาเป็น Vercel — หลัง deploy ครั้งแรกสำเร็จ ต้องไปตั้งค่า custom domain `taruka-th.com` / `www.taruka-th.com` ในหน้า Vercel project settings แล้วอัปเดต DNS (nameserver หรือ A/CNAME record ตามที่ Vercel แนะนำ) เว็บเดิมบน Firebase จะยังทำงานอยู่จนกว่าจะสลับ DNS
 
 ---
 
