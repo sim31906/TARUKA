@@ -5,6 +5,13 @@ import { brand, branchDirectory } from '../data/siteData';
 import Footer from '../components/Footer';
 import Reveal from '../components/Reveal';
 
+// สร้างลิงก์ค้นหาใน Google Maps จากชื่อสาขา+ที่ตั้ง+จังหวัด — ไม่ใช่พิกัดปักหมุดจริงของแต่ละสาขา
+// (ไม่มี Place ID จริงให้ส่วนใหญ่) แต่พาไปหน้าค้นหาที่ตรงที่สุดเท่าที่ทำได้จากชื่อ/ที่อยู่
+function mapsSearchUrl(branchName, location, provinceName) {
+  const q = `TARUKA ${branchName} ${location} ${provinceName}`.replace(/\s+/g, ' ').trim();
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+}
+
 export default function BranchesPage() {
   const navigate = useNavigate();
   const regions = branchDirectory.regions || [];
@@ -140,17 +147,30 @@ export default function BranchesPage() {
                             <div style={{ fontSize: 'clamp(12.5px,3.4vw,13.5px)', color: colors.brownSoft, lineHeight: 1.5 }}>
                               {b.location}
                             </div>
-                            {b.phone && (
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 14px', marginTop: 6 }}>
+                              {b.phone && (
+                                <a
+                                  href={`tel:${b.phone.replace(/[^0-9+]/g, '')}`}
+                                  style={{
+                                    fontFamily: fonts.display, fontWeight: 500,
+                                    fontSize: 'clamp(12.5px,3.4vw,13.5px)', color: colors.orangeDk, textDecoration: 'none',
+                                  }}
+                                >
+                                  📞 {b.phone}
+                                </a>
+                              )}
                               <a
-                                href={`tel:${b.phone.replace(/[^0-9+]/g, '')}`}
+                                href={mapsSearchUrl(b.name, b.location, province.name)}
+                                target="_blank"
+                                rel="noopener"
                                 style={{
-                                  display: 'inline-block', marginTop: 6, fontFamily: fonts.display, fontWeight: 500,
+                                  fontFamily: fonts.display, fontWeight: 500,
                                   fontSize: 'clamp(12.5px,3.4vw,13.5px)', color: colors.orangeDk, textDecoration: 'none',
                                 }}
                               >
-                                📞 {b.phone}
+                                📍 Google Maps
                               </a>
-                            )}
+                            </div>
                           </div>
                         ))}
                       </div>
