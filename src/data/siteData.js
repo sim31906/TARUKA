@@ -122,6 +122,15 @@ export const menu = {
         { name: 'ชานมโกโก้ชีส', price: '49฿' },
       ],
     },
+    {
+      name: 'CHOCO MAGIC',
+      nameTh: 'โกโก้',
+      image: '/assets/menu/choco-magic.jpg',
+      items: [
+        { name: 'ช็อกโกมิ้นท์', price: '' },
+        { name: 'ช็อกโกบานาน่า', price: '' },
+      ],
+    },
   ],
 };
 
