@@ -131,6 +131,407 @@ export const menu = {
         { name: 'ช็อกโกบานาน่า', price: '' },
       ],
     },
+    {
+      name: 'PERFECT DRINKS',
+      nameTh: 'ชานม & ไข่มุก',
+      image: '/assets/menu/perfect-drinks-milktea-cheese.jpg',
+      items: [{ name: 'ชานมไต้หวันชีส', price: '39฿' }],
+    },
+    {
+      name: 'A CUP OF HAPPINESS',
+      nameTh: 'ชาผลไม้ชีส',
+      image: '/assets/menu/cup-of-happiness-strawberry-cheese.jpg',
+      items: [{ name: 'ชาสตรอว์เบอร์รี่ชีส', price: '39฿' }],
+    },
+    {
+      name: 'BROWN SUGAR',
+      nameTh: 'ชานม & ไข่มุก',
+      image: '/assets/menu/brown-sugar.jpg',
+      items: [
+        { name: 'ชานมไต้หวันบราวน์ชูก้าร์', price: '' },
+        { name: 'นมสดบราวน์ชูก้าร์', price: '' },
+      ],
+    },
+    {
+      name: 'THAI TEA',
+      nameTh: 'ชาไทย',
+      image: '/assets/menu/thai-tea-trio.jpg',
+      items: [
+        { name: 'ชาไทยชีส', price: '44฿' },
+        { name: 'ชาไทยช็อคโก', price: '39฿' },
+        { name: 'ชาไทยไข่มุก', price: '29฿' },
+      ],
+    },
+    {
+      name: 'MATCHA GREEN TEA FRESHMILK',
+      nameTh: 'มัทฉะ',
+      image: '/assets/menu/matcha-freshmilk.jpg',
+      items: [{ name: 'ชาเขียวมัทฉะนมสด', price: '39฿' }],
+    },
+    {
+      name: "IT'S BOBA TIME",
+      nameTh: 'ชานม & ไข่มุก',
+      image: '/assets/menu/boba-time.jpg',
+      items: [
+        { name: 'ชานมไต้หวันไข่มุก', price: '24฿' },
+        { name: 'ชาเขียวมะลิไข่มุก', price: '24฿' },
+      ],
+    },
+    {
+      name: 'THAI TEA CHEESE BEST SELLER',
+      nameTh: 'ชาไทย',
+      image: '/assets/menu/thai-tea-cheese-bestseller.jpg',
+      items: [{ name: 'ชาไทยชีส', price: '44฿' }],
+    },
+    {
+      name: 'SUMMER FRESH',
+      nameTh: 'โซดา',
+      image: '/assets/menu/summer-fresh.jpg',
+      items: [
+        { name: 'พีชเลมอนโซดา', price: '39฿' },
+        { name: 'ทารุกะซันไชน์', price: '39฿' },
+      ],
+    },
+    {
+      name: 'SODA SERIES',
+      nameTh: 'โซดา',
+      image: '/assets/menu/soda-series-1.jpg',
+      items: [
+        { name: 'บลูเบอร์รี่โซดา', price: '' },
+        { name: 'แอปเปิ้ลโซดา', price: '' },
+        { name: 'พีชโซดา', price: '' },
+      ],
+    },
+    {
+      name: 'SODA SERIES II',
+      nameTh: 'โซดา',
+      image: '/assets/menu/soda-series-2.jpg',
+      items: [
+        { name: 'สตรอว์เบอร์รี่โซดา', price: '' },
+        { name: 'พาสชั่นฟรุตโซดา', price: '' },
+        { name: 'เลมอนโซดา', price: '' },
+      ],
+    },
+    {
+      name: 'ENJOY YOUR CUP OF TEA',
+      nameTh: 'ชานม & ไข่มุก',
+      image: '/assets/menu/enjoy-cup-of-tea.jpg',
+      items: [
+        { name: 'ชาไทยไข่มุก', price: '29฿' },
+        { name: 'ชานมไต้หวันไข่มุก', price: '24฿' },
+        { name: 'ชาเขียวมะลิไข่มุก', price: '24฿' },
+      ],
+    },
+    {
+      name: 'HAVE A PEACHFUL DAY',
+      nameTh: 'พีช',
+      image: '/assets/menu/peachful-day.jpg',
+      items: [
+        { name: 'ชาพีช', price: '19฿' },
+        { name: 'พีชเลมอนโซดา', price: '39฿' },
+        { name: 'ชาพีชเลมอน', price: '39฿' },
+      ],
+    },
+    {
+      name: 'HAPPY PRIDE',
+      nameTh: 'ชาผลไม้',
+      image: '/assets/menu/happy-pride.jpg',
+      items: [
+        { name: 'ชาบลูเบอร์รี่', price: '19฿' },
+        { name: 'ชาแอปเปิ้ล', price: '19฿' },
+        { name: 'ชาพาสชั่นฟรุต', price: '19฿' },
+        { name: 'ชาลิ้นจี่', price: '19฿' },
+        { name: 'ชาสตรอว์เบอร์รี่', price: '19฿' },
+      ],
+    },
+    {
+      name: 'ALL I WANT IS CARAMEL',
+      nameTh: 'คาราเมล',
+      image: '/assets/menu/caramel.jpg',
+      items: [
+        { name: 'คาราเมลนมสด', price: '' },
+        { name: 'ชานมคาราเมล', price: '' },
+      ],
+    },
+    {
+      name: 'FRESH & HEALTHY SHIZUOKA MATCHA',
+      nameTh: 'มัทฉะ',
+      image: '/assets/menu/matcha-lemonade.jpg',
+      items: [
+        { name: 'มัทฉะเลมอน', price: '39฿' },
+        { name: 'มัทฉะเลมอนโซดา', price: '39฿' },
+      ],
+    },
+    {
+      name: 'JASMINE BLOOM',
+      nameTh: 'มะลิ',
+      image: '/assets/menu/jasmine-bloom.jpg',
+      items: [
+        { name: 'ชาเขียวมะลิชีส', price: '39฿' },
+        { name: 'ชาเขียวมะลิ', price: '19฿' },
+      ],
+    },
+    {
+      name: 'LYCHEE MOOD',
+      nameTh: 'ลิ้นจี่',
+      image: '/assets/menu/lychee-mood.jpg',
+      items: [
+        { name: 'ชาลิ้นจี่', price: '19฿' },
+        { name: 'ลิ้นจี่โซดา', price: '24฿' },
+      ],
+    },
+    {
+      name: 'VIOLET VIBES ONLY',
+      nameTh: 'ชาผลไม้',
+      image: '/assets/menu/violet-vibes.jpg',
+      items: [
+        { name: 'บลูเบอร์รี่โซดา', price: '' },
+        { name: 'ชาบลูเบอร์รี่', price: '' },
+        { name: 'บลูเบอร์รี่มิลค์กี้', price: '' },
+      ],
+    },
+    {
+      name: 'CHOCO OR CHEESE',
+      nameTh: 'ชาไทย',
+      image: '/assets/menu/choco-or-cheese.jpg',
+      items: [
+        { name: 'ชาไทยชีส', price: '44฿' },
+        { name: 'ชาไทยช็อคโก', price: '39฿' },
+      ],
+    },
+    {
+      name: 'MILDLY PERFECT',
+      nameTh: 'ชาผลไม้',
+      image: '/assets/menu/mildly-perfect.jpg',
+      items: [
+        { name: 'สตรอว์เบอร์รี่มิลค์กี้', price: '39฿' },
+        { name: 'นมชมพู', price: '34฿' },
+        { name: 'สตรอว์เบอร์รี่โซดา', price: '24฿' },
+        { name: 'ชาสตรอว์เบอร์รี่', price: '19฿' },
+      ],
+    },
+    {
+      name: "HAPPY MOTHER'S DAY",
+      nameTh: 'อัญชัน',
+      image: '/assets/menu/mothers-day-butterfly-pea.jpg',
+      items: [
+        { name: 'ชานมอัญชัน', price: '29฿' },
+        { name: 'ชานมอัญชันครีมชีส', price: '49฿' },
+      ],
+    },
+    {
+      name: 'CANTALOUPE DOUBLE BLISS',
+      nameTh: 'แคนตาลูป',
+      image: '/assets/menu/cantaloupe.jpg',
+      items: [
+        { name: 'แคนตาลูปนมสด', price: '' },
+        { name: 'ชานมแคนตาลูป', price: '' },
+      ],
+    },
+    {
+      name: 'APPLE MOOD ON',
+      nameTh: 'ชาผลไม้',
+      image: '/assets/menu/apple-mood.jpg',
+      items: [
+        { name: 'แอปเปิ้ลโซดา', price: '' },
+        { name: 'แอปเปิ้ลมิลค์กี้', price: '' },
+        { name: 'ชาแอปเปิ้ล', price: '' },
+      ],
+    },
+    {
+      name: 'TRY OUR BOBA',
+      nameTh: 'ชานม & ไข่มุก',
+      image: '/assets/menu/try-our-boba.jpg',
+      items: [
+        { name: 'ชานมไต้หวันบราวน์ชูก้าร์', price: '39฿' },
+        { name: 'นมสดไข่มุก', price: '34฿' },
+        { name: 'นมสดบราวน์ชูก้าร์', price: '49฿' },
+      ],
+    },
+    {
+      name: 'MATCHA SHIZUOKA',
+      nameTh: 'มัทฉะ',
+      image: '/assets/menu/matcha-shizuoka.jpg',
+      items: [
+        { name: 'มัทฉะเลมอน', price: '39฿' },
+        { name: 'มัทฉะเลมอนโซดา', price: '39฿' },
+        { name: 'มัทฉะนมสด', price: '39฿' },
+      ],
+    },
+    {
+      name: "SIGNATURE IT'S BOBA TIME",
+      nameTh: 'ชานม & ไข่มุก',
+      image: '/assets/menu/signature-boba-time.jpg',
+      items: [
+        { name: 'ชาไทยไข่มุก', price: '' },
+        { name: 'ชานมไต้หวันไข่มุก', price: '' },
+        { name: 'ชาเขียวมะลิไข่มุก', price: '' },
+      ],
+    },
+    {
+      name: 'FRUITY CHEESE TEA',
+      nameTh: 'ชาผลไม้ชีส',
+      image: '/assets/menu/fruity-cheese-tea.jpg',
+      items: [
+        { name: 'ชาสตรอว์เบอร์รี่ชีส', price: '39฿' },
+        { name: 'ชาแอปเปิ้ลชีส', price: '39฿' },
+        { name: 'ชาบลูเบอร์รี่ชีส', price: '39฿' },
+        { name: 'ชาพีชชีส', price: '39฿' },
+      ],
+    },
+    {
+      name: 'THAI TEA II',
+      nameTh: 'ชาไทย',
+      image: '/assets/menu/thai-tea-2.jpg',
+      items: [
+        { name: 'ชาไทยช็อคโก', price: '39฿' },
+        { name: 'ชาไทยชีส', price: '44฿' },
+        { name: 'ชาไทย', price: '24฿' },
+      ],
+    },
+    {
+      name: 'BLISSFUL MINT SET',
+      nameTh: 'มินท์',
+      image: '/assets/menu/blissful-mint-set.jpg',
+      items: [
+        { name: 'มินท์นมสด', price: '' },
+        { name: 'มินท์นมสดช็อคโก', price: '' },
+        { name: 'ชานมมินท์', price: '' },
+      ],
+    },
+    {
+      name: 'PEACH SERIES',
+      nameTh: 'พีช',
+      image: '/assets/menu/peach-series.jpg',
+      items: [
+        { name: 'พีชเลมอนโซดา', price: '' },
+        { name: 'ชาพีชเลมอน', price: '' },
+        { name: 'ชาพีชชีส', price: '' },
+        { name: 'ชาพีชไข่มุก', price: '' },
+        { name: 'พีชโซดา', price: '' },
+        { name: 'ชาพีช', price: '' },
+      ],
+    },
+    {
+      name: 'GRAPE MOMENT',
+      nameTh: 'องุ่น',
+      image: '/assets/menu/grape-moment.jpg',
+      items: [
+        { name: 'ชาองุ่น', price: '' },
+        { name: 'ชาองุ่นชีส', price: '' },
+        { name: 'องุ่นโซดา', price: '' },
+      ],
+    },
+    {
+      name: 'COFFEE TIME',
+      nameTh: 'กาแฟ',
+      image: '/assets/menu/coffee-time.jpg',
+      items: [
+        { name: 'ชานมกาแฟ', price: '24฿' },
+        { name: 'กาแฟนมสด', price: '34฿' },
+      ],
+    },
+    {
+      name: 'MATCHA ENJOY FRESH DRINK',
+      nameTh: 'มัทฉะ',
+      image: '/assets/menu/matcha-fresh-drink.jpg',
+      items: [
+        { name: 'มัทฉะเลมอนโซดา', price: '' },
+        { name: 'มัทฉะเลมอน', price: '' },
+      ],
+    },
+    {
+      name: 'FRUITY MILKY',
+      nameTh: 'ชาผลไม้',
+      image: '/assets/menu/fruity-milky.jpg',
+      items: [
+        { name: 'สตรอว์เบอร์รี่มิลค์กี้', price: '' },
+        { name: 'แอปเปิ้ลมิลค์กี้', price: '' },
+      ],
+    },
+    {
+      name: 'SPECIAL DAY FRESH MILK',
+      nameTh: 'นมสด',
+      image: '/assets/menu/special-day-freshmilk.jpg',
+      items: [
+        { name: 'นมสดชีส', price: '49฿' },
+        { name: 'นมสดไข่มุก', price: '34฿' },
+        { name: 'นมสดบราวน์ชูก้าร์', price: '49฿' },
+      ],
+    },
+    {
+      name: 'MATCHA CHEESY HEART',
+      nameTh: 'มัทฉะ',
+      image: '/assets/menu/matcha-cheesy-heart.jpg',
+      items: [{ name: 'มัทฉะนมสดชีส', price: '' }],
+    },
+    {
+      name: 'MATCHA CHEESY HEART II',
+      nameTh: 'มัทฉะ',
+      image: '/assets/menu/matcha-cheesy-heart-2.jpg',
+      items: [{ name: 'มัทฉะนมสดชีส', price: '' }],
+    },
+    {
+      name: 'FRESH VIBES ALL DAY',
+      nameTh: 'พีช',
+      image: '/assets/menu/fresh-vibes-peach-lemon-tea.jpg',
+      items: [{ name: 'ชาพีชเลมอน', price: '39฿' }],
+    },
+    {
+      name: 'SWEET VIBES',
+      nameTh: 'มันม่วง',
+      image: '/assets/menu/sweet-vibes-purple-potato.jpg',
+      items: [{ name: 'มันม่วงนมสด', price: '' }],
+    },
+    {
+      name: 'WINTER COZY CUP',
+      nameTh: 'ชาผลไม้ชีส',
+      image: '/assets/menu/winter-cozy-cup.jpg',
+      items: [
+        { name: 'นมชมพูชีส', price: '' },
+        { name: 'ชาสตรอว์เบอร์รี่ชีส', price: '' },
+      ],
+    },
+    {
+      name: 'REFRESH MODE ON',
+      nameTh: 'ชาผลไม้',
+      image: '/assets/menu/refresh-mode-passionfruit.jpg',
+      items: [
+        { name: 'ชาพาสชั่นฟรุต', price: '19฿' },
+        { name: 'พาสชั่นฟรุตโซดา', price: '24฿' },
+      ],
+    },
+    {
+      name: 'MY COZY MOOD',
+      nameTh: 'ชาไทย',
+      image: '/assets/menu/cozy-mood-thai-tea.jpg',
+      items: [{ name: 'ชาไทย', price: '24฿' }],
+    },
+    {
+      name: 'PEACH TEA',
+      nameTh: 'พีช',
+      image: '/assets/menu/peach-tea.jpg',
+      items: [{ name: 'ชาพีช', price: '19฿' }],
+    },
+    {
+      name: 'MINTY CUTE DRINK',
+      nameTh: 'มินท์',
+      image: '/assets/menu/minty-cute-drink.jpg',
+      items: [
+        { name: 'มินท์นมสดช็อคโก', price: '49฿' },
+        { name: 'มินท์นมสด', price: '34฿' },
+      ],
+    },
+    {
+      name: 'TEA TRIO SPECIAL',
+      nameTh: 'ชานม & ไข่มุก',
+      image: '/assets/menu/tea-trio-special.jpg',
+      items: [
+        { name: 'ชาไทยไข่มุก', price: '29฿' },
+        { name: 'ชานมไต้หวันไข่มุก', price: '24฿' },
+        { name: 'ชาเขียวมะลิไข่มุก', price: '24฿' },
+      ],
+    },
   ],
 };
 
