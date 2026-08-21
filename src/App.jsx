@@ -10,6 +10,7 @@ import Branches from './components/Branches';
 import Investment from './components/Investment';
 import ROI from './components/ROI';
 import Support from './components/Support';
+import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ContactFab from './components/ContactFab';
@@ -49,6 +50,7 @@ function MainPage() {
         <Investment />
         <ROI />
         <Support />
+        <FAQ />
         <Contact />
       </main>
       <Footer />
