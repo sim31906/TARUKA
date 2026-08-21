@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SITE_URL = 'https://www.taruka-th.com';
+const SITE_URL = 'https://taruka-th.com';
 
 function setMeta(selector, attr, value) {
   const el = document.querySelector(selector);
