@@ -4,6 +4,7 @@ import { colors, fonts, radius, shadow } from '../styles/theme';
 import { brand, branchDirectory } from '../data/siteData';
 import Footer from '../components/Footer';
 import Reveal from '../components/Reveal';
+import useSEO from '../hooks/useSEO';
 
 // ค้นหาด้วยชื่อร้านจริงบน Google Maps (gmapsName ตรงกับชื่อ listing จริง) เพื่อให้ผลลัพธ์
 // เป็นการ์ดร้านที่มีชื่อ/รูป/รีวิว แทนที่จะเป็นแค่หมุดเปล่า ๆ ถ้าไม่มีชื่อ ใช้พิกัด lat/lng
@@ -39,6 +40,12 @@ export default function BranchesPage() {
     (sum, r) => sum + r.provinces.reduce((s, p) => s + p.branches.length, 0),
     0
   );
+
+  useSEO({
+    title: `สาขา TARUKA ทั่วประเทศกว่า ${totalBranches} แห่ง | TARUKA Thailand`,
+    description: `รวมสาขา TARUKA แฟรนไชส์ชานมไข่มุกกว่า ${totalBranches} แห่งทั่วประเทศ ค้นหาสาขาใกล้บ้าน พร้อมลิงก์แผนที่ Google Maps`,
+    path: '/branches',
+  });
 
   return (
     <>

@@ -5,9 +5,15 @@ import { brand, menu } from '../data/siteData';
 import Lightbox from '../components/Lightbox';
 import Footer from '../components/Footer';
 import Reveal from '../components/Reveal';
+import useSEO from '../hooks/useSEO';
 
 export default function MenuPage() {
   const navigate = useNavigate();
+  useSEO({
+    title: 'เมนู TARUKA กว่า 50 เมนู เริ่มต้นเพียง 19฿/แก้ว | TARUKA Thailand',
+    description: 'รวมเมนูชานมไข่มุกและชาไต้หวัน TARUKA กว่า 50 เมนู แบ่งเป็นคอลเลกชันตามมู้ด เริ่มต้นเพียง 19 บาท/แก้ว ดูเมนูทั้งหมดก่อนตัดสินใจเปิดแฟรนไชส์',
+    path: '/menu',
+  });
   const categories = menu.categories.filter((c) => c && c.image);
   const [lightboxIdx, setLightboxIdx] = useState(null);
   const [activeCat, setActiveCat] = useState('ทั้งหมด');
